@@ -16,16 +16,19 @@ class PenggunaSeeder extends Seeder
         //
         Pengguna::insert([
             [
+                'nama' => 'Administrator',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('1234567890'),
                 'level' => 'admin',
             ],
             [
+                'nama' => 'Peserta 1',
                 'email' => 'peserta@example.com',
                 'password' => bcrypt('1234567890'),
                 'level' => 'peserta',
             ],
             [
+                'nama' => 'Peserta 2',
                 'email' => 'peserta2@example.com',
                 'password' => bcrypt('1234567890'),
                 'level' => 'peserta',

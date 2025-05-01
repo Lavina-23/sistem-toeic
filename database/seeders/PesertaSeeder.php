@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pengguna;
 use App\Models\Peserta;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,7 +18,7 @@ class PesertaSeeder extends Seeder
         Peserta::insert([
             [
                 'pengguna_id' => 3,
-                'nama' => 'John Doe',
+                'nama' => Pengguna::find(3)->nama,
                 'no_induk' => '12345678',
                 'nik' => '9876543210123456',
                 'no_telp' => '081234567890',
@@ -33,7 +34,7 @@ class PesertaSeeder extends Seeder
             ],
             [
                 'pengguna_id' => 2,
-                'nama' => 'Jane Smith',
+                'nama' => Pengguna::find(2)->nama,
                 'no_induk' => '87654321',
                 'nik' => '1234567890123456',
                 'no_telp' => '082345678901',
