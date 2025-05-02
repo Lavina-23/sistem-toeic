@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -17,8 +19,8 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('auth.login');
+})->middleware(['guest']);
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
@@ -32,14 +34,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('peserta.dashboard');
-        })->name('peserta.dashboard');
+        Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
+        Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
+        Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
     });
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     });
 });
 
