@@ -1,6 +1,6 @@
 <x-layout>
     <x-sidebar />
-    <div>
-        <h1 class="text-2xl font-bold">Hello World !</h1>
-    </div>
+    <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0">
+        <livewire:peserta-table />
+    </section>
 </x-layout>
