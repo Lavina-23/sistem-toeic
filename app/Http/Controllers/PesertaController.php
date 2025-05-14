@@ -73,9 +73,13 @@ class PesertaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pengguna $pengguna)
+    public function show()
     {
         //
+        $user = Auth::user();
+        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+
+        return view('peserta.dashboard', ['peserta' => $peserta]);
     }
 
     /**

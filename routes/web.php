@@ -34,7 +34,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
-        Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
+        Route::get('/dashboard', [PesertaController::class, 'show'])->name('peserta.dashboard');
+        // Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
     });
