@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="max-w-md mx-auto p-6 bg-teal-100 rounded-2xl">
-        <h2 class="text-3xl font-bold text-center text-teal-900 mb-6">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">
             {{ __('Login to Your Account') }}
         </h2>
 
@@ -28,7 +28,7 @@
 
             <!-- Remember Me -->
             <div class="flex items-center justify-between">
-                <label for="remember_me" class="inline-flex items-center text-sm text-teal-700">
+                <label for="remember_me" class="inline-flex items-center text-sm text-gray-900">
                     <input id="remember_me" type="checkbox"
                         class="rounded border-teal-900 text-indigo-600 shadow-sm bg-teal-100" name="remember">
                     <span class="ml-2">{{ __('Remember me') }}</span>

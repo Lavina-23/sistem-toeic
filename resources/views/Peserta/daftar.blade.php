@@ -13,7 +13,7 @@
             </div>
         @endif
 
-        <h2 class="text-4xl font-bold text-center text-teal-900 mb-1">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-1">
             {{ __('😈 Sudah siap mengikuti tes TOEIC? 😈') }}
         </h2>
         <h6 class="text-sm font-normal text-center text-gray-400 mb-6">
@@ -93,7 +93,7 @@
                 <div class="w-full">
                     <x-input-label for="kampus" :value="__('Kampus')" />
                     <select id="kampus" name="kampus"
-                        class="block mt-1 w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-teal-500 text-teal-700"
+                        class="block mt-1 w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-teal-500 text-gray-900"
                         required>
                         <option value="">-- Pilih Kampus --</option>
                         @foreach (['Utama', 'PSDKU Kediri', 'PSDKU Lumajang', 'PSDKU Pamekasan'] as $option)
