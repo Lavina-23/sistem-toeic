@@ -24,7 +24,10 @@ class PesertaController extends Controller
     public function createPeserta()
     {
         //
-        return view('peserta.daftar');
+        $user = Auth::user();
+        $registered = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+
+        return view('peserta.daftar', ['registered' => $registered]);
     }
 
     /**
@@ -73,13 +76,13 @@ class PesertaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function showHistory()
     {
         //
         $user = Auth::user();
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
 
-        return view('peserta.dashboard', ['peserta' => $peserta]);
+        return view('peserta.riwayat', ['peserta' => $peserta]);
     }
 
     /**
