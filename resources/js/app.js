@@ -7,3 +7,5 @@ import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 window.Alpine = Alpine;
 
 Alpine.start();
+
+import '../css/powergrid-custom.css';
