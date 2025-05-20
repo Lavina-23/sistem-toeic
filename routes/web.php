@@ -41,6 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/score', [AdminController::class, 'createScores'])->name('score.create');
+        Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
     });
 });
 
