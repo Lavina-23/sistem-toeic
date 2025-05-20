@@ -5,61 +5,70 @@
         @if (!is_null($peserta))
                 <div class="border-2 rounded-lg shadow-sm p-8">
                     <h1 class="mb-6 text-2xl md:text-4xl font-bold text-center text-gray-900">
-                        Test of English for International Communication
+                         {{ __('riwayat.title') }}
                     </h1>
                     <div class="flex flex-col md:flex-row md:gap-8 mt-5 lg:mt-0">
                         <dl class="w-full text-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    ID Peserta</dt>
+                                    {{ __('ID Peserta') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->peserta_id }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Nama</dt>
+                                    {{ __('Nama Peserta') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->nama }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Nomor Identitas</dt>
+                                    {{ __('Nomor Indentitas') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->no_induk }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    NIK</dt>
+                                    {{ __('NIK') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->nik }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Nomor Telepon</dt>
+                                    {{ __('Nomor Telepon') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->no_telp }}</dd>
                             </div>
                         </dl>
                         <dl class="w-full text-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Alamat Asal</dt>
+                                    {{ __('Alamat asal') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->alamat_asal }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Alamat Sekarang</dt>
+                                    {{ __('Alamat sekarang') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->alamat_sekarang }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Jurusan</dt>
+                                    {{ __('Jurusan') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->jurusan }}</dd>
-                                </dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Program Studi</dt>
+                                    {{ __('Program Studi') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->program_studi }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    Kampus</dt>
+                                    {{ __('Kampus') }}
+                                </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->kampus }}</dd>
                             </div>
                         </dl>
@@ -396,12 +405,15 @@
                         </defs>
                     </svg>
                     <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                        <h1 class="text-3xl font-semibold">Hai 🤩 Kami belum menemukan data pendaftaran tes kamu.</h1>
-                        <p class="text-gray-500">Klik
-                            tombol di bawah untuk mendaftar, ya!</p>
+                        <h1 class="text-3xl font-semibold">
+                            {{ __('pesan.tidak_ada_data') }}
+                        </h1>
+                        <p class="text-gray-500">
+                            {{ __('pesan.klik_untuk_daftar') }}
+                        </p>
                         <a href="{{ route('peserta.create') }}">
                             <x-primary-button class="w-fit h-fit">
-                                {{ __('Ikuti Tes Sekarang') }}
+                                {{ __('pesan.ikut_tes') }}
                             </x-primary-button>
                         </a>
                     </div>
