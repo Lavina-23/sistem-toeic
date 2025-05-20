@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 Route::get('/language/{lang}', function ($lang) {
     if (in_array($lang, ['en', 'id'])) {
         session(['locale' => $lang]);
@@ -59,5 +58,5 @@ Route::get('/language/{lang}', function ($lang) {
     return redirect()->back();
 })->name('language.switch');
 
-
 require __DIR__ . '/auth.php';
+

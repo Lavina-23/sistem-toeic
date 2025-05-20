@@ -11,31 +11,31 @@
                         <dl class="w-full text-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('ID Peserta') }}
+                                    {{ __('riwayat.ID Peserta') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->peserta_id }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Nama Peserta') }}
+                                    {{ __('riwayat.Nama') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->nama }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Nomor Indentitas') }}
+                                    {{ __('riwayat.Nomor Identitas') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->no_induk }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('NIK') }}
+                                    {{ __('riwayat.Nik') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->nik }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Nomor Telepon') }}
+                                    {{ __('riwayat.Nomor Telepon') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->no_telp }}</dd>
                             </div>
@@ -43,31 +43,31 @@
                         <dl class="w-full text-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Alamat asal') }}
+                                    {{ __('riwayat.Alamat asal') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->alamat_asal }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Alamat sekarang') }}
+                                    {{ __('riwayat.Alamat Sekarang') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->alamat_sekarang }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Jurusan') }}
+                                    {{ __('riwayat.Jurusan') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->jurusan }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Program Studi') }}
+                                    {{ __('riwayat.Program Studi') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->program_studi }}</dd>
                             </div>
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-500 text-xs">
-                                    {{ __('Kampus') }}
+                                    {{ __('riwayat.Kampus') }}
                                 </dt>
                                 <dd class="text-sm lg:text-base font-semibold">{{ $peserta->kampus }}</dd>
                             </div>

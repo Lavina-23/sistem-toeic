@@ -263,15 +263,14 @@
                         </defs>
                     </svg>
                     <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                        <h1 class="text-3xl font-semibold">Wah, ini bukan pendaftaran tes pertamamu ya?</h1>
-                        <p class="text-gray-500">Klik
-                            tombol di bawah untuk mendaftar secara mandiri, ya!</p>
+                        <h1 class="text-3xl font-semibold">{{ __('daftar.title') }}</h1>
+                        <p class="text-gray-500">{{ __('daftar.subtitle') }}</p>
                         <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
                             <x-primary-button class="w-fit h-fit">
-                                {{ __('Ikuti Tes Sekarang') }}
+                                {{ __('daftar.button') }}
                             </x-primary-button>
                         </a>
-                    </div>
+                    </div> 
                 </div>
             @else
                 @if (session('success'))
@@ -305,107 +304,96 @@
                         </div> --}}
                         <!-- no_induk -->
                         <div class="w-full">
-                            <x-input-label for="no_induk" :value="__('NIM/NIDN/NIP')" />
+                            <x-input-label for="no_induk" :value="__('daftar.nim_nidn_nip')" />
                             <x-text-input id="no_induk" class="block mt-1 w-full" type="text" name="no_induk"
                                 :value="old('no_induk')" required autofocus autocomplete="no_induk" />
                             <x-input-error :messages="$errors->get('no_induk')" class="mt-2" />
                         </div>
-                        <!-- NIK -->
+
                         <div class="w-full">
-                            <x-input-label for="nik" :value="__('NIK')" />
+                            <x-input-label for="nik" :value="__('daftar.nik')" />
                             <x-text-input id="nik" class="block mt-1 w-full" type="text" name="nik"
                                 :value="old('nik')" required />
                             <x-input-error :messages="$errors->get('nik')" class="mt-2" />
                         </div>
-                        <!-- No Telp -->
+
                         <div class="w-full">
-                            <x-input-label for="no_telp" :value="__('No Telp')" />
+                            <x-input-label for="no_telp" :value="__('daftar.no_telp')" />
                             <x-text-input id="no_telp" class="block mt-1 w-full" type="text" name="no_telp"
                                 :value="old('no_telp')" required />
                             <x-input-error :messages="$errors->get('no_telp')" class="mt-2" />
                         </div>
-                    </div>
 
-                    <div class="flex flex-col md:flex-row gap-5 w-full mt-4">
-                        <!-- Alamat Asal -->
-                        <div class="w-full">
-                            <x-input-label for="alamat_asal" :value="__('Alamat Asal')" />
-                            <textarea id="alamat_asal" name="alamat_asal" type="textarea"
-                                class="w-full mt-1 border-gray-300 focus:ring-teal-500 rounded-md shadow-sm" rows="3" required>{{ old('alamat_asal') }}</textarea>
-                            <x-input-error :messages="$errors->get('alamat_asal')" class="mt-2" />
+                        <div class="flex flex-col md:flex-row gap-5 w-full mt-4">
+                            <div class="w-full">
+                                <x-input-label for="alamat_asal" :value="__('daftar.alamat_asal')" />
+                                <textarea id="alamat_asal" name="alamat_asal" type="textarea"
+                                    class="w-full mt-1 border-gray-300 focus:ring-teal-500 rounded-md shadow-sm" rows="3" required>{{ old('alamat_asal') }}</textarea>
+                                <x-input-error :messages="$errors->get('alamat_asal')" class="mt-2" />
+                            </div>
 
+                            <div class="w-full">
+                                <x-input-label for="alamat_sekarang" :value="__('daftar.alamat_sekarang')" />
+                                <textarea id="alamat_sekarang" name="alamat_sekarang" type="textarea"
+                                    class="w-full mt-1 border-gray-300 focus:ring-teal-500 rounded-md shadow-sm" rows="3" required>{{ old('alamat_sekarang') }}</textarea>
+                                <x-input-error :messages="$errors->get('alamat_sekarang')" class="mt-2" />
+                            </div>
                         </div>
 
-                        <!-- Alamat Sekarang -->
-                        <div class="w-full">
-                            <x-input-label for="alamat_sekarang" :value="__('Alamat Sekarang')" />
-                            <textarea id="alamat_sekarang" name="alamat_sekarang" type="textarea"
-                                class="w-full mt-1 border-gray-300 focus:ring-teal-500 rounded-md shadow-sm" rows="3" required>{{ old('alamat_sekarang') }}</textarea>
-                            <x-input-error :messages="$errors->get('alamat_sekarang')" class="mt-2" />
-                        </div>
-                    </div>
+                        <div class="flex flex-col md:flex-row gap-5 w-full mt-4">
+                            <div class="w-full">
+                                <x-input-label for="jurusan" :value="__('daftar.jurusan')" />
+                                <x-text-input id="jurusan" class="block mt-1 w-full" type="text" name="jurusan"
+                                    :value="old('jurusan')" required />
+                                <x-input-error :messages="$errors->get('jurusan')" class="mt-2" />
+                            </div>
 
-                    <div class="flex flex-col md:flex-row gap-5 w-full mt-4">
-                        <!-- Jurusan -->
-                        <div class="w-full">
-                            <x-input-label for="jurusan" :value="__('Jurusan')" />
-                            <x-text-input id="jurusan" class="block mt-1 w-full" type="text" name="jurusan"
-                                :value="old('jurusan')" required />
-                            <x-input-error :messages="$errors->get('jurusan')" class="mt-2" />
-                        </div>
+                            <div class="w-full">
+                                <x-input-label for="program_studi" :value="__('daftar.program_studi')" />
+                                <x-text-input id="program_studi" class="block mt-1 w-full" type="text"
+                                    name="program_studi" :value="old('program_studi')" required />
+                                <x-input-error :messages="$errors->get('program_studi')" class="mt-2" />
+                            </div>
 
-                        <!-- Program Studi -->
-                        <div class="w-full">
-                            <x-input-label for="program_studi" :value="__('Program Studi')" />
-                            <x-text-input id="program_studi" class="block mt-1 w-full" type="text"
-                                name="program_studi" :value="old('program_studi')" required />
-                            <x-input-error :messages="$errors->get('program_studi')" class="mt-2" />
-                        </div>
-
-                        <!-- Kampus -->
-                        <div class="w-full">
-                            <x-input-label for="kampus" :value="__('Kampus')" />
-                            <select id="kampus" name="kampus"
-                                class="block mt-1 w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-teal-500 text-gray-900"
-                                required>
-                                <option value="">-- Pilih Kampus --</option>
-                                @foreach (['Utama', 'PSDKU Kediri', 'PSDKU Lumajang', 'PSDKU Pamekasan'] as $option)
-                                    <option value="{{ $option }}"
-                                        {{ old('kampus') === $option ? 'selected' : '' }}>
-                                        {{ $option }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('kampus')" class="mt-2" />
+                            <div class="w-full">
+                                <x-input-label for="kampus" :value="__('daftar.kampus')" />
+                                <select id="kampus" name="kampus"
+                                    class="block mt-1 w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-teal-500 text-gray-900"
+                                    required>
+                                    <option value="">{{ __('daftar.pilih_kampus') }}</option>
+                                    @foreach (['Utama', 'PSDKU Kediri', 'PSDKU Lumajang', 'PSDKU Pamekasan'] as $option)
+                                        <option value="{{ $option }}" {{ old('kampus') === $option ? 'selected' : '' }}>
+                                            {{ $option }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('kampus')" class="mt-2" />
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="mt-4 w-fit">
+                            <x-input-label for="ktp" :value="__('daftar.ktp')" />
+                            <input id="ktp" class="block mt-1" type="file" name="ktp" required />
+                            <x-input-error :messages="$errors->get('ktp')" class="mt-2" />
+                        </div>
 
-                    <!-- KTP -->
-                    <div class="mt-4 w-fit">
-                        <x-input-label for="ktp" :value="__('KTP')" />
-                        <input id="ktp" class="block mt-1" type="file" name="ktp" required />
-                        <x-input-error :messages="$errors->get('ktp')" class="mt-2" />
-                    </div>
+                        <div class="mt-4 w-fit">
+                            <x-input-label for="ktm" :value="__('daftar.ktm')" />
+                            <input id="ktm" class="block mt-1" type="file" name="ktm" required />
+                            <x-input-error :messages="$errors->get('ktm')" class="mt-2" />
+                        </div>
 
-                    <!-- KTM -->
-                    <div class="mt-4 w-fit">
-                        <x-input-label for="ktm" :value="__('KTM')" />
-                        <input id="ktm" class="block mt-1" type="file" name="ktm" required />
-                        <x-input-error :messages="$errors->get('ktm')" class="mt-2" />
-                    </div>
+                        <div class="mt-4 w-fit">
+                            <x-input-label for="foto" :value="__('daftar.foto')" />
+                            <input id="foto" class="block mt-1" type="file" name="foto" required />
+                            <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                        </div>
 
-                    <!-- Foto -->
-                    <div class="mt-4 w-fit">
-                        <x-input-label for="foto" :value="__('Foto')" />
-                        <input id="foto" class="block mt-1" type="file" name="foto" required />
-                        <x-input-error :messages="$errors->get('foto')" class="mt-2" />
-                    </div>
-
-                    <div class="flex items-center justify-end mt-4">
-                        <x-primary-button class="ms-4">
-                            {{ __('Daftar') }}
-                        </x-primary-button>
-                    </div>
+                        <div class="flex items-center justify-end mt-4">
+                            <x-primary-button class="ms-4">
+                                {{ __('daftar.daftar') }}
+                            </x-primary-button>
+                        </div>
                 </form>
             @endif
         </div>
