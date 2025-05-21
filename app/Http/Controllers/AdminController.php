@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\ScoreImport;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,7 +15,10 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.dashboard');
+        $peserta = Peserta::all();
+        return view('admin.dashboard', [
+            'peserta' => $peserta
+        ]);
     }
 
     /**
