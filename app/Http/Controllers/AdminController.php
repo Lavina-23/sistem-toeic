@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Peserta;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,9 +12,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $peserta = Peserta::all();
-        return view('admin.dashboard', [
-            'peserta' => $peserta      ]);
+        return view('admin.dashboard');
     }
 
     /**
