@@ -27,7 +27,7 @@
             
             <!-- Informasi jumlah data -->
             <div class="flex justify-between items-center mb-4">
-                {{-- <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span> peserta</p> --}}
+                <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span> peserta</p>
                 <div class="flex space-x-2">
                     <select id="perPage" onchange="changePerPage()" class="px-3 py-1 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @foreach([10, 25, 50, 100] as $value)
@@ -122,7 +122,7 @@
                         @forelse($peserta as $index => $item)
                             <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-100 transition">
                                 <td class="px-4 py-2 whitespace-nowrap">
-                                    {{-- {{ ($peserta->currentPage() - 1) * $peserta->perPage() + $loop->iteration }} --}}
+                                    {{ ($peserta->currentPage() - 1) * $peserta->perPage() + $loop->iteration }}
                                 </td>
                                 <td class="px-4 py-2 whitespace-nowrap font-medium text-gray-900">
                                     {{ $item->nama }}
@@ -175,7 +175,7 @@
 
             <!-- Pagination -->
             <div class="mt-4">
-                {{-- {{ $peserta->appends(request()->except('page'))->links() }} --}}
+                {{ $peserta->appends(request()->except('page'))->links() }}
             </div>
         </div>
     </section>
