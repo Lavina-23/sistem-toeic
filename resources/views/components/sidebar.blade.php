@@ -37,7 +37,7 @@
                         <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                             <div class="flex justify-end px-4 pt-4">
                                 <button id="dropdownButton" data-dropdown-toggle="dropdown"
-                                    class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200ype="button">
+                                    class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200" type="button">
                                     <span class="sr-only">Open dropdown</span>
                                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 16 3">
@@ -51,16 +51,15 @@
                                     <ul class="py-2" aria-labelledby="dropdownButton">
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('sidebar.edit') }}</a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Export
-                                                Data</a>
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('sidebar.export') }}</a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                                class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">{{ __('sidebar.delete') }}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -95,7 +94,7 @@
                                     d="M17.447 8.08a1.087 1.087 0 0 1 1.187.238l.002.001a1.088 1.088 0 0 1 0 1.539l-.377.377-1.54-1.542.373-.374.002-.001c.1-.102.22-.182.353-.237Zm-2.143 2.027-4.644 4.644-.385 1.924 1.925-.385 4.644-4.642-1.54-1.54Zm2.56-4.11a3.087 3.087 0 0 0-2.187.909l-6.645 6.645a1 1 0 0 0-.274.51l-.739 3.693a1 1 0 0 0 1.177 1.176l3.693-.738a1 1 0 0 0 .51-.274l6.65-6.646a3.088 3.088 0 0 0-2.185-5.275Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">Daftar Test 🚀</span>
+                            <span class="ml-3">{{ __('sidebar.register_test') }}</span>
                         </a>
                     </li>
                     <li>
@@ -108,7 +107,7 @@
                                     clip-rule="evenodd" />
                                 <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Z" />
                             </svg>
-                            <span class="ml-3">Dashboard</span>
+                            <span class="ml-3">{{ __('sidebar.dashboard') }}</span>
                         </a>
                     </li>
                     <li>
@@ -120,7 +119,7 @@
                                     d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">Riwayat</span>
+                            <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
                     </li>
                     <li>
@@ -135,109 +134,82 @@
                                         stroke-width="2"
                                         d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2" />
                                 </svg>
-                                <span class="ml-3">Log Out</span>
+                                <span class="ml-3">{{ __('sidebar.logout') }}</span>
                             </button>
                         </form>
                     </li>
                 </ul>
             </div>
-            <div class="absolute bottom-0 left-0 justify-start p-4 space-x-4 w-full flex bg-white z-20">
-                <button
-                    class="w-full flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
-                    <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m13 19 3.5-9 3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15" />
-                    </svg>
-                    <span class="ml-3">Indonesia</span>
-                </button>
-                <!-- Dropdown -->
-                <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
-                    id="language-dropdown">
-                    <ul class="py-1" role="none">
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="inline-flex items-center">
-                                    <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                        xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
-                                        viewBox="0 0 512 512">
-                                        <g fill-rule="evenodd">
-                                            <g stroke-width="1pt">
-                                                <path fill="#bd3d44"
-                                                    d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                                    transform="scale(3.9385)" />
-                                                <path fill="#fff"
-                                                    d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                                    transform="scale(3.9385)" />
+            <div>
+                <div class="absolute bottom-0 left-0 justify-start p-4 space-x-4 w-full flex bg-white z-20">
+                    <button id="language-button"
+                        class="w-full flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
+                        <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m13 19 3.5-9 3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15" />
+                        </svg>
+                        <span class="ml-3">{{ session('locale') == 'en' ? 'English' : 'Indonesia' }}</span>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+                        id="language-dropdown">
+                        <ul class="py-1" role="none">
+                            <li>
+                                <a href="{{ route('language.switch', 'en') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
+                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
+                                            <g fill-rule="evenodd">
+                                                <path fill="#bd3d44" d="M0 0h512v512H0z"/>
+                                                <path fill="#fff" d="M0 58.2h512v57.1H0zm0 114.3h512v57.1H0zm0 114.2h512v57.1H0zm0 114.3h512v57.1H0z"/>
                                             </g>
-                                            <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)" />
-                                            <path fill="#fff"
-                                                d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
-                                                transform="scale(3.9385)" />
-                                        </g>
-                                    </svg>
-                                    English (US)
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="inline-flex items-center">
-                                    <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                        xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-de"
-                                        viewBox="0 0 512 512">
-                                        <path fill="#ffce00" d="M0 341.3h512V512H0z" />
-                                        <path d="M0 0h512v170.7H0z" />
-                                        <path fill="#d00" d="M0 170.7h512v170.6H0z" />
-                                    </svg>
-                                    Deutsch
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="inline-flex items-center">
-                                    <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                        xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-it"
-                                        viewBox="0 0 512 512">
-                                        <g fill-rule="evenodd" stroke-width="1pt">
-                                            <path fill="#fff" d="M0 0h512v512H0z" />
-                                            <path fill="#009246" d="M0 0h170.7v512H0z" />
-                                            <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
-                                        </g>
-                                    </svg>
-                                    Italiano
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="inline-flex items-center">
-                                    <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        id="flag-icon-css-cn" viewBox="0 0 512 512">
-                                        <defs>
-                                            <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z" />
-                                        </defs>
-                                        <path fill="#de2910" d="M0 0h512v512H0z" />
-                                        <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)"
-                                            xlink:href="#a" />
-                                        <use width="30" height="20"
-                                            transform="rotate(-121 142.6 -47) scale(25.5827)" xlink:href="#a" />
-                                        <use width="30" height="20"
-                                            transform="rotate(-98.1 198 -82) scale(25.6)" xlink:href="#a" />
-                                        <use width="30" height="20"
-                                            transform="rotate(-74 272.4 -114) scale(25.6137)" xlink:href="#a" />
-                                        <use width="30" height="20"
-                                            transform="matrix(16 -19.968 19.968 16 256 230.4)" xlink:href="#a" />
-                                    </svg>
-                                    中文 (繁體)
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                                        </svg>
+                                        English
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'id') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
+                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-id" viewBox="0 0 512 512">
+                                            <g fill-rule="evenodd">
+                                                <path fill="#e70011" d="M0 0h512v256H0z"/>
+                                                <path fill="#fff" d="M0 256h512v256H0z"/>
+                                            </g>
+                                        </svg>
+                                        Indonesia
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </aside>
     </section>
 </x-layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const languageButton = document.getElementById("language-button");
+    const languageDropdown = document.getElementById("language-dropdown");
+
+    // Toggle dropdown when button is clicked
+    languageButton.addEventListener("click", function (e) {
+      e.stopPropagation();
+      languageDropdown.classList.toggle("hidden");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!languageDropdown.contains(e.target) && !languageButton.contains(e.target)) {
+        languageDropdown.classList.add("hidden");
+      }
+    });
+  });
+</script>

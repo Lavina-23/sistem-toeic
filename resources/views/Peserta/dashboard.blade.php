@@ -2,12 +2,12 @@
     <x-sidebar />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-teal-900 mb-6 text-center">📝 Jadwal Tes 📝</h1>
+            <h1 class="text-4xl font-bold text-teal-900 mb-6 text-center">{{ __('jadwalTes.title') }}</h1>
             
             <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                 <div class="flex flex-col gap-4">
-                    <h2 class="text-lg md:text-xl font-semibold text-teal-700 text-center">Jadwal TOEIC Periode Tahun 2025</h2>
-                    <p class="text-sm font-normal text-center text-gray-400">Berikut adalah jadwal pelaksanaan Test of English for International Communication (TOEIC).</p>
+                    <h2 class="text-lg md:text-xl font-semibold text-teal-700 text-center">{{ __('jadwalTes.sub_title') }}</h2>
+                    <p class="text-sm font-normal text-center text-gray-400">{{ __('jadwalTes.description') }}</p>
                 </div>
             </div>
             
@@ -24,7 +24,7 @@
                                 <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
-                                <p class="text-gray-500 text-center">PDF tidak dapat ditampilkan. Silakan unduh file menggunakan tombol di bawah.</p>
+                                <p class="text-gray-500 text-center">{{ __('jadwalTes.download_error') }}</p>
                             </div>
                         </object>
                     </div>
@@ -34,14 +34,14 @@
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
-                        Unduh Jadwal TOEIC
+                        {{ __('jadwalTes.button_download') }}
                     </a>
                 </div>
             </div>
             
             <!-- Additional Information Section -->
             <div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
-                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">Informasi Penting</h2>
+                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">{{ __('jadwalTes.section_info_title') }}</h2>
                 
                 <div class="space-y-4 text-sm font-normal text-gray-600">
                     <div class="flex items-start">
@@ -50,7 +50,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <p class="ml-3">Peserta wajib hadir 30 menit sebelum tes dimulai untuk proses registrasi dan pengecekan identitas.</p>
+                        <p class="ml-3">{{ __('jadwalTes.info_1') }}</p>
                     </div>
                     
                     <div class="flex items-start">
@@ -59,7 +59,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <p class="ml-3">Peserta diwajibkan membawa kartu identitas (KTP/SIM/Paspor) dan bukti pendaftaran yang telah dicetak.</p>
+                        <p class="ml-3">{{ __('jadwalTes.info_2') }}</p>
                     </div>
                     
                     <div class="flex items-start">
@@ -68,7 +68,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <p class="ml-3">Jadwal dapat berubah sewaktu-waktu. Silakan periksa informasi terbaru di website ini atau hubungi petugas pendaftaran.</p>
+                        <p class="ml-3">{{ __('jadwalTes.info_3') }}</p>
                     </div>
                     
                     <div class="flex items-start">
@@ -77,14 +77,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <p class="ml-3">Peserta yang terlambat lebih dari 15 menit setelah tes dimulai tidak diperkenankan masuk ruang ujian.</p>
+                        <p class="ml-3">{{ __('jadwalTes.info_4') }}</p>
                     </div>
                 </div>
             </div>
             
             <!-- Contact Section -->
             <div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
-                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">Kontak Informasi</h2>
+                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">{{ __('jadwalTes.section_contact_title') }}</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="flex items-start">
@@ -94,8 +94,8 @@
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Telepon</p>
-                            <p class="text-sm text-gray-500">+62 341 404424</p>
+                            <p class="text-sm font-normal text-gray-900">{{ __('jadwalTes.contact_phone') }}</p>
+                            <p class="text-sm text-gray-500">{{ __('jadwalTes.value_phone') }}</p>
                         </div>
                     </div>
                     
@@ -106,7 +106,7 @@
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Email</p>
+                            <p class="text-sm font-normal text-gray-900">{{ __('jadwalTes.contact_email') }}</p>
                             <p class="text-sm text-gray-500">toeic@polinema.ac.id</p>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Jam Layanan</p>
+                            <p class="text-sm font-normal text-gray-900">{{ __('jadwalTes.contact_hours') }}</p>
                             <p class="text-sm text-gray-500">Senin - Jumat: 08.00 - 16.00 WIB</p>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Lokasi</p>
-                            <p class="text-sm text-gray-500">Gedung UPA Bahasa, Politeknik Negeri Malang</p>
+                            <p class="text-sm font-normal text-gray-900">{{ __('jadwalTes.contact_location') }}</p>
+                            <p class="text-sm text-gray-500">{{ __('jadwalTes.value_location') }}</p>
                         </div>
                     </div>
                 </div>

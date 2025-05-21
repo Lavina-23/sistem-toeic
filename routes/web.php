@@ -41,6 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/score', [AdminController::class, 'createScores'])->name('score.create');
+        Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
     });
 });
 
@@ -50,4 +52,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/language/{lang}', function ($lang) {
+    if (in_array($lang, ['en', 'id'])) {
+        session(['locale' => $lang]);
+        app()->setLocale($lang);
+    }
+    return redirect()->back();
+})->name('language.switch');
+
 require __DIR__ . '/auth.php';
+
