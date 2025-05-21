@@ -8,4 +8,4 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import '../css/powergrid-custom.css';
+

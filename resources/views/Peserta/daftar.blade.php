@@ -1,8 +1,8 @@
 <x-layout>
     <x-sidebar />
     <section class="p-4 md:ml-64 h-auto mt-10 md:mt-0">
+        @if ($registered)
         <div class="max-w-full p-6 mt-20">
-            @if ($registered)
                 <div class="flex flex-col justify-center items-center md:flex-row gap-5 w-full">
                     <svg class="w-auto max-w-[64rem] h-72 text-gray-800 dark:text-white" aria-hidden="true" width="556"
                         height="421" viewBox="0 0 556 421" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,6 +273,7 @@
                         </a>
                     </div>
                 </div>
+            </div>
             @else
                 @if (session('success'))
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
@@ -408,6 +409,5 @@
                     </div>
                 </form>
             @endif
-        </div>
     </section>
 </x-layout>
