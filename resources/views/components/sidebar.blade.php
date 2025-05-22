@@ -149,28 +149,13 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m13 19 3.5-9 3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15" />
                         </svg>
-                        <span class="ml-3">{{ session('locale') == 'id' ? 'Indonesia' : 'English' }}</span>
+                        <span class="ml-3">{{ session('locale') == 'en' ? 'English' : 'Indonesia' }}</span>
                     </button>
 
                     <!-- Dropdown -->
                     <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
                         id="language-dropdown">
                         <ul class="py-1" role="none">
-                            <li>
-                                <a href="{{ route('language.switch', 'en') }}"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
-                                    <div class="inline-flex items-center">
-                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
-                                            <g fill-rule="evenodd">
-                                                <path fill="#bd3d44" d="M0 0h512v512H0z"/>
-                                                <path fill="#fff" d="M0 58.2h512v57.1H0zm0 114.3h512v57.1H0zm0 114.2h512v57.1H0zm0 114.3h512v57.1H0z"/>
-                                            </g>
-                                        </svg>
-                                        English
-                                    </div>
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ route('language.switch', 'id') }}"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
@@ -183,6 +168,21 @@
                                             </g>
                                         </svg>
                                         Indonesia
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'en') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
+                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
+                                            <g fill-rule="evenodd">
+                                                <path fill="#bd3d44" d="M0 0h512v512H0z"/>
+                                                <path fill="#fff" d="M0 58.2h512v57.1H0zm0 114.3h512v57.1H0zm0 114.2h512v57.1H0zm0 114.3h512v57.1H0z"/>
+                                            </g>
+                                        </svg>
+                                        English
                                     </div>
                                 </a>
                             </li>
