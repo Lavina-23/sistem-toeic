@@ -99,7 +99,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('peserta.dashboard') }}"
+                        <a href="{{ route('score.import') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                             <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@
                                     d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h18V5H3z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">Jadwal</span>
+                            <span class="ml-3">Upload Skor</span>
                         </a>
                     </li>
                     <li>
@@ -122,7 +122,7 @@
                                         stroke-width="2"
                                         d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2" />
                                 </svg>
-                                <span class="ml-3">Log Out</span>
+                                <span class="ml-3">Keluar</span>
                             </button>
                         </form>
                     </li>
