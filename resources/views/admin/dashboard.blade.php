@@ -29,7 +29,7 @@
             <div class="flex justify-between items-center mb-4">
                 <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span> peserta</p>
                 <div class="flex space-x-2">
-                    <select id="perPage" onchange="changePerPage()" class="px-3 py-1 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <select id="perPage" onchange="changePerPage()" class="px-5 py-1 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @foreach([10, 25, 50, 100] as $value)
                             <option value="{{ $value }}" {{ request('perPage', 10) == $value ? 'selected' : '' }}>
                                 {{ $value }} per halaman
