@@ -17,4 +17,6 @@ return [
     'ktm'              => 'KTM',
     'foto'             => 'Foto',
     'daftar'           => 'Daftar',
+    'hititle'          => '😈 Sudah siap mengikuti tes TOEIC? 😈',
+    'hititleteks'      => 'Ambil langkah pasti menuju masa depan gemilang dengan skor TOEIC unggul',
 ];

@@ -286,10 +286,10 @@
                 @endif
 
                 <h2 class="text-4xl font-bold text-center text-gray-900 mb-1">
-                    {{ __('😈 Sudah siap mengikuti tes TOEIC? 😈') }}
+                    {{ __('daftar.hititle') }}
                 </h2>
                 <h6 class="text-sm font-normal text-center text-gray-400 mb-6">
-                    {{ __('Ambil langkah pasti menuju masa depan gemilang dengan skor TOEIC unggul') }}
+                    {{ __('daftar.hititleteks') }}
                 </h6>
 
                 <form method="POST" action="{{ route('peserta.store') }}" enctype="multipart/form-data" class="space-y-6">

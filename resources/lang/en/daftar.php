@@ -17,4 +17,6 @@ return [
     'ktm'              => 'Student Card',
     'foto'             => 'Photo',
     'daftar'           => 'Register',
+    'hititle'          => '😈 Are you ready to take the TOEIC test? 😈',
+    'hititleteks'      => 'Take decisive steps towards a bright future with excellent TOEIC scores',
 ];

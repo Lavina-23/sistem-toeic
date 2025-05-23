@@ -11,7 +11,7 @@ return [
     'Jurusan' => 'Jurusan',
     'Program Stud' => 'Program Studi',
     'Kampus' => 'Kampus',
-    'tidak_ada_data' => 'Hai 🤩 Kami belum menemukan data pendaftaran tes kamu.',
+    'tidak_ada_data' => 'Ooow.. 🤨! Kami belum menemukan data pendaftaran tes kamu.',
     'klik_untuk_daftar' => 'Klik tombol di bawah untuk mendaftar, ya!',
     'ikut_tes' => 'Ikuti Tes Sekarang',
 ];

@@ -406,14 +406,14 @@
                     </svg>
                     <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
                         <h1 class="text-3xl font-semibold">
-                            {{ __('pesan.tidak_ada_data') }}
+                            {{ __('riwayat.tidak_ada_data') }}
                         </h1>
                         <p class="text-gray-500">
-                            {{ __('pesan.klik_untuk_daftar') }}
+                            {{ __('riwayat.klik_untuk_daftar') }}
                         </p>
                         <a href="{{ route('peserta.create') }}">
                             <x-primary-button class="w-fit h-fit">
-                                {{ __('pesan.ikut_tes') }}
+                                {{ __('riwayat.ikut_tes') }}
                             </x-primary-button>
                         </a>
                     </div>

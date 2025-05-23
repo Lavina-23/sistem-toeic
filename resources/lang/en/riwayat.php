@@ -11,7 +11,7 @@ return [
     'Jurusan' => 'Major',
     'Program Studi' => 'Study Program',
     'Kampus' => 'Campus',
-    'tidak_ada_data' => 'Hi 🤩 We haven’t found your test registration yet.',
+    'tidak_ada_data' => 'Ooow.. 🤨! We haven’t found your test registration yet.',
     'klik_untuk_daftar' => 'Click the button below to register!',
     'ikut_tes' => 'Take the Test Now',
 ];
