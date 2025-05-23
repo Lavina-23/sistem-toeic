@@ -1,7 +1,7 @@
 <?php
 
-return[
-  'list'        => 'List Peserta 📝',
-  'skor'        => 'Upload Nilai📊',
-  'logout'      => 'Keluar',
+return [
+    'list'        => 'List Peserta 📝',
+    'skor'        => 'Upload Nilai 📊',
+    'logout'      => 'Keluar',
 ];

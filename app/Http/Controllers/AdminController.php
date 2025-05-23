@@ -15,7 +15,6 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        $user = auth()->user();
         $query = Peserta::query();
 
         if ($request->has('search')) {
@@ -35,14 +34,8 @@ class AdminController extends Controller
 
         $peserta = $query->paginate($perPage);
 
-        $userData = [
-            'username' => $user->nama,
-            'email' => $user->email,
-        ];
-
         return view('admin.dashboard', [
             'peserta' => $peserta,
-            'userData' => $userData,
         ]);
     }
 

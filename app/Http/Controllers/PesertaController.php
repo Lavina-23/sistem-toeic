@@ -15,15 +15,7 @@ class PesertaController extends Controller
     public function index()
     {
         //
-        $user = auth()->user();
-
-        $userData = [
-            'username' => $user->nama,
-            'email' => $user->email,
-        ];
-        return view('peserta.dashboard', [
-            'userData' => $userData,
-        ]);
+        return view('peserta.dashboard');
     }
 
     /**
