@@ -6,6 +6,8 @@ use App\Imports\ScoreImport;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Pengumuman;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -39,7 +41,6 @@ class AdminController extends Controller
         ]);
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
@@ -59,6 +60,40 @@ class AdminController extends Controller
         Excel::import(new ScoreImport, $request->file('file'));
         return back()->with('success', 'Data berhasil diimpor!');
     }
+
+    public function createPengumuman()
+    {
+        return view('admin.create-pengumuman');
+    }
+
+    public function storePengumuman(Request $request)
+{
+
+    $user = Auth::user();
+        $registered = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+
+    // Validasi input
+    $validatedData = $request->validate([
+        'judul' => 'required|string|max:255',
+        'isi' => 'required|string',
+        'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
+    ]);
+
+    try {
+
+        // Jika file diunggah, simpan ke storage
+        if ($request->hasFile('file')) {
+            $validatedData['file'] = $request->file('file')->store('pengumuman', 'public');
+        }
+
+        // Simpan pengumuman ke database
+        Pengumuman::create($validatedData);
+
+        return redirect()->back()->with('success', 'Pengumuman berhasil ditambahkan!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+    }
+}
 
     /**
      * Store a newly created resource in storage.

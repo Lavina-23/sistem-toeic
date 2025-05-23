@@ -43,6 +43,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::get('/score', [AdminController::class, 'createScores'])->name('score.create');
         Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
+        Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
+        Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
     });
 });
 

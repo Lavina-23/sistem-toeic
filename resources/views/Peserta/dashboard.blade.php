@@ -29,7 +29,24 @@
                             </div>
                         </object>
                     </div>
-
+                    <div class="w-full flex flex-col items-center">
+        <div class="w-full h-[600px] border border-gray-300 rounded-lg overflow-hidden mb-4">
+            @if ($pengumuman && $pengumuman->file_pdf)
+                <object data="{{ asset('storage/' . $pengumuman->file_pdf) }}" type="application/pdf" class="w-full h-full">
+                    <div class="flex flex-col items-center justify-center h-full p-6 bg-gray-100">
+                        <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <p class="text-gray-500 text-center">{{ __('jadwalTes.download_error') }}</p>
+                </div>
+            </object>
+        @else
+            <p class="text-gray-500 text-center py-8">Belum ada pengumuman atau file PDF tersedia.</p>
+        @endif
+    </div>
+</div>
                     <!-- Download Button -->
                     <a href="{{ asset('pdf/jadwal-toeic.pdf') }}" download
                         class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg focus:ring-4 focus:ring-teal-200">
