@@ -1,10 +1,17 @@
 <?php
 
-return[
-    'title'     =>'🎓 Participant List',
-    'search'    =>'Search by name, identification number, or study program...',
-    'peserta'   =>'Participants',
-    'halaman'   =>'per page',
-    'name'      =>'name',
-    'noinduk'   =>'',
+return [
+    'title'     => '🎓 Participant List',
+    'search'    => 'Search by name, ID number, or study program...',
+    'peserta'   => 'Participant',
+    'halaman'   => 'per page',
+    'name'      => 'Name',
+    'ninduk'    => 'ID Number',
+    'notelp'    => 'Phone Number',
+    'jurusan'   => 'Major',
+    'prodi'     => 'Study Program',
+    'kampus'    => 'Campus',
+    'nodata'    =>'No participant data found',
+    'reset'     =>'Try using another keyword or reset the search',
+    'noregist'  =>'No participants registered yet',
 ];

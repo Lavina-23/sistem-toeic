@@ -3,7 +3,7 @@ return [
     'title' => 'Test of English for International Communication', // Kalau mau tetap bahasa Inggris juga boleh, atau terjemahkan kalau perlu
     'ID Peserta' => 'ID Peserta',
     'Nama' => 'Nama',
-    'Nomor Identitas' => 'Nomor Identitas',
+    'Nomor Identitas' => 'Nomor Induk',
     'Nik' => 'NIK',
     'Nomor Telepon' => 'Nomor Telepon',
     'Alamat asal' => 'Alamat Asal',
