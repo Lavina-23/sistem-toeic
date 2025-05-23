@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('peserta_id');
             $table->unsignedBigInteger('pengguna_id')->index();
             $table->string('nama');
-            $table->string('no_induk');
+            $table->string('no_induk', 50)->unique();
             $table->string('nik');
             $table->string('no_telp');
             $table->text('alamat_asal');
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('ktp');
             $table->string('ktm');
             $table->string('foto');
-            $table->integer('attempt_status')->default(0);
             $table->timestamps();
 
             $table->foreign('pengguna_id')->references('pengguna_id')->on('pengguna');
