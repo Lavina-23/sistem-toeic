@@ -15,18 +15,19 @@ return new class extends Migration
             $table->id('score_id');
             $table->string('result_no');
             $table->string('name');
-            $table->string('student_id');
+            $table->string('no_induk', 50);
             $table->integer('score_l')->nullable();
             $table->integer('score_r')->nullable();
             $table->integer('score_total')->nullable();
             $table->string('group');
             $table->string('position');
             $table->string('category');
-            $table->date('test_date');
+            $table->date('test_date')->nullable();
             $table->integer('last_score_l')->nullable();
             $table->integer('last_score_r')->nullable();
             $table->integer('last_score_total')->nullable();
             $table->timestamps();
+            $table->foreign('no_induk')->references('no_induk')->on('peserta')->onDelete('cascade');
         });
     }
 

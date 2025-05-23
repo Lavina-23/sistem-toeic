@@ -13,7 +13,7 @@ class Score extends Model
     protected $fillable = [
         'result_no',
         'name',
-        'student_id',
+        'no_induk',
         'score_l',
         'score_r',
         'score_total',
