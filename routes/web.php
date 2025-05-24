@@ -38,11 +38,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
+        Route::get('/peserta/dashboard', [PesertaController::class, 'showPengumuman'])->name('peserta.dashboard');
     });
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::get('/score', [AdminController::class, 'createScores'])->name('score.create');
         Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
+        Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
+        Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
+
+        Route::get('/send-message', function () {
+            return view('admin.create-message');
+        });
+        Route::post('/send-message', [AdminController::class, 'sendMessage'])->name('send.message');
     });
 });
 
@@ -61,4 +69,3 @@ Route::get('/language/{lang}', function ($lang) {
 })->name('language.switch');
 
 require __DIR__ . '/auth.php';
-
