@@ -83,8 +83,16 @@ class AdminController extends Controller
 
         // Jika file diunggah, simpan ke storage
         if ($request->hasFile('file')) {
-            $validatedData['file'] = $request->file('file')->store('pengumuman', 'public');
-        }
+    $file = $request->file('file');
+
+    // Buat nama file baru berdasarkan judul, contoh: JADWAL TOEIC → JADWAL_TOEIC.pdf
+    $namaFile = str_replace(' ', '_', strtoupper($request->judul)) . '.' . $file->getClientOriginalExtension();
+
+    // Simpan file ke folder 'pengumuman' di disk 'public' dengan nama tersebut
+    $path = $file->storeAs('pengumuman', $namaFile, 'public');
+
+    $validatedData['file'] = $path;
+}
 
         // Simpan pengumuman ke database
         Pengumuman::create($validatedData);
