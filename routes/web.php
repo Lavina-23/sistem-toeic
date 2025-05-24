@@ -46,6 +46,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
         Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
+
+        Route::get('/send-message', function () {
+            return view('admin.create-message');
+        });
+        Route::post('/send-message', [AdminController::class, 'sendMessage'])->name('send.message');
     });
 });
 
@@ -64,4 +69,3 @@ Route::get('/language/{lang}', function ($lang) {
 })->name('language.switch');
 
 require __DIR__ . '/auth.php';
-
