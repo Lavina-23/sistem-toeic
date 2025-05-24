@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengguna;
+use App\Models\Score;
 use App\Models\Peserta;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -81,8 +82,9 @@ class PesertaController extends Controller
         //
         $user = Auth::user();
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+        $score = Score::where('no_induk', $peserta->no_induk)->first();
 
-        return view('peserta.riwayat', ['peserta' => $peserta]);
+        return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
     }
 
     /**

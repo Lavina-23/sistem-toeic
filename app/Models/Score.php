@@ -25,4 +25,9 @@ class Score extends Model
         'last_score_r',
         'last_score_total',
     ];
+
+    public function peserta()
+    {
+        return $this->belongsTo(Peserta::class, 'no_induk', 'no_induk');
+    }
 }
