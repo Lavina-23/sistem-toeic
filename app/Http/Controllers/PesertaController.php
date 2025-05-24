@@ -7,6 +7,7 @@ use App\Models\Peserta;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pengumuman;
 
 class PesertaController extends Controller
 {
@@ -14,9 +15,20 @@ class PesertaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+{
+    $pengumuman = Pengumuman::latest()->first();
+    return view('peserta.dashboard', compact('pengumuman'));
+}
+
+
+    public function showPengumuman()
     {
         //
-        return view('peserta.dashboard');
+        $pengumuman = pengumuman::latest()->first();
+
+        return view('peserta.dashboard', [
+            "pengumuman"=>$pengumuman
+        ]);
     }
 
     /**

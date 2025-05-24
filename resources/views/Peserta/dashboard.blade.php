@@ -12,36 +12,31 @@
                 </div>
             </div>
 
-            <div class="bg-white border rounded-lg shadow-sm p-6">
-                <!-- PDF Viewer Container -->
-                <div class="w-full flex flex-col items-center">
-                    <!-- PDF Preview - You can replace this with an actual PDF embed when you have the file -->
-                    <div class="w-full h-[600px] border border-gray-300 rounded-lg overflow-hidden mb-4">
-                        <object data="{{ asset('pdf/jadwal-toeic.pdf') }}" type="application/pdf" class="w-full h-full">
-                            <div class="flex flex-col items-center justify-center h-full p-6 bg-gray-100">
-                                <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                    </path>
-                                </svg>
-                                <p class="text-gray-500 text-center">{{ __('jadwalTes.download_error') }}</p>
-                            </div>
-                        </object>
-                    </div>
-
-                    <!-- Download Button -->
-                    <a href="{{ asset('pdf/jadwal-toeic.pdf') }}" download
-                        class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg focus:ring-4 focus:ring-teal-200">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                        </svg>
-                        {{ __('jadwalTes.button_download') }}
-                    </a>
-                </div>
+<div class="w-full flex flex-col items-center">
+            <div class="w-full h-[600px] border border-gray-300 rounded-lg overflow-hidden mb-4">
+                @if ($pengumuman && $pengumuman->file)
+                    <object data="{{ asset('storage/' . $pengumuman->file) }}" type="application/pdf" class="w-full h-full">
+                        <p class="text-center p-6">
+                            Browser kamu tidak mendukung preview PDF, silakan download di bawah.
+                        </p>
+                    </object>
+                @else
+                    <p class="text-gray-500 text-center py-8">Belum ada pengumuman atau file PDF tersedia.</p>
+                @endif
             </div>
+
+            @if ($pengumuman && $pengumuman->file)
+                <a href="{{ asset('storage/' . $pengumuman->file) }}" download
+                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg focus:ring-4 focus:ring-teal-200">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Download
+                </a>
+            @endif
+        </div>
 
             <!-- Additional Information Section -->
             <div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
