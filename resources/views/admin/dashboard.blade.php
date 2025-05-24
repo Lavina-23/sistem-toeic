@@ -194,7 +194,6 @@
             </div>
         </div>
 
-        <!-- Tombol Download PDF - Di luar kotak -->
         <div class="mt-6 flex justify-center">
             <a href="{{ asset('pdf/list-data-peserta.pdf') }}" download
                 class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg focus:ring-4 focus:ring-teal-200 transition-colors duration-200 shadow-sm hover:shadow-md">
