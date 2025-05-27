@@ -18,31 +18,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Alamat -->
-        <div class="mt-4">
-            <x-input-label for="alamat" :value="__('Alamat')" />
-            <textarea id="alamat" name="alamat" rows="3" 
-                class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                autocomplete="address-line1">{{ old('alamat') }}</textarea>
-            <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
-        </div>
-
-        <!-- Tempat Lahir -->
-        <div class="mt-4">
-            <x-input-label for="tempat_lahir" :value="__('Tempat Lahir')" />
-            <x-text-input id="tempat_lahir" class="block mt-1 w-full" type="text" name="tempat_lahir" 
-                :value="old('tempat_lahir')" autocomplete="address-level2" />
-            <x-input-error :messages="$errors->get('tempat_lahir')" class="mt-2" />
-        </div>
-
-        <!-- Tanggal Lahir -->
-        <div class="mt-4">
-            <x-input-label for="tanggal_lahir" :value="__('Tanggal Lahir')" />
-            <x-text-input id="tanggal_lahir" class="block mt-1 w-full" type="date" name="tanggal_lahir" 
-                :value="old('tanggal_lahir')" autocomplete="bday" />
-            <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-2" />
-        </div>
-
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

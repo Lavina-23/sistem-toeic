@@ -59,6 +59,7 @@ class PesertaController extends Controller
                 'no_telp' => 'required|string|max:255',
                 'alamat_asal' => 'required|string|max:255',
                 'alamat_sekarang' => 'required|string|max:255',
+                'tgl_lahir' => 'required|date',
                 'jurusan' => 'string|max:255',
                 'program_studi' => 'string|max:255',
                 'kampus' => 'required|string|max:255',

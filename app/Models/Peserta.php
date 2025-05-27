@@ -20,6 +20,7 @@ class Peserta extends Model
         'alamat_asal',
         'alamat_sekarang',
         'jurusan',
+        'tgl_lahir',
         'program_studi',
         'kampus',
         'ktp',
