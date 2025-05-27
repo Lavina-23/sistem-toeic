@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
+
 <x-guest-layout>     
     <div class="max-w-md mx-auto p-6 bg-teal-100 rounded-2xl">         
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">             
