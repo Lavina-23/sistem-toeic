@@ -138,6 +138,34 @@
                                     @endif
                                 </a>
                             </th>
+                            <th scope="col"
+                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
+                                class="flex items-center space-x-1">
+                                <span>{{__('alamat')}}</span>
+                                @if (request('sort') == 'alamat_sekarang')
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
+                                    </svg>
+                                @endif
+                            </a>
+                        </th>
+                        <th scope="col"
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
+                            class="flex items-center space-x-1">
+                            <span>{{__('tanggal lahir')}}</span>
+                            @if (request('sort') == 'tgl_lahir')
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
+                                </svg>
+                            @endif
+                        </a>
+                    </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -163,6 +191,12 @@
                                 </td>
                                 <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
                                     {{ $item->kampus }}
+                                </td>
+                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
+                                    {{ $item->alamat_sekarang }}
+                                </td>
+                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
+                                    {{ $item->tgl_lahir }}
                                 </td>
                             </tr>
                         @empty

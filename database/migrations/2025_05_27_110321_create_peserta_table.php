@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('no_induk', 50)->unique();
             $table->string('nik');
             $table->string('no_telp');
+            $table->date('tgl_lahir');
             $table->text('alamat_asal');
             $table->text('alamat_sekarang');
             $table->string('jurusan');
