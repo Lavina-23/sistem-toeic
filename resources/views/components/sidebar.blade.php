@@ -91,6 +91,15 @@
 
                             <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
+                    <li>
+                        <a href="{{ route('peserta.history') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
+                         <svg class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24">
+                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 3v18h18M7 8h8M7 12h6m-6 4h4" />
+                            </svg>
+                             <span class="ml-3">Request Dokumen</span>
+                        </a>
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
