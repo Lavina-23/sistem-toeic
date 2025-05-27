@@ -159,6 +159,22 @@
                                     </div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'zh') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
+                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-id"
+                                            viewBox="0 0 512 512">
+                                            <g fill-rule="evenodd">
+                                                <path fill="#e70011" d="M0 0h512v256H0z" />
+                                                <path fill="#fff" d="M0 256h512v256H0z" />
+                                            </g>
+                                        </svg>
+                                        Mandarin
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

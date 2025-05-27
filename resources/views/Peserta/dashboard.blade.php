@@ -17,11 +17,11 @@
                 @if ($pengumuman && $pengumuman->file)
                     <object data="{{ asset('storage/' . $pengumuman->file) }}" type="application/pdf" class="w-full h-full">
                         <p class="text-center p-6">
-                            Browser kamu tidak mendukung preview PDF, silakan download di bawah.
+                            {{__('jadwalTes.notsupport')}}
                         </p>
                     </object>
                 @else
-                    <p class="text-gray-500 text-center py-8">Belum ada pengumuman atau file PDF tersedia.</p>
+                    <p class="text-gray-500 text-center py-8">{{__('jadwalTes.notyet')}}</p>
                 @endif
             </div>
 
@@ -33,7 +33,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
-                    Download
+                    {{__('jadwalTes.download')}}
                 </a>
             @endif
         </div>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-normal text-gray-900">{{ __('jadwalTes.contact_hours') }}</p>
-                            <p class="text-sm text-gray-500">Senin - Jumat: 08.00 - 16.00 WIB</p>
+                            <p class="text-sm text-gray-500">{{__('jadwalTes.value_hours')}}</p>
                         </div>
                     </div>
 
