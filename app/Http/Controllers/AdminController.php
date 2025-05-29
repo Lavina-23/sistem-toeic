@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Excel as ExcelExcel;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Pengumuman;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Twilio\Rest\Client;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -210,6 +218,13 @@ class AdminController extends Controller
             Log::error("Stack trace: " . $e->getTraceAsString());
             return response('Terjadi kesalahan internal.', 500);
         }
+    }
+    public function exportPDF()
+    {
+        $peserta = Peserta::all();
+
+        $pdf = Pdf::loadView('admin.peserta_pdf', compact('peserta'));
+        return $pdf->download('data_peserta.pdf');
     }
 
     /**

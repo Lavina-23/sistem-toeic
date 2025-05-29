@@ -357,6 +357,16 @@
                             <x-input-error :messages="$errors->get('alamat_sekarang')" class="mt-2" />
                         </div>
                     </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <x-input-label for="tgl_lahir" :value="__('Tanggal Lahir')" />
+                            <input id="tgl_lahir" name="tgl_lahir" type="date"
+                                class="mt-1 block w-full border-gray-300 focus:ring-teal-500 rounded-md shadow-sm"
+                                value="{{ old('tgl_lahir') }}" required />
+                            <x-input-error :messages="$errors->get('tgl_lahir')" class="mt-2" />
+                        </div>
+                        
+                        
 
                     <!-- uploads -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

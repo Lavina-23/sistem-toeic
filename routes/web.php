@@ -47,6 +47,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
 
+        Route::get('/export-pdf', [AdminController::class, 'exportPDF'])->name('admin.export.pdf');
+
         Route::get('/send-message', function () {
             return view('admin.create-message');
         });
