@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Excel as ExcelExcel;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Pengumuman;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Excel as ExcelExcel;
-use Twilio\Rest\Client;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
