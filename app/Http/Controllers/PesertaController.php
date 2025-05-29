@@ -15,20 +15,9 @@ class PesertaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $pengumuman = Pengumuman::latest()->first();
-    return view('peserta.dashboard', compact('pengumuman'));
-}
-
-
-    public function showPengumuman()
     {
-        //
-        $pengumuman = pengumuman::latest()->first();
-
-        return view('peserta.dashboard', [
-            "pengumuman"=>$pengumuman
-        ]);
+        $pengumuman = Pengumuman::latest()->first();
+        return view('peserta.dashboard', compact('pengumuman'));
     }
 
     /**
@@ -86,7 +75,6 @@ class PesertaController extends Controller
         }
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -98,29 +86,5 @@ class PesertaController extends Controller
         $score = Score::where('no_induk', $peserta->no_induk)->first();
 
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pengguna $pengguna)
-    {
-        //
     }
 }
