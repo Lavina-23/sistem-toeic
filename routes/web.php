@@ -46,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
         Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
-    
+
         Route::get('/send-message', function () {
             return view('admin.create-message');
         });
@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/language/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'id','zh'])) {
+    if (in_array($lang, ['en', 'id', 'zh'])) {
         session(['locale' => $lang]);
         app()->setLocale($lang);
     }

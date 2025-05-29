@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\ScoreImport;
 use App\Models\Peserta;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Pengumuman;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Excel as ExcelExcel;
 use Twilio\Rest\Client;
+use App\Models\Pengumuman;
+use App\Imports\ScoreImport;
+use App\Models\VerificationPhotos;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 
 class AdminController extends Controller
 {
@@ -136,6 +140,76 @@ class AdminController extends Controller
         }
 
         return back()->with('success', 'Pesan berhasil dikirim!');
+    }
+
+    public function handleMessage(Request $request)
+    {
+        try {
+            $from = $request->input('From');
+            $number = str_replace('whatsapp:', '', $from);
+            $pesertaNumber = preg_replace('/^\+62|62/', '0', trim($number));
+
+            // Log::info("Nomor dari request: $from");
+            // Log::info("Nomor setelah normalisasi: $pesertaNumber");
+
+            $pesertaId = Peserta::where('no_telp', $pesertaNumber)->value('peserta_id');
+
+            if (!$pesertaId) {
+                Log::warning("Peserta tidak ditemukan untuk nomor: $pesertaNumber");
+                return response('Peserta tidak ditemukan', 404);
+            }
+
+            $body = strtolower(trim($request->input('Body')));
+
+            $photoMap = [
+                'depan' => 'front',
+                'belakang' => 'back',
+                'kiri' => 'left',
+                'kanan' => 'right'
+            ];
+
+            if (!isset($photoMap[$body])) {
+                return response('Caption foto tidak dikenali. Kirim dengan teks: depan, belakang, kiri, atau kanan.', 400);
+            }
+
+            $photoType = $photoMap[$body];
+
+            $mediaUrl = $request->input('MediaUrl0');
+            $mediaType = $request->input('MediaContentType0');
+
+            if (!$mediaUrl || strpos($mediaType, 'image') === false) {
+                return response('Tidak ada foto yang dikirim atau format tidak didukung.', 400);
+            }
+
+            $twilioSid = config('services.twilio.sid');
+            $twilioToken = config('services.twilio.token');
+
+            $response = Http::withBasicAuth($twilioSid, $twilioToken)->get($mediaUrl);
+
+            if (!$response->successful()) {
+                Log::error("Failed to download image from Twilio: " . $response->status());
+                return response('Gagal mengunduh foto.', 500);
+            }
+
+            $imageContent = $response->body();
+
+            $filename = $photoType . '_' . time() . '_' . uniqid() . '.jpg';
+
+            Storage::put('public/verification_photos/' . $filename, $imageContent);
+
+            VerificationPhotos::create([
+                'peserta_id' => $pesertaId,
+                'photo_type' => $photoType,
+                'photo_path' => $filename,
+            ]);
+
+            Log::info("Foto $photoType berhasil disimpan untuk peserta ID: $pesertaId");
+            return response("Foto $photoType berhasil diterima.", 200);
+        } catch (\Exception $e) {
+            Log::error("Error in handleMessage: " . $e->getMessage());
+            Log::error("Stack trace: " . $e->getTraceAsString());
+            return response('Terjadi kesalahan internal.', 500);
+        }
     }
 
     /**
