@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id('score_id');
-            $table->string('result_no');
+            $table->string('result_no')->unique();
             $table->string('name');
             $table->string('no_induk', 50);
             $table->integer('score_l')->nullable();
