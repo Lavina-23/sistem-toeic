@@ -13,7 +13,7 @@ class ScoreImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        // dd($row);
+        // dd($row['test_date']);
         // exit;
         if (empty(array_filter($row))) {
             return null;
@@ -30,7 +30,22 @@ class ScoreImport implements ToModel, WithHeadingRow
                 'group'             => $row['group'],
                 'position'          => $row['position'],
                 'category'          => $row['category'],
-                'test_date'         => $row['test_date'] ? \Carbon\Carbon::parse($row['test_date'])->format('Y-m-d H:i:s') : null,
+                'test_date' => $row['test_date'] ? (function () use ($row) {
+                    try {
+                        $excelEpoch = new \DateTime('1899-12-30');
+                        $days = intval($row['test_date']);
+
+                        if ($days > 0) {
+                            $date = clone $excelEpoch;
+                            $date->add(new \DateInterval('P' . $days . 'D'));
+                            return $date->format('Y-m-d H:i:s');
+                        }
+
+                        return null;
+                    } catch (\Exception $e) {
+                        return null;
+                    }
+                })() : null,
                 'last_score_l'      => $row['l_2'],
                 'last_score_r'      => $row['r_2'],
                 'last_score_total'  => $row['tot_2'],
