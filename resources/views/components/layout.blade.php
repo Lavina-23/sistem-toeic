@@ -10,6 +10,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     @bukStyles
     <title>Sistem Registrasi Test TOEIC</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body class="h-full bg-gray-50">
