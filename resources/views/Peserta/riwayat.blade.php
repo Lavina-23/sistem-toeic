@@ -244,15 +244,15 @@
                     </a>
                     <div class="flex flex-col md:flex-row gap-4 justify-between text-center">
                         <div>
-                            <h1 class="text-2xl font-extrabold text-teal-700">820</h1>
+                            <h1 class="text-2xl font-extrabold text-teal-700">{{ $score->highest_score ?? 0 }}</h1>
                             <p>Total</p>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-extrabold text-teal-700">300</h1>
+                            <h1 class="text-2xl font-extrabold text-teal-700">{{ $score->highest_score_r ?? 0 }}</h1>
                             <p>Reading</p>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-extrabold text-teal-700">330</h1>
+                            <h1 class="text-2xl font-extrabold text-teal-700">{{ $score->highest_score_l ?? 0 }}</h1>
                             <p>Listening</p>
                         </div>
                     </div>
