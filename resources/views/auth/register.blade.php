@@ -2,6 +2,13 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-6">
+            {{ __('Halo, daftarkan dirimu disini!') }}
+        </h2>
+        <p class="text-sm font-normal text-center text-gray-500 mb-6">
+            {{ __('Silakan isi data diri, email, dan password untuk membuat akun baru dan mengakses sistem toeicIN.') }}
+        </p>
+
         <!-- Name -->
         <div>
             <x-input-label for="nama" :value="__('Name')" />
