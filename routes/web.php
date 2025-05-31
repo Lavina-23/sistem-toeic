@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
         Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
+        Route::get('/requestDokumen', [PesertaController::class, 'requestDokumen'])->name('peserta.requestDokumen');
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
         Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');

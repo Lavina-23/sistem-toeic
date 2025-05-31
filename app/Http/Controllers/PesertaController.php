@@ -101,4 +101,13 @@ class PesertaController extends Controller
 
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
     }
+
+    public function requestDokumen()
+    {
+        $user = Auth::user();
+        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+        $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
+        
+        return view('peserta.requestDokumen', compact('peserta', 'score'));
+    }
 }
