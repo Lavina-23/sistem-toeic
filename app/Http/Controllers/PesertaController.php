@@ -15,20 +15,9 @@ class PesertaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $pengumuman = Pengumuman::latest()->first();
-    return view('peserta.dashboard', compact('pengumuman'));
-}
-
-
-    public function showPengumuman()
     {
-        //
-        $pengumuman = pengumuman::latest()->first();
-
-        return view('peserta.dashboard', [
-            "pengumuman"=>$pengumuman
-        ]);
+        $pengumuman = Pengumuman::latest()->first();
+        return view('peserta.dashboard', compact('pengumuman'));
     }
 
     /**
@@ -59,6 +48,7 @@ class PesertaController extends Controller
                 'no_telp' => 'required|string|max:255',
                 'alamat_asal' => 'required|string|max:255',
                 'alamat_sekarang' => 'required|string|max:255',
+                'tgl_lahir' => 'required|date',
                 'jurusan' => 'string|max:255',
                 'program_studi' => 'string|max:255',
                 'kampus' => 'required|string|max:255',
@@ -85,7 +75,6 @@ class PesertaController extends Controller
         }
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -94,32 +83,31 @@ class PesertaController extends Controller
         //
         $user = Auth::user();
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
-        $score = Score::where('no_induk', $peserta->no_induk)->first();
+        $score = Score::select('*')
+            ->selectRaw('CASE
+            WHEN score_total >= last_score_total THEN score_total
+            ELSE last_score_total
+        END AS highest_score,
+        CASE
+            WHEN score_r >= last_score_r THEN score_r
+            ELSE last_score_r
+        END AS highest_score_r,
+        CASE
+            WHEN score_l >= last_score_l THEN score_l
+            ELSE last_score_l
+        END AS highest_score_l')
+            ->where('no_induk', $peserta->no_induk)
+            ->first();
 
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengguna $pengguna)
+    public function requestDokumen()
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pengguna $pengguna)
-    {
-        //
+        $user = Auth::user();
+        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+        $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
+        
+        return view('peserta.requestDokumen', compact('peserta', 'score'));
     }
 }

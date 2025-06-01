@@ -14,6 +14,13 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                    primary: '#00247D',       // Biru tua
+                    redMain: '#CF142B',       // Merah utama
+                    yellowAccent: '#F2AB19',  // Kuning aksen
+                    redAlert: '#EA1E1E',      // Merah alert/lebih terang
+                    white: '#FFFFFF',         // Putih
+            },
         },
     },
 

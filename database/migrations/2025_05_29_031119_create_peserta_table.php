@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,11 +14,12 @@ return new class extends Migration
     {
         Schema::create('peserta', function (Blueprint $table) {
             $table->id('peserta_id');
-            $table->unsignedBigInteger('pengguna_id')->index();
+            $table->unsignedBigInteger('pengguna_id')->index()->nullable();
             $table->string('nama');
             $table->string('no_induk', 50)->unique();
             $table->string('nik');
             $table->string('no_telp');
+            $table->date('tgl_lahir');
             $table->text('alamat_asal');
             $table->text('alamat_sekarang');
             $table->string('jurusan');

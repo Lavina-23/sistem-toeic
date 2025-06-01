@@ -17,9 +17,11 @@ class Peserta extends Model
         'no_induk',
         'nik',
         'no_telp',
+        'tgl_lahir',
         'alamat_asal',
         'alamat_sekarang',
         'jurusan',
+        'tgl_lahir',
         'program_studi',
         'kampus',
         'ktp',
@@ -31,5 +33,10 @@ class Peserta extends Model
     public function pengguna()
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id', 'pengguna_id');
+    }
+
+    public function verificationPhotos()
+    {
+        return $this->hasMany(VerificationPhotos::class, 'peserta_id', 'peserta_id');
     }
 }

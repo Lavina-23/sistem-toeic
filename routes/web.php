@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,50 +35,6 @@ Route::get('/dashboard', function () {
     };
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Peserta Routes
-    Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
-        Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
-        Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
-        Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
-        Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
-        // Duplicate route removed - using the one above for dashboard
-        // Route::get('/peserta/dashboard', [PesertaController::class, 'showPengumuman'])->name('peserta.dashboard');
-    });
-
-    // Admin Routes
-    Route::prefix('admin')->middleware(['role:admin'])->group(function () {
-        // Dashboard
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        
-        // Score Management
-        Route::get('/score', [AdminController::class, 'createScores'])->name('score.create');
-        Route::post('/score', [AdminController::class, 'importScores'])->name('score.import');
-        
-        // Pengumuman Management - Complete CRUD
-        Route::get('/create', [AdminController::class, 'createPengumuman'])->name('pengumuman.create');
-        Route::post('/store', [AdminController::class, 'storePengumuman'])->name('pengumuman.store');
-        Route::patch('/pengumuman/{id}/activate', [AdminController::class, 'activatePengumuman'])->name('pengumuman.activate');
-        Route::patch('/pengumuman/{id}/deactivate', [AdminController::class, 'deactivatePengumuman'])->name('pengumuman.deactivate');
-        Route::put('/pengumuman/{id}', [AdminController::class, 'updatePengumuman'])->name('pengumuman.update');
-        Route::delete('/pengumuman/{id}', [AdminController::class, 'destroyPengumuman'])->name('pengumuman.destroy');
-        
-        // Message Management
-        Route::get('/send-message', function () {
-            return view('admin.create-message');
-        })->name('admin.message.create');
-        Route::post('/send-message', [AdminController::class, 'sendMessage'])->name('send.message');
-    });
-});
-
-// Profile Routes
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Language Switch Route
 Route::get('/language/{lang}', function ($lang) {
     if (in_array($lang, ['en', 'id', 'zh'])) {
         session(['locale' => $lang]);
@@ -83,5 +42,32 @@ Route::get('/language/{lang}', function ($lang) {
     }
     return redirect()->back();
 })->name('language.switch');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
+        Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
+        Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
+        Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
+        Route::get('/requestDokumen', [PesertaController::class, 'requestDokumen'])->name('peserta.requestDokumen');
+        Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
+        Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
+        Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
+    });
+
+    Route::prefix('admin')->middleware(['role:admin'])->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/export-pdf', [AdminController::class, 'exportPDF'])->name('admin.export.pdf');
+        Route::get('/score', [ScoreController::class, 'createScores'])->name('score.create');
+        Route::post('/score', [ScoreController::class, 'importScores'])->name('score.import');
+        Route::get('/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
+        Route::post('/store', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
+        Route::get('/send-message', [MessageController::class, 'createMessage'])->name('send.message.form');
+        Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
+    });
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__ . '/auth.php';

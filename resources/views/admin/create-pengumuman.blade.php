@@ -2,7 +2,7 @@
     <x-sidebaradmin />
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{__('pengumuman.title')}}</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('pengumuman.title') }}</h1>
 
         <!-- Alert Messages -->
         @if(session('success'))

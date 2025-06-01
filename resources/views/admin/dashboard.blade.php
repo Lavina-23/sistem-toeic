@@ -9,11 +9,11 @@
                 <form action="{{ route('admin.dashboard') }}" method="GET" class="flex gap-2">
                     <div class="flex-1">
                         <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="{{__('listPeserta.search')}}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            placeholder="{{ __('listPeserta.search') }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
                     </div>
                     <button type="submit"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
                         <svg xmlns="http://www.w3..org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,14 +31,15 @@
 
             <!-- Informasi jumlah data -->
             <div class="flex justify-between items-center mb-4">
-                <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span> {{__('listPeserta.peserta')}}</p>
+                <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span>
+                    {{ __('listPeserta.peserta') }}</p>
                 <div class="flex space-x-2">
                     <select id="perPage" onchange="changePerPage()"
-                        class="px-5 py-1 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        class="px-5 py-1 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
                         @foreach ([10, 25, 50, 100] as $value)
                             <option value="{{ $value }}"
                                 {{ request('perPage', 10) == $value ? 'selected' : '' }}>
-                                {{ $value }} {{__('listPeserta.halaman')}}
+                                {{ $value }} {{ __('listPeserta.halaman') }}
                             </option>
                         @endforeach
                     </select>
@@ -51,7 +52,7 @@
                     <thead class="bg-gray-50 sticky top-0">
                         <tr>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'peserta_id', 'direction' => request('sort') == 'peserta_id' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
                                     <span>No</span>
@@ -65,10 +66,10 @@
                                 </a>
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'nama', 'direction' => request('sort') == 'nama' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{__('listPeserta.name')}}</span>
+                                    <span>{{ __('listPeserta.name') }}</span>
                                     @if (request('sort') == 'nama')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -79,10 +80,10 @@
                                 </a>
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'no_induk', 'direction' => request('sort') == 'no_induk' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{__('listPeserta.ninduk')}}</span>
+                                    <span>{{ __('listPeserta.ninduk') }}</span>
                                     @if (request('sort') == 'no_induk')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -93,14 +94,14 @@
                                 </a>
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{__('listPeserta.notelp')}}
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                                {{ __('listPeserta.notelp') }}
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'jurusan', 'direction' => request('sort') == 'jurusan' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{__('listPeserta.jurusan')}}</span>
+                                    <span>{{ __('listPeserta.jurusan') }}</span>
                                     @if (request('sort') == 'jurusan')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -111,10 +112,10 @@
                                 </a>
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'program_studi', 'direction' => request('sort') == 'program_studi' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{__('listPeserta.prodi')}}</span>
+                                    <span>{{ __('listPeserta.prodi') }}</span>
                                     @if (request('sort') == 'program_studi')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -125,11 +126,39 @@
                                 </a>
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{__('listPeserta.kampus')}}</span>
+                                    <span>{{ __('listPeserta.kampus') }}</span>
                                     @if (request('sort') == 'kampus')
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
+                                        </svg>
+                                    @endif
+                                </a>
+                            </th>
+                            {{-- <th scope="col"
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
+                                    class="flex items-center space-x-1">
+                                    <span>{{ __('alamat') }}</span>
+                                    @if (request('sort') == 'alamat_sekarang')
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
+                                        </svg>
+                                    @endif
+                                </a>
+                            </th> --}}
+                            <th scope="col"
+                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
+                                    class="flex items-center space-x-1">
+                                    <span>{{ __('tanggal lahir') }}</span>
+                                    @if (request('sort') == 'tgl_lahir')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -142,7 +171,8 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($peserta as $index => $item)
-                            <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-100 transition">
+                            <tr
+                                class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-100 transition text-[14px]">
                                 <td class="px-4 py-2 whitespace-nowrap">
                                     {{ ($peserta->currentPage() - 1) * $peserta->perPage() + $loop->iteration }}
                                 </td>
@@ -164,6 +194,12 @@
                                 <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
                                     {{ $item->kampus }}
                                 </td>
+                                {{-- <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
+                                    {{ $item->alamat_sekarang }}
+                                </td> --}}
+                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
+                                    {{ \Carbon\Carbon::parse($item->tgl_lahir)->format('d-m-Y') }}
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -174,11 +210,11 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <p class="text-lg font-medium">{{__('listPeserta.nodata')}}</p>
+                                        <p class="text-lg font-medium">{{ __('listPeserta.nodata') }}</p>
                                         @if (request('search'))
-                                            <p class="text-sm">{{__('listPeserta.reset')}}</p>
+                                            <p class="text-sm">{{ __('listPeserta.reset') }}</p>
                                         @else
-                                            <p class="text-sm">{{__('listPeserta.noregist')}}</p>
+                                            <p class="text-sm">{{ __('listPeserta.noregist') }}</p>
                                         @endif
                                     </div>
                                 </td>
@@ -195,8 +231,8 @@
         </div>
 
         <div class="mt-6 flex justify-center">
-            <a href="{{ asset('pdf/list-data-peserta.pdf') }}" download
-                class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg focus:ring-4 focus:ring-teal-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+            <a href="{{ route('admin.export.pdf') }}" download
+                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-teal-700 text-white rounded-lg hover:bg-teal-600 focus:ring-4 focus:ring-teal-200 transition-colors duration-200 shadow-sm hover:shadow-md">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
