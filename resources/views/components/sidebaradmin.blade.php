@@ -157,16 +157,20 @@
                                 <a href="{{ route('language.switch', 'en') }}"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
                                     <div class="inline-flex items-center">
-                                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2"
-                                            xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
-                                            viewBox="0 0 512 512">
-                                            <g fill-rule="evenodd">
-                                                <path fill="#bd3d44" d="M0 0h512v512H0z" />
-                                                <path fill="#fff"
-                                                    d="M0 58.2h512v57.1H0zm0 114.3h512v57.1H0zm0 114.2h512v57.1H0zm0 114.3h512v57.1H0z" />
-                                            </g>
+                                        <img src="{{ asset('images/uk.jpg') }}" alt="Mandarin Flag"
+                                          class="h-4 w-4 rounded-full mr-2" />
                                         </svg>
                                         English
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'zh') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <img src="{{ asset('images/china.jpg') }}" alt="Mandarin Flag"
+                                          class="h-4 w-4 rounded-full mr-2" />
+                                        Mandarin
                                     </div>
                                 </a>
                             </li>
