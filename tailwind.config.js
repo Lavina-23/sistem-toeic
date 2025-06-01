@@ -1,5 +1,5 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,11 +15,12 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                    primary: '#00247D',       // Biru tua
-                    redMain: '#CF142B',       // Merah utama
-                    yellowAccent: '#F2AB19',  // Kuning aksen
-                    redAlert: '#EA1E1E',      // Merah alert/lebih terang
-                    white: '#FFFFFF',         // Putih
+                primary: '#00247D',       // Biru tua
+                redMain: '#CF142B',       // Merah utama
+                yellowAccent: '#F2AB19',  // Kuning aksen
+                redAlert: '#EA1E1E',      // Merah alert/lebih terang
+                white: '#FFFFFF',         // Putih
+                bone: '#e9dfd0'
             },
         },
     },

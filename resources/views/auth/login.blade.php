@@ -3,11 +3,11 @@
 @endphp
 
 <x-guest-layout>
-    <div class="max-w-md mx-auto p-6 bg-teal-100 rounded-2xl">
+    <div class="max-w-md mx-auto p-6 bg-bone rounded-2xl">
         <h2 class="text-3xl font-extrabold text-center text-gray-900">
             {{ __('Selamat datang!') }}
         </h2>
-        <p class="text-sm font-normal text-center text-gray-500 mb-6">
+        <p class="text-sm font-normal text-center text-primary mb-6">
             {{ __('Masukkan email dan password kamu untuk masuk ke dalam sistem dengan aman.') }}
         </p>
 
@@ -37,12 +37,12 @@
             <div class="flex items-center justify-between">
                 <label for="remember_me" class="inline-flex items-center text-sm text-gray-900">
                     <input id="remember_me" type="checkbox"
-                        class="rounded border-teal-900 text-indigo-600 shadow-sm bg-teal-100" name="remember">
+                        class="rounded border-primary text-primary shadow-sm bg-bone" name="remember">
                     <span class="ml-2">{{ __('Remember me') }}</span>
                 </label>
 
                 @if (Route::has('password.request'))
-                    <a class="text-sm text-indigo-600 hover:underline" href="{{ route('password.request') }}">
+                    <a class="text-sm text-primary hover:underline" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -59,7 +59,7 @@
             <div class="text-center mt-4">
                 <p class="text-sm text-gray-700">
                     {{ __("Don't have an account?") }}
-                    <a href="{{ route('register') }}" class="text-indigo-600 hover:underline font-medium">
+                    <a href="{{ route('register') }}" class="text-primary hover:underline font-medium">
                         {{ __('Register here') }}
                     </a>
                 </p>
