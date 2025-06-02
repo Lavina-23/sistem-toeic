@@ -17,38 +17,46 @@ class PengumumanController extends Controller
 
     public function storePengumuman(Request $request)
     {
-
-        $user = Auth::user();
-        $registered = Peserta::where('pengguna_id', $user->pengguna_id)->first();
-
-        // Validasi input
-        $validatedData = $request->validate([
+        $request->validate([
             'judul' => 'required|string|max:255',
-            'isi' => 'required|string',
-            'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'isi' => 'required|string|min:10',
+            'file' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:5120', // 5MB max
+        ], [
+            'judul.required' => 'Judul pengumuman harus diisi.',
+            'judul.max' => 'Judul pengumuman tidak boleh lebih dari 255 karakter.',
+            'isi.required' => 'Deskripsi pengumuman harus diisi.',
+            'isi.min' => 'Deskripsi pengumuman minimal 10 karakter.',
+            'file.required' => 'File pengumuman harus diupload.',
+            'file.mimes' => 'File harus berformat PDF, DOC, DOCX, JPG, JPEG, atau PNG.',
+            'file.max' => 'Ukuran file tidak boleh lebih dari 5MB.',
         ]);
 
         try {
-
-            // Jika file diunggah, simpan ke storage
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-
-                // Buat nama file baru berdasarkan judul, contoh: JADWAL TOEIC → JADWAL_TOEIC.pdf
-                $namaFile = str_replace(' ', '_', strtoupper($request->judul)) . '.' . $file->getClientOriginalExtension();
-
-                // Simpan file ke folder 'pengumuman' di disk 'public' dengan nama tersebut
-                $path = $file->storeAs('pengumuman', $namaFile, 'public');
-
-                $validatedData['file'] = $path;
+            // Jika checkbox is_active dicentang, set semua pengumuman lain menjadi non-aktif
+            if ($request->has('is_active')) {
+                Pengumuman::where('is_active', true)->update(['is_active' => false]);
             }
-
-            // Simpan pengumuman ke database
-            Pengumuman::create($validatedData);
-
-            return redirect()->back()->with('success', 'Pengumuman berhasil ditambahkan!');
+            
+            // Upload file
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('pengumuman', $fileName, 'public');
+            
+            // Simpan pengumuman
+            Pengumuman::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'file' => $filePath,
+                'is_active' => $request->has('is_active') ? true : false,
+            ]);
+            
+            $message = 'Pengumuman berhasil ditambahkan';
+            if ($request->has('is_active')) {
+                $message .= ' dan langsung ditampilkan di laman peserta';
+            }
+            
+            return redirect()->back()->with('success', $message . '.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menambahkan pengumuman: ' . $e->getMessage());
         }
     }
 
@@ -61,4 +69,6 @@ class PengumumanController extends Controller
             "pengumuman" => $pengumuman
         ]);
     }
+
+    
 }

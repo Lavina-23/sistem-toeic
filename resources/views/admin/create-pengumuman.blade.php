@@ -27,8 +27,9 @@
             </div>
         @endif
 
-        @if ($pengumumans->count())
-            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6">
+        <!-- Daftar Pengumuman -->
+        @if(isset($pengumumans) && $pengumumans->count() > 0)
+            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 <h2 class="text-xl font-semibold mb-4">{{ __('pengumuman.list') }}</h2>
                 <div class="overflow-x-auto">
                     <table class="min-w-full table-auto border-collapse border border-gray-200">
@@ -140,16 +141,9 @@
                         </tbody>
                     </table>
                 </div>
-                
-                <!-- Pagination if needed -->
-                @if(method_exists($pengumumans, 'links'))
-                    <div class="mt-4">
-                        {{ $pengumumans->links() }}
-                    </div>
-                @endif
             </div>
         @else
-            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center">
+            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
                 <div class="text-gray-500 mb-4">
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -161,7 +155,7 @@
         @endif
 
         <!-- Tombol Tambahkan Pengumuman -->
-        <div class="mt-6">
+        <div class="mb-6">
             <button onclick="togglePengumumanForm()" id="toggleBtn"
                 class="inline-flex items-center px-6 py-3 bg-green-500 text-white rounded-lg font-semibold shadow-md hover:bg-green-600 transition-all duration-200 transform hover:scale-105">
                 <span id="toggleIcon">➕</span>
@@ -170,7 +164,7 @@
         </div>
 
         <!-- Form Tambah Pengumuman (Hidden by default) -->
-        <div id="pengumumanForm" style="display: none;" class="mt-6">
+        <div id="pengumumanForm" style="display: none;">
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                     <span class="mr-2">📝</span>
