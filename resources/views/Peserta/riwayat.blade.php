@@ -155,19 +155,11 @@
                             <p>Total</p>
                         </div>
                         <div>
-<<<<<<< HEAD
                             <h1 class="text-2xl font-extrabold text-yellowAccent">{{ $score->highest_score_r ?? 0 }}</h1>
                             <p>Reading</p>
                         </div>
                         <div>
                             <h1 class="text-2xl font-extrabold text-redMain">{{ $score->highest_score_l ?? 0 }}</h1>
-=======
-                            <h1 class="text-2xl font-extrabold text-primary">{{ $score->highest_score_r ?? 0 }}</h1>
-                            <p>Reading</p>
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-extrabold text-primary">{{ $score->highest_score_l ?? 0 }}</h1>
->>>>>>> cc20eaa4c5d54fd2f776ebe6c7db5b258ccfb0e2
                             <p>Listening</p>
                         </div>
                     </div>
