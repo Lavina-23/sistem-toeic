@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Wah, ini bukan pendaftaran tes pertamamu ya?',
+    'title' => 'Ups, ini bukan pendaftaran tes pertamamu ya?',
     'subtitle' => 'Klik tombol di bawah untuk mendaftar secara mandiri, ya!',
     'button' => 'Ikuti Tes Sekarang',
     'nim_nidn_nip'     => 'NIM/NIDN/NIP',

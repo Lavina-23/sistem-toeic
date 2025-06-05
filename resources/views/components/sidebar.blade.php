@@ -37,7 +37,7 @@
                         <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                             <div class="flex flex-col items-center py-10">
                                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                    src="https://i.ibb.co.com/Df3sMdtT/amu.jpg" alt="amu" border="0">
+                                    src="https://i.ibb.co/zTw3JG7Q/profile.jpg" alt="profile" border="0">
                                 <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $userData['username'] }}</h5>
                                 <span class="text-sm text-gray-500">{{ $userData['email'] }}</span>
                                 {{-- <div class="flex mt-4 md:mt-6">
@@ -91,16 +91,16 @@
 
                             <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
-                        <li>
-                            <a href="{{ route('peserta.requestDokumen') }}"
-                                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
-                                <svg class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M3 3v18h18M7 8h8M7 12h6m-6 4h4" />
-                                </svg>
-                                <span class="ml-3">Request Dokumen</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="{{ route('peserta.requestDokumen') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
+                            <svg class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M3 3v18h18M7 8h8M7 12h6m-6 4h4" />
+                            </svg>
+                            <span class="ml-3">Request Dokumen</span>
+                        </a>
+                    </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" onsubmit="return confirmLogout(event)">
                             @csrf
@@ -157,7 +157,7 @@
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
                                     <div class="inline-flex items-center">
                                         <img src="{{ asset('images/uk.jpg') }}" alt="Mandarin Flag"
-                                          class="h-4 w-4 rounded-full mr-2" />
+                                            class="h-4 w-4 rounded-full mr-2" />
                                         </svg>
                                         English
                                     </div>
@@ -168,7 +168,7 @@
                                     class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">
                                     <div class="inline-flex items-center">
                                         <img src="{{ asset('images/china.jpg') }}" alt="Mandarin Flag"
-                                          class="h-4 w-4 rounded-full mr-2" />
+                                            class="h-4 w-4 rounded-full mr-2" />
                                         Mandarin
                                     </div>
                                 </a>
