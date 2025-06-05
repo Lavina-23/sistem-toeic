@@ -2,12 +2,12 @@
     <x-sidebar :userData="$userData" />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-teal-900 mb-6 text-center">Request Dokumen TOEIC</h1>
+            <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
 
             <!-- Status Card -->
             <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                 <div class="flex flex-col gap-4">
-                    <h2 class="text-lg md:text-xl font-semibold text-teal-700 text-center">
+                    <h2 class="text-lg md:text-xl font-semibold text-yellowAccent text-center">
                         Status Dokumen Anda
                     </h2>
                     @if($peserta && $score)
@@ -187,103 +187,113 @@
             </div>
             @endif
 
-            <!-- Information Section -->
-            <div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
-                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">Informasi Penting</h2>
+<!-- Information Section -->
+<div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
+    <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">Informasi Penting</h2>
 
-                <div class="space-y-4 text-sm font-normal text-gray-600">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-teal-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <p class="ml-3">Surat keterangan ini hanya dapat diunduh jika Anda telah memenuhi semua persyaratan yang ditentukan.</p>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-teal-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <p class="ml-3">Pastikan data Anda sudah lengkap dan benar sebelum mengunduh dokumen.</p>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-teal-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <p class="ml-3">Dokumen yang diunduh memiliki format PDF dan dapat digunakan untuk keperluan administrasi.</p>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-teal-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <p class="ml-3">Jika terdapat masalah dengan dokumen, silakan hubungi admin melalui kontak yang tersedia.</p>
-                    </div>
-                </div>
+    <div class="space-y-4 text-sm font-normal text-gray-600">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-redMain mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
             </div>
+            <p class="ml-3">Surat keterangan ini hanya dapat diunduh jika Anda telah memenuhi semua persyaratan yang ditentukan.</p>
+        </div>
 
-            <!-- Contact Section -->
-            <div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
-                <h2 class="text-lg md:text-xl font-semibold text-teal-700 mb-4">
-                    Informasi Kontak
-                </h2>
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-redMain mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <p class="ml-3">Pastikan data Anda sudah lengkap dan benar sebelum mengunduh dokumen.</p>
+        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Telepon</p>
-                            <p class="text-sm text-gray-500">(0341) 404424 – 404425</p>
-                        </div>
-                    </div>
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-redMain mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <p class="ml-3">Dokumen yang diunduh memiliki format PDF dan dapat digunakan untuk keperluan administrasi.</p>
+        </div>
 
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Email</p>
-                            <p class="text-sm text-gray-500">toeic@polinema.ac.id</p>
-                        </div>
-                    </div>
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-redMain mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <p class="ml-3">Jika terdapat masalah dengan dokumen, silakan hubungi admin melalui kontak yang tersedia.</p>
+        </div>
+    </div>
+</div>
 
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Jam Operasional</p>
-                            <p class="text-sm text-gray-500">Senin - Jumat, 08:00 - 16:00</p>
-                        </div>
-                    </div>
+<!-- Contact Section -->
+<div class="bg-white border rounded-lg shadow-sm p-6 mt-6">
+    <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
+        Informasi Kontak
+    </h2>
 
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-normal text-gray-900">Lokasi</p>
-                            <p class="text-sm text-gray-500">Jl. Soekarno Hatta No.9 Malang 65141</p>
-                        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-yellowAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                    </path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-normal text-gray-900">Telepon</p>
+                <p class="text-sm text-gray-500">(0341) 404424 – 404425</p>
+            </div>
+        </div>
+
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-yellowAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-normal text-gray-900">Email</p>
+                <p class="text-sm text-gray-500">toeic@polinema.ac.id</p>
+            </div>
+        </div>
+
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-yellowAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-normal text-gray-900">Jam Operasional</p>
+                <p class="text-sm text-gray-500">Senin - Jumat, 08:00 - 16:00</p>
+            </div>
+        </div>
+
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-yellowAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                    </path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                    </path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-normal text-gray-900">Lokasi</p>
+                <p class="text-sm text-gray-500">Jl. Soekarno Hatta No.9 Malang 65141</p>
+            </div>
                     </div>
                 </div>
             </div>

@@ -266,7 +266,7 @@
                         <h1 class="text-3xl font-semibold">{{ __('daftar.title') }}</h1>
                         <p class="text-gray-500">{{ __('daftar.subtitle') }}</p>
                         <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
-                            <x-primary-button class="w-fit h-fit">
+                            <x-primary-button class="px-6 py-2 bg-yellowAccent text-white rounded-lg hover:bg-yellow-600">
                                 {{ __('daftar.button') }}
                             </x-primary-button>
                         </a>

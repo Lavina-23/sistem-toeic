@@ -19,7 +19,11 @@ export default {
                     redMain: '#CF142B',       // Merah utama
                     yellowAccent: '#F2AB19',  // Kuning aksen
                     redAlert: '#EA1E1E',      // Merah alert/lebih terang
-                    white: '#FFFFFF',         // Putih
+                    white: '#FFFFFF',
+                    redMain: '#CF142B',      // Merah utama
+                    redDark: '#A60000',      // Merah gelap         // Putih
+                    primaryLight: '#6B8ED6',   // biru muda banget
+                    primaryMid: '#3554A4',     // biru medium
             },
         },
     },

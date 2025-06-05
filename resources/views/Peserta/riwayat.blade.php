@@ -19,7 +19,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-redAlert via-redMain to-redDark rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-primaryLight via-primaryMid to-primary rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
