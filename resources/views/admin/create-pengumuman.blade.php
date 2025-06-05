@@ -270,7 +270,29 @@
                         </form>
                     </div>
                 </div>
+<<<<<<< HEAD
+
+                <div>
+                    <label for="isi"
+                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.desc') }}</label>
+                    <textarea name="isi" id="isi" rows="4" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"></textarea>
+                </div>
+
+                <div>
+                    <label for="file"
+                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.select') }}</label>
+                    <input type="file" name="file" id="file" accept="application/pdf" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
+                </div>
+
+                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
+                    Import
+                </button>
+            </form>
+=======
             </div>
+>>>>>>> 383b215bb7a0fc5d39ae4e26e7d0395bc31529b3
         </div>
     </section>
 
