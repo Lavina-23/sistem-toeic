@@ -16,14 +16,16 @@ export default {
             },
             colors: {
                 primary: '#00247D',        // Biru tua
-                primaryLight: '#6B8ED6',   // Biru muda banget
-                primaryMid: '#3554A4',     // Biru medium
+                 primaryLight: '#6B8ED6',   // Biru muda banget
+                 primaryMid: '#3554A4',     // Biru medium
 
                 redMain: '#CF142B',        // Merah utama
                 redDark: '#A60000',        // Merah gelap
                 redAlert: '#EA1E1E',       // Merah alert/lebih terang
 
-                yellowAccent: '#F2AB19',   // Kuning aksen
+                yellowLight: '#F9D97E',    // Kuning terang custom (gradasi start)
+                yellowAccent: '#F2AB19',   // Kuning aksen (gradasi tengah)
+                yellowDark: '#B77A00',     // Kuning gelap custom (gradasi end)
 
                 white: '#FFFFFF',          // Putih
                 bone: '#e9dfd0',           // Warna tulang

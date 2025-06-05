@@ -33,7 +33,7 @@
                     <input type="file" name="excel_numbers" accept=".xls,.xlsx" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                 </div>
-                <button type="submit" class="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
+                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primaryMid transition">
                     Kirim
                 </button>
             </form>
