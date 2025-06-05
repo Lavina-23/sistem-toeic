@@ -83,21 +83,26 @@ class PesertaController extends Controller
         //
         $user = Auth::user();
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
-        $score = Score::select('*')
-            ->selectRaw('CASE
-            WHEN score_total >= last_score_total THEN score_total
-            ELSE last_score_total
-        END AS highest_score,
-        CASE
-            WHEN score_r >= last_score_r THEN score_r
-            ELSE last_score_r
-        END AS highest_score_r,
-        CASE
-            WHEN score_l >= last_score_l THEN score_l
-            ELSE last_score_l
-        END AS highest_score_l')
-            ->where('no_induk', $peserta->no_induk)
-            ->first();
+
+        if ($peserta) {
+            $score = Score::select('*')
+                ->selectRaw('CASE
+                WHEN score_total >= last_score_total THEN score_total
+                ELSE last_score_total
+            END AS highest_score,
+            CASE
+                WHEN score_r >= last_score_r THEN score_r
+                ELSE last_score_r
+            END AS highest_score_r,
+            CASE
+                WHEN score_l >= last_score_l THEN score_l
+                ELSE last_score_l
+            END AS highest_score_l')
+                ->where('no_induk', $peserta->no_induk)
+                ->first();
+        } else {
+            $score = null;
+        }
 
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
     }
@@ -107,7 +112,7 @@ class PesertaController extends Controller
         $user = Auth::user();
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
         $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
-        
+
         return view('peserta.requestDokumen', compact('peserta', 'score'));
     }
 }
