@@ -19,7 +19,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-redAlert via-redMain to-redDark rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-primaryLight via-primaryMid to-primary rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-primaryLight via-primaryMid to-primary rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-yellowLight via-yellowAccent to-yellowAccent rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-yellowLight via-yellowAccent to-yellowAccent rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                     <div class="w-full bg-gray-200 rounded-full overflow-hidden h-5">
                                         <!-- Animated Bar -->
                                         <div :style="`width: ${pct}%`"
-                                            class="h-5 bg-gradient-to-r from-teal-500 to-teal-700 rounded-full transition-all duration-1000">
+                                            class="h-5 bg-gradient-to-r from-yellowLight via-yellowAccent to-yellowAccent rounded-full transition-all duration-1000">
                                         </div>
                                     </div>
                                 </div>
@@ -155,11 +155,11 @@
                             <p>Total</p>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-extrabold text-primary">{{ $score->highest_score_r ?? 0 }}</h1>
+                            <h1 class="text-2xl font-extrabold text-yellowAccent">{{ $score->highest_score_r ?? 0 }}</h1>
                             <p>Reading</p>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-extrabold text-primary">{{ $score->highest_score_l ?? 0 }}</h1>
+                            <h1 class="text-2xl font-extrabold text-redMain">{{ $score->highest_score_l ?? 0 }}</h1>
                             <p>Listening</p>
                         </div>
                     </div>
