@@ -48,21 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                 },
                 series: [
-                    {
-                        name: "Score Total",
-                        data: [scoreData.last_score_total, scoreData.score_total],
-                        color: "#134e4a",
-                    },
-                    {
-                        name: "Score Reading",
-                        data: [scoreData.last_score_r, scoreData.score_r],
-                        color: "#14b8a6",
-                    },
-                    {
-                        name: "Score Listening",
-                        data: [scoreData.last_score_l, scoreData.score_l],
-                        color: "#0f766e",
-                    },
+                            {
+                                name: "Score Total",
+                                data: [scoreData.last_score_total, scoreData.score_total],
+                                color: "#CF142B", // redMain
+                            },
+                            {
+                                name: "Score Reading",
+                                data: [scoreData.last_score_r, scoreData.score_r],
+                                color: "#A60000", // redDark
+                            },
+                            {
+                                name: "Score Listening",
+                                data: [scoreData.last_score_l, scoreData.score_l],
+                                color: "#EA1E1E", // redAlert
+                            },
                 ],
                 legend: {
                     show: false,

@@ -3,11 +3,12 @@
 @endphp
 
 <x-guest-layout>
-    <div class="max-w-md mx-auto p-6 bg-bone rounded-2xl">
+    <div class="max-w-md mx-auto p-6 bg-white rounded-2xl">
+        <img src="/images/logo-toeicin.png" alt="logo-toeicin" class="mx-auto mb-6 h-16 w-auto">
         <h2 class="text-3xl font-extrabold text-center text-gray-900">
             {{ __('Selamat datang!') }}
         </h2>
-        <p class="text-sm font-normal text-center text-primary mb-6">
+        <p class="text-sm font-normal text-center text-gray-500 mb-6">
             {{ __('Masukkan email dan password kamu untuk masuk ke dalam sistem dengan aman.') }}
         </p>
 
@@ -50,8 +51,8 @@
 
             <!-- Login Button -->
             <div>
-                <x-primary-button class="w-full justify-center py-2 text-base font-semibold">
-                    {{ __('Log in') }}
+                <x-primary-button class="w-full justify-center">
+                    {{ __('Log In') }}
                 </x-primary-button>
             </div>
 

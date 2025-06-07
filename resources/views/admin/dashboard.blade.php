@@ -13,7 +13,7 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
                     </div>
                     <button type="submit"
-                        class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
+                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
                         <svg xmlns="http://www.w3..org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -232,7 +232,7 @@
 
         <div class="mt-6 flex justify-center">
             <a href="{{ route('admin.export.pdf') }}" download
-                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-teal-700 text-white rounded-lg hover:bg-teal-600 focus:ring-4 focus:ring-teal-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

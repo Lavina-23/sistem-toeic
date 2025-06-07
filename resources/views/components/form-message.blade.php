@@ -1,9 +1,4 @@
-<x-layout>
-    <x-sidebaradmin />
-
-    <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('scoreAdmin.title') }}</h1>
-
+        {{-- form message --}}
         <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
             @if (session('success'))
                 <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
@@ -33,10 +28,9 @@
                     <input type="file" name="excel_numbers" accept=".xls,.xlsx" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                 </div>
-                <button type="submit" class="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
+                <button type="submit"
+                    class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primaryMid transition">
                     Kirim
                 </button>
             </form>
         </div>
-    </section>
-</x-layout>

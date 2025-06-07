@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MessageController extends Controller
 {
-    public function createMessage()
-    {
-        return view('admin.send-message');
-    }
-
     public function sendMessage(Request $request)
     {
         $request->validate([
