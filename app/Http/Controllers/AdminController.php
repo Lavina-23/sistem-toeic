@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Pengguna;
 
 class AdminController extends Controller
 {
@@ -51,7 +52,42 @@ class AdminController extends Controller
     {
         $peserta = Peserta::all();
 
-        $pdf = Pdf::loadView('admin.peserta_pdf', compact('peserta'));
+        $pdf = Pdf::loadView('admin.peserta-pdf', compact('peserta'));
         return $pdf->download('data_peserta.pdf');
     }
+
+    public function exportPengguna()
+    {
+        $pengguna = Pengguna::all();
+
+        $pdf = Pdf::loadView('admin.pengguna-pdf', compact('pengguna'));
+        return $pdf->download('data_pengguna.pdf');
+    }
+
+    public function daftarPengguna(Request $request)
+    {
+        $query = Pengguna::query();
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('level', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->has('sort') && $request->has('direction')) {
+            $query->orderBy($request->sort, $request->direction);
+        }
+
+        $perPage = $request->input('perPage', 10);
+
+        $pengguna = $query->paginate($perPage);
+
+        return view('admin.daftarPengguna', [
+            'pengguna' => $pengguna,
+        ]);
+    }
+
 }

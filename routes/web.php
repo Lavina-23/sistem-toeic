@@ -96,6 +96,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
         Route::get('/admin/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
+        Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
+        Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
