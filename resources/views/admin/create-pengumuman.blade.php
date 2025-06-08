@@ -191,7 +191,7 @@
         <!-- Tombol Tambahkan Pengumuman -->
         <div class="mb-6">
             <button onclick="togglePengumumanForm()" id="toggleBtn"
-                class="inline-flex items-center px-6 py-3 bg-green-500 text-white rounded-lg font-semibold shadow-md hover:bg-green-600 transition-all duration-200 transform hover:scale-105">
+                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 hover:scale-105">
                 <span id="toggleIcon">➕</span>
                 <span id="toggleText" class="ml-2">{{__('pengumuman.addbot')}}</span>
             </button>
@@ -347,7 +347,7 @@
                 form.style.display = 'none';
                 icon.innerHTML = '➕';
                 text.innerHTML = '{{__('pengumuman.addbot')}}';
-                btn.className = 'inline-flex items-center px-6 py-3 bg-green-500 text-white rounded-lg font-semibold shadow-md hover:bg-green-600 transition-all duration-200 transform hover:scale-105';
+                btn.className = 'inline-flex items-center px-6 py-3 text-sm font-medium bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 hover:scale-105';
             }
         }
 
