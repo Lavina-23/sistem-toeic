@@ -12,7 +12,13 @@ class PengumumanController extends Controller
     //
     public function createPengumuman()
     {
-        return view('admin.create-pengumuman');
+        $pengumumans = Pengumuman::all();
+        // dd($pengumumans);
+        // exit;
+
+        return view('admin.create-pengumuman', [
+            'pengumumans' => $pengumumans,
+        ]);
     }
 
     public function storePengumuman(Request $request)
@@ -63,7 +69,7 @@ class PengumumanController extends Controller
     public function showPengumuman()
     {
         //
-        $pengumuman = pengumuman::latest()->first();
+        $pengumuman = Pengumuman::latest()->first();
 
         return view('peserta.dashboard', [
             "pengumuman" => $pengumuman
