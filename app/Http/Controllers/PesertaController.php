@@ -11,18 +11,13 @@ use App\Models\Pengumuman;
 
 class PesertaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $pengumuman = Pengumuman::latest()->first();
         return view('peserta.dashboard', compact('pengumuman'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function createPeserta()
     {
         //
@@ -32,9 +27,7 @@ class PesertaController extends Controller
         return view('peserta.daftar', ['registered' => $registered]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function storePeserta(Request $request)
     {
         $user = Auth::user();

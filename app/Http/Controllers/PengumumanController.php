@@ -13,7 +13,7 @@ class PengumumanController extends Controller
     public function createPengumuman()
     {
         $pengumumans = Pengumuman::all();
-        // dd($pengumumans);
+        // dd($pengumumans); 
         // exit;
 
         return view('admin.create-pengumuman', [
