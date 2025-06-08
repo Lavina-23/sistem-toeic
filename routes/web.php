@@ -102,6 +102,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
+        Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
