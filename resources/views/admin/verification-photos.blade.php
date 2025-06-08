@@ -7,8 +7,8 @@
 
         {{-- verification photos table --}}
         @if (isset($peserta))
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">📷 Verifikasi Foto Ruangan Tes Peserta</h1>
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
-                <h1 class="text-3xl font-bold text-gray-800 mb-6">📷 Verifikasi Foto Ruangan Tes Peserta</h1>
                 {{-- Sortir Dropdown --}}
                 <form method="GET" action="{{ route('verification') }}" class="mb-6 flex justify-end">
                     <select name="sortir" id="sortir" onchange="this.form.submit()"
