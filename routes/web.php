@@ -10,6 +10,7 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\VerificationReqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/store', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/verification', [VerificationController::class, 'index'])->name('verification');
+        Route::get('/verificationReq', [VerificationReqController::class, 'index'])->name('verificationReq');
         Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
         Route::get('/admin/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');

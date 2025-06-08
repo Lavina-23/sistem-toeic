@@ -42,7 +42,7 @@ class PesertaController extends Controller
 
         if (!$registered) {
             $validatedData = $request->validate([
-                // 'nama' => 'required|string|max:255',
+                'nama' => 'required|string|max:255',
                 'no_induk' => 'required|string|max:255',
                 'nik' => 'required|string|max:255',
                 'no_telp' => 'required|string|max:255',
