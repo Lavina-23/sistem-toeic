@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
+use App\Models\VerificationReq;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,42 +46,43 @@ Route::get('/language/{lang}', function ($lang) {
     return redirect()->back();
 })->name('language.switch');
 
- Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
-        
-        // Menampilkan halaman create dengan daftar pengumuman
-        Route::get('/', [PengumumanController::class, 'index'])->name('index');
-        
-        // Menampilkan form create pengumuman
-        Route::get('/create', [PengumumanController::class, 'create'])->name('create');
-        
-        // Menyimpan pengumuman baru
-        Route::post('/', [PengumumanController::class, 'store'])->name('store');
-        
-        // Menampilkan detail pengumuman
-        Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
-        
-        // Menampilkan form edit pengumuman
-        Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
-        
-        // Update pengumuman
-        Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
-        
-        // Hapus pengumuman
-        Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
-        
-        // Toggle status aktif/tidak aktif
-        Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
-        
-        // Download file pengumuman
-        Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
-    });
+Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
+
+    // Menampilkan halaman create dengan daftar pengumuman
+    Route::get('/', [PengumumanController::class, 'index'])->name('index');
+
+    // Menampilkan form create pengumuman
+    Route::get('/create', [PengumumanController::class, 'create'])->name('create');
+
+    // Menyimpan pengumuman baru
+    Route::post('/', [PengumumanController::class, 'store'])->name('store');
+
+    // Menampilkan detail pengumuman
+    Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
+
+    // Menampilkan form edit pengumuman
+    Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
+
+    // Update pengumuman
+    Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
+
+    // Hapus pengumuman
+    Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
+
+    // Toggle status aktif/tidak aktif
+    Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
+
+    // Download file pengumuman
+    Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
         Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
         Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
-        Route::get('/requestDokumen', [PesertaController::class, 'requestDokumen'])->name('peserta.requestDokumen');
+        Route::get('/request-document', [VerificationReqController::class, 'requestDocument'])->name('request-document');
+        Route::post('/store/request-document', [VerificationReqController::class, 'storeRequest'])->name('store.request-document');
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
         Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');

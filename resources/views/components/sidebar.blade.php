@@ -92,7 +92,7 @@
                             <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
                     <li>
-                        <a href="{{ route('peserta.requestDokumen') }}"
+                        <a href="{{ route('request-document') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                             <svg class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -104,8 +104,7 @@
                     <li>
                         <form method="POST" action="{{ route('logout') }}" onsubmit="return confirmLogout(event)">
                             @csrf
-                            <button
-                                type="submit"
+                            <button type="submit"
                                 class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group w-full">
                                 <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -202,7 +201,7 @@
 
     // Fungsi konfirmasi logout custom
     function confirmLogout(event) {
-        event.preventDefault();  // cegah submit default dulu
+        event.preventDefault(); // cegah submit default dulu
 
         // Buat elemen overlay konfirmasi
         const confirmation = document.createElement('div');
@@ -219,52 +218,52 @@
 
         confirmation.innerHTML = `
         <div class="fade-in" style="
-            background: white; 
-            padding: 24px 30px; 
-            border-radius: 12px; 
-            max-width: 320px; 
-            width: 90%; 
+            background: white;
+            padding: 24px 30px;
+            border-radius: 12px;
+            max-width: 320px;
+            width: 90%;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             text-align: center;
             font-family: Arial, sans-serif;
         ">
             <p style="
-                margin-bottom: 24px; 
-                font-weight: 600; 
-                font-size: 18px; 
+                margin-bottom: 24px;
+                font-weight: 600;
+                font-size: 18px;
                 color: #111;
             ">
             Apakah kamu yakin ingin logout?
             </p>
             <button id="confirm-yes" style="
-                margin-right: 12px; 
-                padding: 10px 24px; 
-                background-color: #22c55e; 
-                color: white; 
-                border: none; 
-                border-radius: 6px; 
-                font-weight: 600;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            " 
-            onmouseover="this.style.backgroundColor='#16a34a';" 
-            onmouseout="this.style.backgroundColor='#22c55e';"
-            >
-            Ya
-            </button>
-            <button id="confirm-no" style="
-                padding: 10px 24px; 
-                background-color: #ef4444; 
-                color: white; 
-                border: none; 
-                border-radius: 6px; 
+                margin-right: 12px;
+                padding: 10px 24px;
+                background-color: #22c55e;
+                color: white;
+                border: none;
+                border-radius: 6px;
                 font-weight: 600;
                 font-size: 16px;
                 cursor: pointer;
                 transition: background-color 0.2s ease;
             "
-            onmouseover="this.style.backgroundColor='#b91c1c';" 
+            onmouseover="this.style.backgroundColor='#16a34a';"
+            onmouseout="this.style.backgroundColor='#22c55e';"
+            >
+            Ya
+            </button>
+            <button id="confirm-no" style="
+                padding: 10px 24px;
+                background-color: #ef4444;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            "
+            onmouseover="this.style.backgroundColor='#b91c1c';"
             onmouseout="this.style.backgroundColor='#ef4444';"
             >
             Tidak
@@ -276,13 +275,13 @@
         document.body.appendChild(confirmation);
 
         // Tombol Ya: submit form
-        document.getElementById('confirm-yes').onclick = function () {
+        document.getElementById('confirm-yes').onclick = function() {
             event.target.submit();
             document.body.removeChild(confirmation);
         };
 
         // Tombol Tidak: hapus konfirmasi
-        document.getElementById('confirm-no').onclick = function () {
+        document.getElementById('confirm-no').onclick = function() {
             document.body.removeChild(confirmation);
         };
 

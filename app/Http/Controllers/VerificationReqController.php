@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VerificationReq;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
+use App\Models\VerificationReq;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationReqController extends Controller
 {
@@ -36,5 +37,37 @@ class VerificationReqController extends Controller
             'verificationReqs' => $verificationReqs,
             'filter' => $filter,
         ]);
+    }
+
+    public function requestDocument()
+    {
+        // $user = Auth::user();
+        $hasRequested = VerificationReq::where('peserta_id', Auth::user()->peserta->peserta_id)->exists();
+
+        return view('peserta.requestDokumen', [
+            'hasRequested' => $hasRequested,
+        ]);
+    }
+
+    public function storeRequest(Request $request)
+    {
+        $verifData = $request->validate([
+            'keterangan' => 'required|string|max:255',
+            'bukti_pendukung' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        try {
+            $verifData['peserta_id'] = Auth::user()->peserta->peserta_id;
+            $verifData['keterangan'] = $request->keterangan;
+            if ($request->hasFile('bukti_pendukung')) {
+                $verifData['bukti_pendukung'] = $request->file('bukti_pendukung')->store('bukti_pendukung', 'public');
+            }
+
+            VerificationReq::create($verifData);
+
+            return redirect()->back()->with('success', 'Permintaan verifikasi berhasil dikirim.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal mengirim permintaan verifikasi: ' . $e->getMessage());
+        }
     }
 }

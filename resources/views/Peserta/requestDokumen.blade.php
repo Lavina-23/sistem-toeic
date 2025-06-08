@@ -4,13 +4,54 @@
         <div class="max-w-full p-6 -mt-4">
             <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
 
-            <!-- Status Card -->
+            <div
+                class="
+            {{ $hasRequested ? 'hidden' : '' }}
+            w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
+                @if (session('success'))
+                    <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('store.request-document') }}" method="POST" enctype="multipart/form-data"
+                    class="space-y-4">
+                    @csrf
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" rows="5" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
+                            placeholder="Masukkan keteranganmu..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">File Bukti Pendukung</label>
+                        <input type="file" name="bukti_pendukung" accept=".png,.jpg,.jpeg,.pdf,.docx"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
+                    </div>
+                    <button type="submit"
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
+                        Kirim
+                    </button>
+                </form>
+            </div>
+
+            {{-- <!-- Status Card -->
             <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                 <div class="flex flex-col gap-4">
                     <h2 class="text-lg md:text-xl font-semibold text-yellowAccent text-center">
                         Status Dokumen Anda
                     </h2>
-                    @if($peserta && $score)
+                    @if ($peserta && $score)
                         <div class="flex items-center justify-center p-4 bg-green-50 border border-green-200 rounded-lg">
                             <svg class="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -26,15 +67,25 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            </div> --}}
 
-            @if($peserta && $score)
-            <!-- Document Preview Section -->
-            <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
+            @if ($hasRequested)
+                <!-- Document Preview Section -->
+                <div class="flex flex-col justify-center items-center md:flex-row gap-5 w-full">
+                    <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history"
+                        border="0">
+                    <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
+                        <h1 class="text-3xl font-semibold">Tunggu Ya!</h1>
+                        <p class="text-gray-500">Dokumen yang kamu request sedang kami urus</p>
+                        <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
+                        </a>
+                    </div>
+                </div>
+                {{-- <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                 <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
                     Preview Surat Keterangan
                 </h2>
-                
+
                 <!-- Preview Container -->
                 <div class="w-full flex flex-col items-center">
                     <div id="document-preview" class="w-full max-w-4xl border border-gray-300 rounded-lg overflow-hidden mb-4 bg-white shadow-inner">
@@ -70,7 +121,7 @@
                             <div class="content text-xs text-justify" style="line-height: 1.8;">
                                 <div class="mb-4">
                                     <p>Yang bertanda tangan di bawah ini</p>
-                                    
+
                                     <div class="mt-3 mb-4">
                                         <table class="w-full">
                                             <tr>
@@ -139,13 +190,13 @@
                                 </div>
 
                                 <div class="statement mb-5" style="text-indent: 30px;">
-                                    <p>telah mengikuti ujian TOEIC dan mendapat sertifikat yang diterbitkan oleh ETS sebanyak 
-                                    <strong>dua kali</strong> dengan nilai di bawah 400 untuk Program D-III dan 450 untuk Program D-IV dengan 
+                                    <p>telah mengikuti ujian TOEIC dan mendapat sertifikat yang diterbitkan oleh ETS sebanyak
+                                    <strong>dua kali</strong> dengan nilai di bawah 400 untuk Program D-III dan 450 untuk Program D-IV dengan
                                     bukti sertifikat terlampir (dua berkas).</p>
                                 </div>
 
                                 <div class="closing mb-8" style="text-indent: 30px;">
-                                    <p>Demikian surat keterangan ini dibuat sebagai pengganti syarat pengambilan ijazah dan agar 
+                                    <p>Demikian surat keterangan ini dibuat sebagai pengganti syarat pengambilan ijazah dan agar
                                     dapat dipergunakan sebagaimana mestinya.</p>
                                 </div>
                             </div>
@@ -175,7 +226,7 @@
                             </svg>
                             Download PDF
                         </button>
-                        
+
                         <button onclick="printDocument()" class="inline-flex items-center px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg focus:ring-4 focus:ring-gray-200 transition-colors">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
@@ -184,18 +235,9 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @endif
 
         </div>
     </section>
-
-    <script>
-    </script>
 </x-layout>
-
-
-
-    
-
-                    
