@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
+use App\Http\Controllers\ITCController;
+use App\Models\VerificationReq;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,12 +35,13 @@ Route::get('/dashboard', function () {
     return match ($user->level) {
         'admin' => redirect()->route('admin.dashboard'),
         'peserta' => redirect()->route('peserta.dashboard'),
+        'itc' => redirect()->route('itc.dashboard'),
         default => abort(403),
     };
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/language/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'id', 'zh'])) {
+    if (in_array($lang, ['en', 'id', 'zh', 'kr', 'jp'])) {
         session(['locale' => $lang]);
         app()->setLocale($lang);
     }
@@ -65,7 +68,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
         Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
-        Route::get('/requestDokumen', [PesertaController::class, 'requestDokumen'])->name('peserta.requestDokumen');
+        Route::get('/request-document', [VerificationReqController::class, 'requestDocument'])->name('request-document');
+        Route::post('/store/request-document', [VerificationReqController::class, 'storeRequest'])->name('store.request-document');
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
         Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
@@ -81,10 +85,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/verification', [VerificationController::class, 'index'])->name('verification');
         Route::get('/verificationReq', [VerificationReqController::class, 'index'])->name('verificationReq');
         Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
-        Route::get('/admin/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
-        Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
+        Route::get('/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
+        Route::post('/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
+        Route::post('/update-verification/{id}', [VerificationReqController::class, 'updateVerification'])->name('update-verification');
+        Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
+    });
+
+    Route::prefix('itc')->middleware(['role:itc'])->group(function () {
+        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

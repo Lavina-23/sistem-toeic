@@ -3,21 +3,23 @@
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">📋 Verification Requests</h1>
-      
+
         {{-- Verification Requests Table --}}
         @if ($verificationReqs->count() > 0)
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-bold text-gray-800">Daftar Permintaan Verifikasi</h2>
-                    
+
                     {{-- Filter Form --}}
                     <form method="GET" action="{{ route('verificationReq') }}" class="flex items-center">
                         <label for="filter" class="mr-3 text-sm font-medium text-gray-700">Filter:</label>
                         <select name="filter" id="filter" onchange="this.form.submit()"
                             class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                             <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>Semua</option>
-                            <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>Ada Bukti</option>
-                            <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>Tanpa Bukti</option>
+                            <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>Ada Bukti
+                            </option>
+                            <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>Tanpa
+                                Bukti</option>
                         </select>
                     </form>
                 </div>
@@ -27,7 +29,6 @@
                         <thead>
                             <tr class="bg-primary text-bone text-left">
                                 <th class="px-4 py-2 border">No</th>
-                                <th class="px-4 py-2 border">ID Request</th>
                                 <th class="px-4 py-2 border">Nama Peserta</th>
                                 <th class="px-4 py-2 border">Keterangan</th>
                                 <th class="px-4 py-2 border">Bukti Pendukung</th>
@@ -36,24 +37,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($verificationReqs as $index => $req)
+                            @foreach ($verificationReqs as $index => $req)
+                                {{-- {{ dd($req) }} --}}
                                 <tr class="border-t hover:bg-gray-50 font-medium">
                                     <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
-                                    <td class="px-4 py-2 border text-center">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            {{ $req['id'] }}
-                                        </span>
-                                    </td>
                                     <td class="px-4 py-2 border">
-                                        @if($req['nama'])
+                                        @if ($req['nama'])
                                             <div class="font-semibold text-gray-900">{{ $req['nama'] }}</div>
-                                            <div class="text-sm text-gray-500">ID: {{ $req['peserta_id'] }}</div>
                                         @else
                                             <span class="text-red-500 font-medium">Peserta tidak ditemukan</span>
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 border max-w-xs">
-                                        @if($req['keterangan'])
+                                        @if ($req['keterangan'])
                                             <div class="truncate" title="{{ $req['keterangan'] }}">
                                                 {{ $req['keterangan'] }}
                                             </div>
@@ -62,12 +58,16 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 border text-center">
-                                        @if($req['bukti_pendukung'])
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                Ada Bukti
-                                            </span>
+                                        @if ($req['bukti_pendukung'])
+                                            <a type="button"
+                                                onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
+                                                class="underline cursor-pointer inline-flex items-center font-medium text-primary focus:font-bold hover:font-bold"
+                                                title="Preview Bukti">
+                                                Lihat Bukti
+                                            </a>
                                         @else
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                                                 Tidak Ada
                                             </span>
                                         @endif
@@ -75,35 +75,91 @@
                                     <td class="px-4 py-2 border text-center">
                                         <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
                                     </td>
+
+                                    {{-- <button type="submit" onclick="viewDetails({{ $req['id'] }})"
+                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                    title="Lihat Detail">
+                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12h.01M9 12h.01M12 15h.01M12 9h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                </button> --}}
                                     <td class="px-4 py-2 border text-center">
                                         <div class="flex justify-center space-x-2">
-                                            <button type="button" 
-                                                    onclick="approveRequest({{ $req['id'] }})"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                                    title="Setujui">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            @if ($req['status'] === 'approved')
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primaryLight text-primary">
+                                                    Diterima
+                                                </span>
+                                            @elseif ($req['status'] === 'rejected')
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-redMain">
+                                                    Ditolak
+                                                </span>
+                                            @else
+                                                <form action="{{ route('update-verification', ['id' => $req['id']]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $req['id'] }}">
+                                                    <button type="submit" name="status" value="approved"
+                                                        onclick="return confirm('Yakin ingin memverifikasi data ini?');"
+                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primaryLight"
+                                                        title="Setujui">
+                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                        </svg>
+                                                    </button>
+
+                                                    <button type="submit" name="status" value="rejected"
+                                                        onclick="return confirm('Yakin ingin menolak data ini?');"
+                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-redMain hover:bg-redAlert focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-redAlert"
+                                                        title="Tolak">
+                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            @endif
+
+                                            {{-- <button type="button" onclick="approveRequest({{ $req['id'] }})"
+                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                title="Setujui">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7"></path>
                                                 </svg>
                                             </button>
 
-                                            <button type="button" 
-                                                    onclick="rejectRequest({{ $req['id'] }})"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                                    title="Tolak">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            <button type="button" onclick="rejectRequest({{ $req['id'] }})"
+                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                                title="Tolak">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                 </svg>
-                                            </button>
+                                            </button> --}}
 
-                                            <button type="button"
-                                                    onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                    title="Preview Bukti">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276a1 1 0 011.447 1.156L18 12l3 6-4.553 2.276a1 1 0 01-1.447-1.156L15 14l-3-6 4.553-2.276z"></path>
+                                            {{-- <button type="button"
+                                                onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
+                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                title="Preview Bukti">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15 10l4.553-2.276a1 1 0 011.447 1.156L18 12l3 6-4.553 2.276a1 1 0 01-1.447-1.156L15 14l-3-6 4.553-2.276z">
+                                                    </path>
                                                 </svg>
-                                            </button>
+                                            </button> --}}
                                         </div>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -115,13 +171,13 @@
                 <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
                     <div>
                         Menampilkan {{ $verificationReqs->count() }} request
-                        @if($filter !== 'all')
+                        @if ($filter !== 'all')
                             ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
                         @endif
                     </div>
-                    @if($filter !== 'all')
-                        <a href="{{ route('admin.verification-reqs') }}" 
-                           class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    @if ($filter !== 'all')
+                        <a href="{{ route('admin.verification-reqs') }}"
+                            class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Reset Filter
                         </a>
                     @endif
@@ -130,13 +186,15 @@
         @else
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
                 <div class="text-gray-500 mb-4">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                 </div>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">Tidak ada verification request</h3>
                 <p class="text-gray-600">
-                    @if($filter === 'with_bukti')
+                    @if ($filter === 'with_bukti')
                         Tidak ada request dengan bukti pendukung.
                     @elseif($filter === 'without_bukti')
                         Tidak ada request tanpa bukti pendukung.
@@ -160,8 +218,8 @@
                     {{-- Content will be injected here --}}
                 </div>
                 <div class="flex justify-end p-6 border-t border-gray-200">
-                    <button onclick="closeDetailModal()" 
-                            class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <button onclick="closeDetailModal()"
+                        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Tutup
                     </button>
                 </div>
@@ -170,58 +228,72 @@
     </section>
 
     <script>
+        function submitVerification(id, action) {
+            console.log("Submit clicked", id, action);
+
+            const confirmText = action === 'approve' ?
+                'Apakah Anda yakin ingin menyetujui permintaan ini?' :
+                'Apakah Anda yakin ingin menolak permintaan ini?';
+
+            if (confirm(confirmText)) {
+                document.getElementById(`action_type_${id}`).value = action;
+                document.getElementById(`verificationForm-${id}`).submit();
+            }
+        }
+    </script>
+    {{-- <script>
         function approveRequest(requestId) {
             if (confirm('Apakah Anda yakin ingin menyetujui verification request ini?')) {
                 fetch(`/admin/verification-reqs/${requestId}/approve`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Request berhasil disetujui!');
-                        location.reload();
-                    } else {
-                        alert('Gagal menyetujui request: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat memproses request');
-                });
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Request berhasil disetujui!');
+                            location.reload();
+                        } else {
+                            alert('Gagal menyetujui request: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat memproses request');
+                    });
             }
         }
-        
+
         function rejectRequest(requestId) {
             if (confirm('Apakah Anda yakin ingin menolak verification request ini?')) {
                 fetch(`/admin/verificationRequest/${requestId}/reject`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Request berhasil ditolak!');
-                        location.reload();
-                    } else {
-                        alert('Gagal menolak request: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat memproses request');
-                });
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Request berhasil ditolak!');
+                            location.reload();
+                        } else {
+                            alert('Gagal menolak request: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat memproses request');
+                    });
             }
         }
-        
+
         function viewDetails(requestId) {
-            fetch(`/admin/verification-reqs/${requestId}`)
+            fetch(`/admin/verificationRequest/${requestId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -251,7 +323,7 @@
                     alert('Terjadi kesalahan saat memuat detail');
                 });
         }
-        
+
         function closeDetailModal() {
             document.getElementById('detailModal').classList.add('hidden');
             document.getElementById('modalContent').innerHTML = '';
@@ -274,7 +346,7 @@
 
                 modal.innerHTML = `
                     <div class="bg-white rounded-lg max-w-3xl max-h-[80vh] overflow-auto p-4 relative w-full max-w-4xl mx-4">
-                        <button onclick="closePreviewBukti()" 
+                        <button onclick="closePreviewBukti()"
                                 class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none">&times;</button>
                         <iframe src="" frameborder="0" id="previewBuktiFrame" class="w-full h-[70vh] rounded"></iframe>
                     </div>
@@ -297,12 +369,11 @@
             }
         }
 
-        // Close preview modal if click outside content
         document.addEventListener('click', function(e) {
             const modal = document.getElementById('previewBuktiModal');
             if (modal && e.target === modal) {
                 closePreviewBukti();
             }
         });
-    </script>
+    </script> --}}
 </x-layout>
