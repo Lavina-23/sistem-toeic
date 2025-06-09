@@ -84,6 +84,15 @@ class PenggunaSeeder extends Seeder
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => '1990-01-01',
             ],
+            [
+                'nama' => 'Tokuno Yushi',
+                'email' => 'tokuno.yushi@example.com',
+                'password' => bcrypt('1234567890'),
+                'level' => 'itc',
+                'alamat' => 'Jl. Wish No. 1000, Jakarta Pusat, DKI Jakarta',
+                'tempat_lahir' => 'Jakarta',
+                'tanggal_lahir' => '2004-04-05',
+            ],
         ]);
     }
 }

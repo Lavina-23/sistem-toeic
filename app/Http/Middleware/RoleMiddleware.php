@@ -16,6 +16,8 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = auth()->user();
+        // dd($user);
+        // exit;
 
         if (!$user) {
             return redirect('login');

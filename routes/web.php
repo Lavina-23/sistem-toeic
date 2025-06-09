@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
+use App\Http\Controllers\ITCController;
 use App\Models\VerificationReq;
 
 /*
@@ -30,18 +31,17 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
-    // dd($user);
-    // exit;
 
     return match ($user->level) {
         'admin' => redirect()->route('admin.dashboard'),
         'peserta' => redirect()->route('peserta.dashboard'),
+        'itc' => redirect()->route('itc.dashboard'),
         default => abort(403),
     };
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/language/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'id', 'zh'])) {
+    if (in_array($lang, ['en', 'id', 'zh', 'kr', 'jp'])) {
         session(['locale' => $lang]);
         app()->setLocale($lang);
     }
@@ -50,31 +50,14 @@ Route::get('/language/{lang}', function ($lang) {
 
 Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
 
-    // Menampilkan halaman create dengan daftar pengumuman
     Route::get('/', [PengumumanController::class, 'index'])->name('index');
-
-    // Menampilkan form create pengumuman
     Route::get('/create', [PengumumanController::class, 'create'])->name('create');
-
-    // Menyimpan pengumuman baru
     Route::post('/', [PengumumanController::class, 'store'])->name('store');
-
-    // Menampilkan detail pengumuman
     Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
-
-    // Menampilkan form edit pengumuman
     Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
-
-    // Update pengumuman
     Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
-
-    // Hapus pengumuman
     Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
-
-    // Toggle status aktif/tidak aktif
     Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
-
-    // Download file pengumuman
     Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
 });
 
@@ -100,11 +83,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/verification', [VerificationController::class, 'index'])->name('verification');
         Route::get('/verificationReq', [VerificationReqController::class, 'index'])->name('verificationReq');
         Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
-        Route::get('/admin/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
-        Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
+        Route::get('/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
+        Route::post('/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
         Route::post('/update-verification/{id}', [VerificationReqController::class, 'updateVerification'])->name('update-verification');
+        Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
+    });
+
+    Route::prefix('itc')->middleware(['role:itc'])->group(function () {
+        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
