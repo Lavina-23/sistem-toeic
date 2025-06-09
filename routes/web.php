@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
+use App\Http\Controllers\ITCController;
 use App\Models\VerificationReq;
 
 /*
@@ -42,7 +43,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/language/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'id', 'zh'])) {
+    if (in_array($lang, ['en', 'id', 'zh', 'kr', 'jp'])) {
         session(['locale' => $lang]);
         app()->setLocale($lang);
     }
@@ -92,7 +93,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('itc')->middleware(['role:itc'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('itc.dashboard');
+        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

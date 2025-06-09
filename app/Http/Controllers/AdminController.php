@@ -49,30 +49,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function itc(Request $request)
-    {
-        $query = Pengguna::query();
-
-        if ($request->has('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%");
-            });
-        }
-
-        if ($request->has('sort') && $request->has('direction')) {
-            $query->orderBy($request->sort, $request->direction);
-        }
-
-        $perPage = $request->input('perPage', 10);
-
-        $pengguna = $query->paginate($perPage);
-
-        return view('itc.dashboard', [
-            'pengguna' => $pengguna,
-        ]);
-    }
 
     public function exportPDF()
     {
