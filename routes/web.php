@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
+use App\Http\Controllers\ITCController;
 use App\Models\VerificationReq;
 
 /*
@@ -30,8 +31,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
-// dd($user);
-// exit;
 
     return match ($user->level) {
         'admin' => redirect()->route('admin.dashboard'),
@@ -42,7 +41,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/language/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'id', 'zh'])) {
+    if (in_array($lang, ['en', 'id', 'zh', 'kr', 'jp'])) {
         session(['locale' => $lang]);
         app()->setLocale($lang);
     }
@@ -88,11 +87,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
+        Route::post('/update-verification/{id}', [VerificationReqController::class, 'updateVerification'])->name('update-verification');
         Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
     });
 
     Route::prefix('itc')->middleware(['role:itc'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('itc.dashboard');
+        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

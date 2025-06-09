@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\VerificationReq;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class VerificationReqController extends Controller
 {
@@ -15,6 +16,8 @@ class VerificationReqController extends Controller
         $filter = $request->input('filter', 'all');
 
         $query = VerificationReq::with('peserta');
+        // dd($query);
+        // exit;
 
         if ($filter === 'with_bukti') {
             $query->whereNotNull('bukti_pendukung');
@@ -24,11 +27,12 @@ class VerificationReqController extends Controller
 
         $verificationReqs = $query->get()->map(function ($req) {
             return [
-                'id' => $req->id,
-                'peserta_id' => $req->peserta_id,
+                'id' => $req->id ? $req->id : null,
+                'peserta_id' => $req->peserta ? $req->peserta->peserta_id : null,
                 'nama' => $req->peserta ? $req->peserta->nama : null,
                 'keterangan' => $req->keterangan,
                 'bukti_pendukung' => $req->bukti_pendukung,
+                'status' => $req->status,
                 'created_at' => $req->created_at->format('Y-m-d H:i'),
             ];
         });
@@ -39,13 +43,16 @@ class VerificationReqController extends Controller
         ]);
     }
 
+
     public function requestDocument()
     {
-        // $user = Auth::user();
-        $hasRequested = VerificationReq::where('peserta_id', Auth::user()->peserta->peserta_id)->exists();
+        $user = Auth::user();
+        $request = VerificationReq::where('peserta_id', $user->peserta->peserta_id)->get();
+        // dd($request);
+        // exit;
 
         return view('peserta.requestDokumen', [
-            'hasRequested' => $hasRequested,
+            'request' => $request,
         ]);
     }
 
@@ -69,5 +76,25 @@ class VerificationReqController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal mengirim permintaan verifikasi: ' . $e->getMessage());
         }
+    }
+
+    public function updateVerification(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:approved,rejected',
+        ]);
+
+        $id = $request->input('id');
+        $status = $request->input('status');
+
+        VerificationReq::where('id', $id)->update([
+            'status' => $status,
+            'updated_at' => now(),
+        ]);
+        // dd($request->all());
+        // exit;
+
+        return redirect()->route('verificationReq')
+            ->with('success', 'Status verifikasi diperbarui menjadi ' . $status);
     }
 }

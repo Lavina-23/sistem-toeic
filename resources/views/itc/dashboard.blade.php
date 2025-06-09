@@ -1,254 +1,130 @@
 <x-layout>
-    <x-sidebaradmin :userData="$userData" />
+    <x-sidebaritc />
+
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('listPeserta.title') }}</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('verifFoto.title') }}</h1>
+        <x-form-message />
 
-        <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-4">
-            <!-- Form pencarian -->
-            <div class="mb-4">
-                <form action="{{ route('admin.dashboard') }}" method="GET" class="flex gap-2">
-                    <div class="flex-1">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="{{ __('listPeserta.search') }}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
-                    </div>
-                    <button type="submit"
-                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                        <svg xmlns="http://www.w3..org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                    @if (request('search'))
-                        <a href="{{ route('admin.dashboard') }}"
-                            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
-                            Reset
-                        </a>
-                    @endif
-                </form>
-            </div>
-
-            <!-- Informasi jumlah data -->
-            <div class="flex justify-between items-center mb-4">
-                <p class="text-gray-600">Total: <span class="font-medium">{{ $peserta->total() }}</span>
-                    {{ __('listPeserta.peserta') }}</p>
-                <div class="flex space-x-2">
-                    <select id="perPage" onchange="changePerPage()"
-                        class="px-5 py-1 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
-                        @foreach ([10, 25, 50, 100] as $value)
-                            <option value="{{ $value }}"
-                                {{ request('perPage', 10) == $value ? 'selected' : '' }}>
-                                {{ $value }} {{ __('listPeserta.halaman') }}
-                            </option>
-                        @endforeach
+        {{-- verification photos table --}}
+        @if (isset($peserta))
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">📷 Verifikasi Foto Ruangan Tes Peserta</h1>
+            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
+                {{-- Sortir Dropdown --}}
+                <form method="GET" action="{{ route('dashboard') }}" class="mb-6 flex justify-end">
+                    <select name="sortir" id="sortir" onchange="this.form.submit()"
+                        class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+                        <option value="semua" {{ $sortir == 'semua' ? 'selected' : '' }}>Semua</option>
+                        <option value="belum_lengkap" {{ $sortir == 'belum_lengkap' ? 'selected' : '' }}>Belum Lengkap
+                        </option>
+                        <option value="belum_kirim" {{ $sortir == 'belum_kirim' ? 'selected' : '' }}>Belum Kirim
+                        </option>
                     </select>
+                </form>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto border-collapse border border-gray-200">
+                        <thead>
+                            <tr class="bg-primary text-bone text-left">
+                                <th class="px-4 py-2 border">No</th>
+                                <th class="px-4 py-2 border">Nama</th>
+                                <th class="px-4 py-2 border">No Telepon</th>
+                                <th class="px-4 py-2 border">Foto Depan</th>
+                                <th class="px-4 py-2 border">Foto Belakang</th>
+                                <th class="px-4 py-2 border">Foto Kiri</th>
+                                <th class="px-4 py-2 border">Foto Kanan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($peserta as $index => $p)
+                                <tr class="border-t hover:bg-gray-50 font-medium">
+                                    <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-2 border">{{ $p['nama'] }}</td>
+                                    <td class="px-4 py-2 border">{{ $p['no_telp'] }}</td>
+                                    <td class="px-4 py-2 border text-center">
+                                        @if ($p['front'])
+                                            <img src="{{ asset('storage/verification_photos/' . $p['front']) }}"
+                                                alt="Front Photo" class="w-16 h-16 object-cover rounded cursor-pointer"
+                                                onclick="openModal('{{ asset('storage/verification_photos/' . $p['front']) }}')">
+                                        @else
+                                            <span class="text-gray-400">No Photo</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-2 border text-center">
+                                        @if ($p['back'])
+                                            <img src="{{ asset('storage/verification_photos/' . $p['back']) }}"
+                                                alt="Back Photo" class="w-16 h-16 object-cover rounded cursor-pointer"
+                                                onclick="openModal('{{ asset('storage/verification_photos/' . $p['back']) }}')">
+                                        @else
+                                            <span class="text-gray-400">No Photo</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-2 border text-center">
+                                        @if ($p['left'])
+                                            <img src="{{ asset('storage/verification_photos/' . $p['left']) }}"
+                                                alt="Left Photo" class="w-16 h-16 object-cover rounded cursor-pointer"
+                                                onclick="openModal('{{ asset('storage/verification_photos/' . $p['left']) }}')">
+                                        @else
+                                            <span class="text-gray-400">No Photo</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-2 border text-center">
+                                        @if ($p['right'])
+                                            <img src="{{ asset('storage/verification_photos/' . $p['right']) }}"
+                                                alt="Right Photo" class="w-16 h-16 object-cover rounded cursor-pointer"
+                                                onclick="openModal('{{ asset('storage/verification_photos/' . $p['right']) }}')">
+                                        @else
+                                            <span class="text-gray-400">No Photo</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                            <!-- Modal for viewing full-size images -->
+                            <div id="imageModal"
+                                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                                <div class="bg-white p-4 rounded-lg max-w-3xl max-h-3xl">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-lg font-semibold">Verification Photo</h3>
+                                        <button onclick="closeModal()"
+                                            class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                                    </div>
+                                    <img id="modalImage" src="" alt="Full Size Photo"
+                                        class="max-w-full max-h-96 object-contain">
+                                </div>
+                            </div>
+
+                            <script>
+                                function openModal(imageSrc) {
+                                    document.getElementById('modalImage').src = imageSrc;
+                                    document.getElementById('imageModal').classList.remove('hidden');
+                                }
+
+                                function closeModal() {
+                                    document.getElementById('imageModal').classList.add('hidden');
+                                }
+
+                                // Close modal when clicking outside
+                                document.getElementById('imageModal').addEventListener('click', function(e) {
+                                    if (e.target === this) {
+                                        closeModal();
+                                    }
+                                });
+                            </script>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- Tabel data peserta -->
-            <div class="overflow-auto max-h-[500px]">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50 sticky top-0">
-                        <tr>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'peserta_id', 'direction' => request('sort') == 'peserta_id' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>No</span>
-                                    @if (request('sort') == 'peserta_id')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'nama', 'direction' => request('sort') == 'nama' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('listPeserta.name') }}</span>
-                                    @if (request('sort') == 'nama')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'no_induk', 'direction' => request('sort') == 'no_induk' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('listPeserta.ninduk') }}</span>
-                                    @if (request('sort') == 'no_induk')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('listPeserta.notelp') }}
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'jurusan', 'direction' => request('sort') == 'jurusan' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('listPeserta.jurusan') }}</span>
-                                    @if (request('sort') == 'jurusan')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'program_studi', 'direction' => request('sort') == 'program_studi' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('listPeserta.prodi') }}</span>
-                                    @if (request('sort') == 'program_studi')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('listPeserta.kampus') }}</span>
-                                    @if (request('sort') == 'kampus')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                            {{-- <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('alamat') }}</span>
-                                    @if (request('sort') == 'alamat_sekarang')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th> --}}
-                            <th scope="col"
-                                class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                                <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
-                                    class="flex items-center space-x-1">
-                                    <span>{{ __('tanggal lahir') }}</span>
-                                    @if (request('sort') == 'tgl_lahir')
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
-                                        </svg>
-                                    @endif
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @forelse($peserta as $index => $item)
-                            <tr
-                                class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-100 transition text-[14px]">
-                                <td class="px-4 py-2 whitespace-nowrap">
-                                    {{ ($peserta->currentPage() - 1) * $peserta->perPage() + $loop->iteration }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-nowrap font-medium text-gray-900">
-                                    {{ $item->nama }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-nowrap">
-                                    {{ $item->no_induk }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-nowrap">
-                                    {{ $item->no_telp }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
-                                    {{ $item->jurusan }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
-                                    {{ $item->program_studi }}
-                                </td>
-                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
-                                    {{ $item->kampus }}
-                                </td>
-                                {{-- <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
-                                    {{ $item->alamat_sekarang }}
-                                </td> --}}
-                                <td class="px-4 py-2 whitespace-normal break-words max-w-xs">
-                                    {{ \Carbon\Carbon::parse($item->tgl_lahir)->format('d-m-Y') }}
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="10" class="px-4 py-8 text-center text-gray-500">
-                                    <div class="flex flex-col items-center justify-center space-y-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <p class="text-lg font-medium">{{ __('listPeserta.nodata') }}</p>
-                                        @if (request('search'))
-                                            <p class="text-sm">{{ __('listPeserta.reset') }}</p>
-                                        @else
-                                            <p class="text-sm">{{ __('listPeserta.noregist') }}</p>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+        @else
+            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
+                <div class="text-gray-500 mb-4">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('verifFoto.notyet') }}</h3>
+                <p class="text-gray-600">{{ __('verifFoto.buatbc') }}</p>
             </div>
-
-            <!-- Pagination -->
-            <div class="mt-4">
-                {{ $peserta->appends(request()->except('page'))->links() }}
-            </div>
-        </div>
-
-        <div class="mt-6 flex justify-center">
-            <a href="{{ route('admin.export.pdf') }}" download
-                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-                {{ __('listPeserta.download') }}
-            </a>
-        </div>
+        @endif
     </section>
-
-    <script>
-        function changePerPage() {
-            const perPage = document.getElementById('perPage').value;
-            const currentUrl = new URL(window.location.href);
-            currentUrl.searchParams.set('perPage', perPage);
-            window.location.href = currentUrl.toString();
-        }
-    </script>
 </x-layout>

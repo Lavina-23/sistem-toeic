@@ -20,6 +20,6 @@ class VerificationReq extends Model
 
     public function peserta()
     {
-        return $this->belongsTo(Peserta::class);
+        return $this->belongsTo(Peserta::class, 'peserta_id');
     }
 }

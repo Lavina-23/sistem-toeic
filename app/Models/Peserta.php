@@ -39,4 +39,9 @@ class Peserta extends Model
     {
         return $this->hasMany(VerificationPhotos::class, 'peserta_id', 'peserta_id');
     }
+
+    public function verifcationReq()
+    {
+        return $this->hasMany(VerificationReq::class, 'peserta_id', 'peserta_id');
+    }
 }

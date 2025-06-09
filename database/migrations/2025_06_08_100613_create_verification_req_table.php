@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('peserta_id');
             $table->text('keterangan');
             $table->string('bukti_pendukung')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->foreign('peserta_id')->references('peserta_id')->on('peserta')->onDelete('cascade');
             $table->timestamps();
         });
     }
