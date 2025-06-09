@@ -30,6 +30,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
+    // dd($user);
+    // exit;
 
     return match ($user->level) {
         'admin' => redirect()->route('admin.dashboard'),
@@ -102,6 +104,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/admin/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
+        Route::post('/update-verification/{id}', [VerificationReqController::class, 'updateVerification'])->name('update-verification');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
