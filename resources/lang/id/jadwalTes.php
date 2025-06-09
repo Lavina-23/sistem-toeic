@@ -4,7 +4,7 @@ return [
     'title' => '📝 Jadwal Tes 📝',
     'sub_title' => 'Jadwal TOEIC Periode Tahun 2025',
     'description' => 'Berikut adalah jadwal pelaksanaan Test of English for International Communication (TOEIC).',
-    'notsupport' => 'Browser kamu tidak mendukung preview PDF, silakan download di bawah.',
+    'notsupport' => 'Sabar ya admin belom upload pengumuman apa apa..',
     'notyet' => 'Belum ada pengumuman atau file PDF tersedia.',
     'download' => 'Unduh',
 
