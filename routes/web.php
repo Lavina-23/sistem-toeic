@@ -30,10 +30,13 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
+// dd($user);
+// exit;
 
     return match ($user->level) {
         'admin' => redirect()->route('admin.dashboard'),
         'peserta' => redirect()->route('peserta.dashboard'),
+        'itc' => redirect()->route('itc.dashboard'),
         default => abort(403),
     };
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -86,6 +89,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
         Route::get('/export-pengguna', [AdminController::class, 'exportPengguna'])->name('admin.export.pengguna');
         Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
+    });
+
+    Route::prefix('itc')->middleware(['role:itc'])->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('itc.dashboard');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
