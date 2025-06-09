@@ -91,7 +91,7 @@ class PenggunaSeeder extends Seeder
                 'level' => 'itc',
                 'alamat' => 'Jl. Wish No. 1000, Jakarta Pusat, DKI Jakarta',
                 'tempat_lahir' => 'Jakarta',
-                'tanggal_lahir' => '2004-04-0',
+                'tanggal_lahir' => '2004-04-05',
             ],
         ]);
     }
