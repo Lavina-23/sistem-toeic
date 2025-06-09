@@ -43,6 +43,8 @@ Logo TOEICIN dirancang untuk merepresentasikan semangat pendidikan, nasionalisme
 - Naufal Gajendra Ardiputra	    2341760074 
 - Randa Heru Kusuma		        2341760009 
 
+---
+
 ## 🏫 Tagline  
 > **TOEICIN**  
 > *Jembatan menuju dunia global dengan semangat nasional.* 🌏❤️
