@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('pengumuman_id');
             $table->string('judul');
             $table->text('isi');
-            $table->string('file')->nullable();
+            $table->string('file');
+            $table->varchar('status',[0,1] ) ->default(1);
             $table->timestamps();
         });
     }

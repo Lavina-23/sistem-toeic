@@ -6,6 +6,7 @@ use App\Models\Peserta;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PengumumanController extends Controller
 {
@@ -13,8 +14,6 @@ class PengumumanController extends Controller
     public function createPengumuman()
     {
         $pengumumans = Pengumuman::all();
-        // dd($pengumumans); 
-        // exit;
 
         return view('admin.create-pengumuman', [
             'pengumumans' => $pengumumans,
@@ -39,8 +38,8 @@ class PengumumanController extends Controller
 
         try {
             // Jika checkbox is_active dicentang, set semua pengumuman lain menjadi non-aktif
-            if ($request->has('is_active')) {
-                Pengumuman::where('is_active', true)->update(['is_active' => false]);
+            if ($request->has('status')) {
+                Pengumuman::where('status', 0)->update(['status' => 1]);
             }
             
             // Upload file
@@ -52,11 +51,11 @@ class PengumumanController extends Controller
                 'judul' => $request->judul,
                 'isi' => $request->isi,
                 'file' => $filePath,
-                'is_active' => $request->has('is_active') ? true : false,
+                'status' => $request->has('status') ? 0 : 1,
             ]);
             
             $message = 'Pengumuman berhasil ditambahkan';
-            if ($request->has('is_active')) {
+            if ($request->has('status')) {
                 $message .= ' dan langsung ditampilkan di laman peserta';
             }
             
@@ -68,13 +67,66 @@ class PengumumanController extends Controller
 
     public function showPengumuman()
     {
-        //
-        $pengumuman = Pengumuman::latest()->first();
+
+        $pengumuman = Pengumuman::where('status', 0 )->latest()->first();
 
         return view('peserta.dashboard', [
             "pengumuman" => $pengumuman
         ]);
     }
 
+    public function toggleStatus($id)
+    {
+        $pengumuman = Pengumuman::find($id);
+
+        if (!$pengumuman) {
+            return back()->with('error', 'Pengumuman tidak ditemukan');
+        }
+
+        $pengumuman->status = !$pengumuman->status;
+
+        if ($pengumuman->save()) {
+            return back()->with('success', 'Status pengumuman berhasil diubah');
+        } else {
+            return back()->with('error', 'Gagal mengubah status pengumuman');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
+        ]);
+
+        $pengumuman = Pengumuman::findOrFail($id);
+        $pengumuman->judul = $request->judul;
+        $pengumuman->isi = $request->isi;
+
+        if ($request->hasFile('file')) {
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('pengumuman', $fileName, 'public');
+            $pengumuman->file = $filePath;
+        }
+
+        $pengumuman->status = $request->has('status') ? 0 : 1;
+        $pengumuman->save();
+
+        return redirect()->back()->with('success', 'Pengumuman berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $pengumuman = Pengumuman::findOrFail($id);
+
+        if ($pengumuman->file && Storage::disk('public')->exists($pengumuman->file)) {
+            Storage::disk('public')->delete($pengumuman->file);
+        }
+
+        $pengumuman->delete();
+
+        return redirect()->back()->with('success', 'Pengumuman berhasil dihapus.');
+    }
     
 }
