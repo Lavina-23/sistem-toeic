@@ -221,7 +221,7 @@
         }
         
         function viewDetails(requestId) {
-            fetch(`/admin/verification-reqs/${requestId}`)
+            fetch(`/admin/verificationRequest/${requestId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -297,7 +297,6 @@
             }
         }
 
-        // Close preview modal if click outside content
         document.addEventListener('click', function(e) {
             const modal = document.getElementById('previewBuktiModal');
             if (modal && e.target === modal) {

@@ -2,8 +2,7 @@
     <x-sidebar :userData="$userData" />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
-
+           
             <div
                 class="
             {{ $hasRequested ? 'hidden' : '' }}
@@ -70,17 +69,17 @@
             </div> --}}
 
             @if ($hasRequested)
-                <!-- Document Preview Section -->
-                <div class="flex flex-col justify-center items-center md:flex-row gap-5 w-full">
-                    <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history"
-                        border="0">
-                    <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                        <h1 class="text-3xl font-semibold">Tunggu Ya!</h1>
-                        <p class="text-gray-500">Dokumen yang kamu request sedang kami urus</p>
-                        <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
-                        </a>
-                    </div>
+            <!-- Wrapper Fullscreen -->
+                <div class="min-h-screen flex items-center justify-center">
+                    <!-- Document Preview Section -->
+                    <div class="flex flex-col justify-center items-center md:flex-row gap-5 w-full max-w-4xl px-4">
+                 <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history" border="0">
+                     <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
+                    <h1 class="text-3xl font-semibold">Tunggu Ya!</h1>
+                <p class="text-gray-500">Dokumen yang kamu request sedang kami urus</p>
                 </div>
+             </div>
+            </div>
                 {{-- <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                 <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
                     Preview Surat Keterangan
