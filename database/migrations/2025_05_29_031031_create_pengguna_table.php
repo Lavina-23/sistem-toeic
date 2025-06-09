@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('level', ['admin', 'peserta'])->default('peserta');
+            $table->enum('level', ['admin', 'peserta', 'itc'])->default('peserta');
             $table->text('alamat')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();

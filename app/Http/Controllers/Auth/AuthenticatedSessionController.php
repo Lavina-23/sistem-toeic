@@ -34,6 +34,7 @@ class AuthenticatedSessionController extends Controller
         return match ($user->level) {
             'admin' => redirect()->route('admin.dashboard'),
             'peserta' => redirect()->route('peserta.dashboard'),
+            'itc' => redirect()->route('itc.dashboard'),
             default => abort(403),
         };
 
