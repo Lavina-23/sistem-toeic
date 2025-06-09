@@ -2,7 +2,7 @@
   <img src="public/images/logo-toeicin.png" alt="TOEICIN Logo" width="300"/>
 </p>
 
-# 🎓 TOEICIN - Children's Natural School
+# 🎓 TOEICIN
 
 ## 📝 Deskripsi Umum  
 Logo TOEICIN dirancang untuk merepresentasikan semangat pendidikan, nasionalisme 🇮🇩, dan pencapaian global 🌍 dalam konteks pembelajaran bahasa Inggris 🇬🇧 untuk anak-anak Indonesia. Logo ini menggabungkan simbol-simbol visual yang memiliki makna filosofis mendalam, mencerminkan visi dan misi dari sistem TOEICIN.
