@@ -250,5 +250,6 @@
             currentUrl.searchParams.set('perPage', perPage);
             window.location.href = currentUrl.toString();
         }
+        
     </script>
 </x-layout>
