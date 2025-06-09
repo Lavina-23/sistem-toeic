@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Pengguna;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -89,5 +90,24 @@ class AdminController extends Controller
             'pengguna' => $pengguna,
         ]);
     }
+
+    public function storePengguna(Request $request)
+{
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:pengguna,email',
+        'level' => 'required|in:admin,peserta,ITC',
+        'password' => 'required|string|min:6',
+    ]);
+
+    Pengguna::create([
+        'nama' => $request->nama,
+        'email' => $request->email,
+        'level' => $request->level,
+        'password' => Hash::make($request->password),
+    ]);
+
+    return redirect()->route('admin.pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
+}
 
 }
