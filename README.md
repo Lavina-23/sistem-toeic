@@ -12,7 +12,7 @@ Logo TOEICIN dirancang untuk merepresentasikan semangat pendidikan, nasionalisme
 ## 🔍 Elemen dan Makna Logo
 
 ### 1. 🧑‍🎓 Figur Manusia dengan Toga (Biru Tua)
-- **Makna**: Melambangkan siswa atau peserta tes yang siap menempuh ujian sebagai bagian dari pencapaian akademik.  
+- **Makna**: Melambangkan siswa atau peserta tes yang siap menempuh ujian sebagai bagian dari pencapaian akademik.
 - **Filosofi Warna**: Biru tua mencerminkan *kepercayaan* 🤝, *intelektualitas* 📘, dan *stabilitas* 🧭 — nilai penting dalam dunia pendidikan.
 
 ### 2. 🌊 Bentuk Grafis Bergelombang
@@ -36,6 +36,13 @@ Logo TOEICIN dirancang untuk merepresentasikan semangat pendidikan, nasionalisme
 
 ---
 
+## 👯 Anggota Kelompok
+- Fatima Sitta Maulidia 		2341760167 
+- Hifna Wardatun Nazwa 	        2341760097 
+- Lavina		            	2341760062 
+- Naufal Gajendra Ardiputra	    2341760074 
+- Randa Heru Kusuma		        2341760009 
+
 ## 🏫 Tagline  
-> **TOEICIN - Children's Natural School**  
+> **TOEICIN**  
 > *Jembatan menuju dunia global dengan semangat nasional.* 🌏❤️
