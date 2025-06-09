@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <x-layout>
     <x-sidebaradmin />
 
@@ -88,28 +91,24 @@
                                         </td>
                                         
                                         <td class="px-4 py-3 border text-center">
-                                            @if($pengumuman->file_path)
+                                            @if($pengumuman->file)
+                                                @php
+                                                    $fileExtension = strtolower(pathinfo($pengumuman->file, PATHINFO_EXTENSION));
+                                                @endphp
+
                                                 <div class="flex flex-col items-center space-y-2">
-                                                    @php
-                                                        $fileExtension = pathinfo($pengumuman->file_path, PATHINFO_EXTENSION);
-                                                        $fileName = pathinfo($pengumuman->file_path, PATHINFO_FILENAME);
-                                                    @endphp
-                                                    
-                                                    <div class="flex items-center space-x-2">
-                                                        @if(in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png']))
-                                                            <span class="text-green-600">🖼️</span>
-                                                        @elseif(strtolower($fileExtension) === 'pdf')
-                                                            <span class="text-red-600">📄</span>
-                                                        @else
-                                                            <span class="text-blue-600">📄</span>
-                                                        @endif
-                                                        <span class="text-xs text-gray-600 uppercase">{{ $fileExtension }}</span>
-                                                    </div>
-                                                    
-                                                    <a href="{{ asset('storage/' . $pengumuman->file_path) }}" 
-                                                       target="_blank"
-                                                       class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
-                                                        📥 Lihat
+                                                    @if($fileExtension === 'pdf')
+                                                        <object data="{{ asset('storage/' . $pengumuman->file) }}" type="application/pdf" width="100" height="120">
+                                                            <p class="text-gray-500">Preview PDF tidak tersedia.</p>
+                                                        </object>
+                                                    @else
+                                                        <p class="text-gray-500 text-sm">Tidak dapat menampilkan preview.</p>
+                                                    @endif
+
+                                                    <a href="{{ asset('storage/' . $pengumuman->file) }}" 
+                                                    target="_blank"
+                                                    class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
+                                                        👀 Lihat
                                                     </a>
                                                 </div>
                                             @else
@@ -118,13 +117,13 @@
                                         </td>
                                         
                                         <td class="px-4 py-3 border text-center">
-                                            @if($pengumuman->is_active)
-                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    ✅ Aktif
-                                                </span>
-                                            @else
+                                            @if($pengumuman->status)
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                     ❌ Tidak Aktif
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    ✅ Aktif
                                                 </span>
                                             @endif
                                         </td>
@@ -136,8 +135,8 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" 
-                                                            class="bg-{{ $pengumuman->is_active ? 'orange' : 'green' }}-500 hover:bg-{{ $pengumuman->is_active ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
-                                                            title="{{ $pengumuman->is_active ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
+                                                            class="bg-{{ $pengumuman->status ? 'orange' : 'green' }}-500 hover:bg-{{ $pengumuman->status ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
+                                                            title="{{ $pengumuman->status ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
                                                         {{ $pengumuman->is_active ? '🔄 Nonaktifkan' : '✅ Aktifkan' }}
                                                     </button>
                                                 </form>
@@ -149,7 +148,6 @@
                                                     ✏️ Edit
                                                 </button>
                                                 
-                                                <!-- Delete Button -->
                                                 <form action="{{ route('pengumuman.destroy', ['id' => $pengumuman->pengumuman_id]) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -304,7 +302,6 @@
                         </form>
                     </div>
                 </div>
-<<<<<<< HEAD
 
                 <div>
                     <label for="isi"
@@ -324,14 +321,10 @@
                     Import
                 </button>
             </form>
-=======
-            </div>
->>>>>>> 383b215bb7a0fc5d39ae4e26e7d0395bc31529b3
         </div>
     </section>
 
     <script>
-        // Toggle form pengumuman
         function togglePengumumanForm() {
             const form = document.getElementById('pengumumanForm');
             const btn = document.getElementById('toggleBtn');
@@ -351,7 +344,6 @@
             }
         }
 
-        // File preview
         document.getElementById('file').addEventListener('change', function(e) {
             const file = e.target.files[0];
             const preview = document.getElementById('filePreview');
@@ -367,7 +359,6 @@
             }
         });
 
-        // Toggle full description
         function toggleFullDescription(id) {
             const shortDesc = document.getElementById('short-desc-' + id);
             const fullDesc = document.getElementById('full-desc-' + id);
@@ -381,26 +372,17 @@
             }
         }
 
-        // Edit modal functions
         function openEditModal(pengumuman) {
-            document.getElementById('editModal').classList.remove('hidden');
-            document.getElementById('editForm').action = `/admin/pengumuman/${pengumuman.pengumuman_id}`;
             document.getElementById('editJudul').value = pengumuman.judul;
             document.getElementById('editIsi').value = pengumuman.isi;
+            document.getElementById('editForm').action = `/pengumuman/${pengumuman.pengumuman_id}`;
+            document.getElementById('editModal').classList.remove('hidden');
         }
 
         function closeEditModal() {
             document.getElementById('editModal').classList.add('hidden');
         }
 
-        // Close modal when clicking outside
-        document.getElementById('editModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeEditModal();
-            }
-        });
-
-        // Auto-hide alerts after 5 seconds
         setTimeout(function() {
             const alerts = document.querySelectorAll('[role="alert"]');
             alerts.forEach(function(alert) {

@@ -47,32 +47,17 @@ Route::get('/language/{lang}', function ($lang) {
 
  Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
         
-        // Menampilkan halaman create dengan daftar pengumuman
         Route::get('/', [PengumumanController::class, 'index'])->name('index');
-        
-        // Menampilkan form create pengumuman
         Route::get('/create', [PengumumanController::class, 'create'])->name('create');
-        
-        // Menyimpan pengumuman baru
         Route::post('/', [PengumumanController::class, 'store'])->name('store');
-        
-        // Menampilkan detail pengumuman
         Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
-        
-        // Menampilkan form edit pengumuman
         Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
-        
-        // Update pengumuman
         Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
-        
-        // Hapus pengumuman
         Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
-        
-        // Toggle status aktif/tidak aktif
         Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
-        
-        // Download file pengumuman
         Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
+        Route::put('/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+        
     });
 
 Route::middleware(['auth', 'verified'])->group(function () {
