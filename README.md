@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/images/logo-toeicin.png" alt="TOEICIN Logo" width="300"/>
+  <img src="public/images/logo-toeicin.png" alt="TOEICIN Logo" width="300"/>
 </p>
 
 # 🎓 TOEICIN - Children's Natural School
