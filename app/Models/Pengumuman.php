@@ -15,5 +15,6 @@ class Pengumuman extends Model
         'judul',
         'isi',
         'file',
+        'status',
     ];
 }

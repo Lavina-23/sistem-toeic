@@ -226,22 +226,7 @@
             </div>
         </div>
     </section>
-
     <script>
-        function submitVerification(id, action) {
-            console.log("Submit clicked", id, action);
-
-            const confirmText = action === 'approve' ?
-                'Apakah Anda yakin ingin menyetujui permintaan ini?' :
-                'Apakah Anda yakin ingin menolak permintaan ini?';
-
-            if (confirm(confirmText)) {
-                document.getElementById(`action_type_${id}`).value = action;
-                document.getElementById(`verificationForm-${id}`).submit();
-            }
-        }
-    </script>
-    {{-- <script>
         function approveRequest(requestId) {
             if (confirm('Apakah Anda yakin ingin menyetujui verification request ini?')) {
                 fetch(`/admin/verification-reqs/${requestId}/approve`, {
@@ -375,5 +360,5 @@
                 closePreviewBukti();
             }
         });
-    </script> --}}
+    </script>
 </x-layout>

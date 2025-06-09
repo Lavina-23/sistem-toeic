@@ -48,18 +48,20 @@ Route::get('/language/{lang}', function ($lang) {
     return redirect()->back();
 })->name('language.switch');
 
-Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
-
-    Route::get('/', [PengumumanController::class, 'index'])->name('index');
-    Route::get('/create', [PengumumanController::class, 'create'])->name('create');
-    Route::post('/', [PengumumanController::class, 'store'])->name('store');
-    Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
-    Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
-    Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
-    Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
-});
+ Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
+        
+        Route::get('/', [PengumumanController::class, 'index'])->name('index');
+        Route::get('/create', [PengumumanController::class, 'create'])->name('create');
+        Route::post('/', [PengumumanController::class, 'store'])->name('store');
+        Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
+        Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
+        Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
+        Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
+        Route::put('/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+        
+    });
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {

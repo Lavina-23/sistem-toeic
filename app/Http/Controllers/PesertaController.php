@@ -14,8 +14,11 @@ class PesertaController extends Controller
 
     public function index()
     {
-        $pengumuman = Pengumuman::latest()->first();
-        return view('peserta.dashboard', compact('pengumuman'));
+        $pengumuman = Pengumuman::where('status', 0 )->latest()->first();
+
+        return view('peserta.dashboard', [
+            "pengumuman" => $pengumuman
+        ]);
     }
 
     public function createPeserta()
