@@ -5,8 +5,8 @@
 <x-guest-layout>
     <div class="max-w-md mx-auto p-6 bg-white rounded-2xl">
         <img src="/images/logo-toeicin.png" alt="logo-toeicin" class="mx-auto mb-6 h-16 w-auto">
-        <h2 class="text-3xl font-extrabold text-center text-gray-900">
-            {{ __('Selamat datang!') }}
+        <h2 class="text-2xl font-extrabold text-center text-gray-900">
+            {{ __('Selamat Datang di toeicIn!') }}
         </h2>
         <p class="text-sm font-normal text-center text-gray-500 mb-6">
             {{ __('Masukkan email dan password kamu untuk masuk ke dalam sistem dengan aman.') }}
@@ -39,29 +39,29 @@
                 <label for="remember_me" class="inline-flex items-center text-sm text-gray-900">
                     <input id="remember_me" type="checkbox"
                         class="rounded border-primary text-primary shadow-sm bg-bone" name="remember">
-                    <span class="ml-2">{{ __('Remember me') }}</span>
+                    <span class="ml-2">{{ __('Ingat saya') }}</span>
                 </label>
 
                 @if (Route::has('password.request'))
                     <a class="text-sm text-primary hover:underline" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Lupa password anda?') }}
                     </a>
                 @endif
             </div>
 
             <!-- Login Button -->
             <div>
-                <x-primary-button class="w-full justify-center">
-                    {{ __('Log In') }}
+                <x-primary-button class="w-full justify-center text-black">
+                    {{ __('Masuk') }}
                 </x-primary-button>
             </div>
 
             <!-- Register Link -->
             <div class="text-center mt-4">
                 <p class="text-sm text-gray-700">
-                    {{ __("Don't have an account?") }}
+                    {{ __("Tidak punya akun?") }}
                     <a href="{{ route('register') }}" class="text-primary hover:underline font-medium">
-                        {{ __('Register here') }}
+                        {{ __('Daftar disini!') }}
                     </a>
                 </p>
             </div>

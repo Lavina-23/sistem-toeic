@@ -11,7 +11,7 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="nama" :value="__('Name')" />
+            <x-input-label for="nama" :value="__('Nama')" />
             <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')" required
                 autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('nama')" class="mt-2" />
@@ -37,7 +37,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Konfirmasi Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
@@ -48,7 +48,7 @@
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-indigo-600 hover:text-indigo-400 rounded-md focus:outline-none"
                 href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Sudah terdaftar?') }}
             </a>
 
             <x-primary-button class="ms-4">
