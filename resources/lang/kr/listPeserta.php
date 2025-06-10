@@ -1,18 +1,19 @@
 <?php
 
-return[
-    'title'      =>'🎓 List Peserta',
-    'search'     =>'Cari berdasarkan nama, no. induk, atau program studi...',
-    'peserta'    =>'Peserta',
-    'halaman'    =>'perhalaman',
-    'name'       =>'nama',
-    'ninduk'     =>'No Induk',
-    'notelp'     =>'No Telepon',
-    'jurusan'    =>'Jurusan',
-    'prodi'      =>'Program Studi',
-    'kampus'     =>'Kampus',
-    'nodata'     =>'Tidak ada data peserta ditemukan',
-    'reset'      =>'Coba gunakan kata kunci lain atau reset pencarian',
-    'noregist'   =>'Belum ada peserta yang terdaftar',
-    'download'   =>'Unduh'
+return [
+    'title'      => '🎓 참가자 목록',
+    'search'     => '이름, 학번 또는 전공으로 검색...',
+    'peserta'    => '참가자',
+    'halaman'    => '페이지당',
+    'name'       => '이름',
+    'ninduk'     => '학번',
+    'notelp'     => '전화번호',
+    'jurusan'    => '전공',
+    'prodi'      => '학과 프로그램',
+    'kampus'     => '캠퍼스',
+    'tgl'        => '생년월일',
+    'nodata'     => '참가자 데이터를 찾을 수 없습니다',
+    'reset'      => '다른 키워드를 사용하거나 검색을 초기화해 보세요',
+    'noregist'   => '아직 등록된 참가자가 없습니다',
+    'download'   => '다운로드',
 ];

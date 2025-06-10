@@ -55,7 +55,7 @@
                                 class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'peserta_id', 'direction' => request('sort') == 'peserta_id' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>No</span>
+                                    <span>{{__('listPeserta.no')}}</span>
                                     @if (request('sort') == 'peserta_id')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +157,7 @@
                                 class="px-4 py-3 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
                                 <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'kampus', 'direction' => request('sort') == 'kampus' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                     class="flex items-center space-x-1">
-                                    <span>{{ __('tanggal lahir') }}</span>
+                                    <span>{{ __('listPeserta.tgl') }}</span>
                                     @if (request('sort') == 'tgl_lahir')
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">

@@ -11,6 +11,7 @@ return [
     'jurusan'    => '系别',
     'prodi'      => '专业',
     'kampus'     => '校区',
+    'tgl'        => '出生日期',
     'nodata'     => '未找到考生数据',
     'reset'      => '请尝试使用其他关键词或重置搜索',
     'noregist'   => '尚无已注册的考生',

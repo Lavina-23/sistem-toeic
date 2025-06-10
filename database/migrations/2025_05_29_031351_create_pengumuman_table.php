@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->string('file');
-            $table->varchar('status',[0,1] ) ->default(1);
+            $table->enum('status',['active','nonactive'] ) ->default('nonactive');
             $table->timestamps();
         });
     }
