@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'welcome' => 'Selamat datang di website kami!',
+    'welcome' => '私たちのウェブサイトへようこそ！',
 ];

@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'list'       => '考生名单 📝',
-    'skor'       => '上传成绩 📊',
-    'logout'     => '退出登录',
-    'pengumuman' => '公告 ‼️',
+  'list'        => '参与者列表 📝',
+  'pengguna'    => '用户列表 🔖',
+  'skor'        => '上传成绩 📊',
+  'logout'      => '登出',
+  'pengumuman'  => '公告 ‼️'
 ];

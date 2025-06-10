@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'list'        => 'List Peserta 📝',
-    'pengguna'    => 'Daftar Pengguna 🔖',  
-    'skor'        => 'Upload Nilai 📊',
-    'logout'      => 'Keluar',
-    'pengumuman'  => 'Pengumuman ‼️'
+  'list'        => '参加者リスト 📝',
+  'pengguna'    => 'ユーザーリスト 🔖',
+  'skor'        => 'スコアをアップロード 📊',
+  'logout'      => 'ログアウト',
+  'pengumuman'  => 'お知らせ ‼️'
 ];
