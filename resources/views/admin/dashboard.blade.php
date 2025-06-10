@@ -45,10 +45,10 @@
                     </select>
                 </div>
             </div>
-
-            <!-- Tabel data peserta -->
-            <div class="overflow-auto max-h-[500px]">
-                <table class="min-w-full divide-y divide-gray-200">
+          {{-- Table dengan CSS yang sudah diintegrasikan --}}
+        <div class="table-container">
+            <div class="overflow-x-auto overflow-auto max-h-[500px]">
+                <table class="min-w-full table-fixed divide-y divide-gray-200">
                     <thead class="bg-gray-50 sticky top-0">
                         <tr>
                             <th scope="col"
@@ -60,7 +60,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
+                                        d="{{ request('direction') == 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7' }}" />
                                         </svg>
                                     @endif
                                 </a>
@@ -242,6 +242,40 @@
             </a>
         </div>
     </section>
+
+    <style>   
+        /* Better scrollbar styling */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Enhanced hover effects */
+        .score-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Better mobile responsiveness */
+        @media (max-width: 768px) {
+            .min-w-full {
+                min-width: 1000px;
+            }
+        }
+    </style>
 
     <script>
         function changePerPage() {

@@ -48,29 +48,28 @@ Route::get('/language/{lang}', function ($lang) {
     return redirect()->back();
 })->name('language.switch');
 
- Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
-        
-        Route::get('/', [PengumumanController::class, 'index'])->name('index');
-        Route::get('/create', [PengumumanController::class, 'create'])->name('create');
-        Route::post('/', [PengumumanController::class, 'store'])->name('store');
-        Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
-        Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
-        Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
-        Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
-        Route::put('/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
-        
-    });
+Route::prefix('pengumuman')->name('pengumuman.')->group(function () {
+
+    Route::get('/', [PengumumanController::class, 'index'])->name('index');
+    Route::get('/create', [PengumumanController::class, 'create'])->name('create');
+    Route::post('/', [PengumumanController::class, 'store'])->name('store');
+    Route::get('/{id}', [PengumumanController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [PengumumanController::class, 'update'])->name('update');
+    Route::delete('/{id}', [PengumumanController::class, 'destroy'])->name('destroy');
+    Route::patch('/{id}/toggle-status', [PengumumanController::class, 'toggleStatus'])->name('toggle-status');
+    Route::get('/{id}/download', [PengumumanController::class, 'downloadFile'])->name('download');
+    Route::put('/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
         Route::get('/dashboard', [PesertaController::class, 'index'])->name('peserta.dashboard');
         Route::get('/history', [PesertaController::class, 'showHistory'])->name('peserta.history');
         Route::get('/create', [PesertaController::class, 'createPeserta'])->name('peserta.create');
+        Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/request-document', [VerificationReqController::class, 'requestDocument'])->name('request-document');
         Route::post('/store/request-document', [VerificationReqController::class, 'storeRequest'])->name('store.request-document');
-        Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
         Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
     });
@@ -84,7 +83,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/verification', [VerificationController::class, 'index'])->name('verification');
         Route::get('/verificationReq', [VerificationReqController::class, 'index'])->name('verificationReq');
-        Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
         Route::get('/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
@@ -94,7 +92,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('itc')->middleware(['role:itc'])->group(function () {
-        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
+        Route::get('/dashboard', [VerificationController::class, 'index'])->name('itc.dashboard');
+        Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

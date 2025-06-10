@@ -15,6 +15,8 @@ class VerificationController extends Controller
     {
         $sortir = $request->input('sortir', 'semua');
         $pesertas = Peserta::with('verificationPhotos')->get(['peserta_id', 'nama', 'no_telp']);
+        // dd($pesertas);
+        // exit;
 
         if ($sortir === 'belum_lengkap') {
             $peserta = $this->getPesertaBelumLengkap();
@@ -36,7 +38,7 @@ class VerificationController extends Controller
             });
         }
 
-        return view('admin.verification-photos', [
+        return view('itc.verification-photos', [
             'peserta' => $peserta,
             'sortir' => $sortir,
         ]);

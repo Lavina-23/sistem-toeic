@@ -2,7 +2,7 @@
     <x-sidebaritc />
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('verifFoto.title') }}</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">💬 Kirim Pesan pada Peserta</h1>
         <x-form-message />
 
         {{-- verification photos table --}}
@@ -10,7 +10,7 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-6">📷 Verifikasi Foto Ruangan Tes Peserta</h1>
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 {{-- Sortir Dropdown --}}
-                <form method="GET" action="{{ route('dashboard') }}" class="mb-6 flex justify-end">
+                <form method="GET" action="{{ route('verification') }}" class="mb-6 flex justify-end">
                     <select name="sortir" id="sortir" onchange="this.form.submit()"
                         class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm">
                         <option value="semua" {{ $sortir == 'semua' ? 'selected' : '' }}>Semua</option>
@@ -122,8 +122,8 @@
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('verifFoto.notyet') }}</h3>
-                <p class="text-gray-600">{{ __('verifFoto.buatbc') }}</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Belum ada file verifikasi</h3>
+                <p class="text-gray-600">Silakan buat broadcast permintaan verifikasi kepada peserta!</p>
             </div>
         @endif
     </section>

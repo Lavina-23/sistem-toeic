@@ -19,16 +19,19 @@ class PengumumanSeeder extends Seeder
                 'judul' => 'Pengumuman 1',
                 'isi' => 'Isi pengumuman pertama.',
                 'file' => 'file1.pdf',
+                'status' => '1',
             ],
             [
                 'judul' => 'Pengumuman 2',
                 'isi' => 'Isi pengumuman kedua.',
                 'file' => 'file2.pdf',
+                'status' => '0',
             ],
             [
                 'judul' => 'Pengumuman 3',
                 'isi' => 'Isi pengumuman ketiga.',
                 'file' => 'file3.pdf',
+                'status' => '0',
             ],
         ]);
     }

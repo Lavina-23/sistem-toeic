@@ -1,16 +1,17 @@
 <x-layout>
     <x-sidebar />
     <section class="p-4 md:ml-64 h-auto mt-10 md:mt-0">
-        <div class="max-w-6xl mx-auto p-6 mt-20 bg-transparrent">
+        <div class="max-w-6xl mx-auto p-6 bg-transparrent">
             @if ($registered)
-                <div class="flex flex-col justify-center items-center md:flex-row gap-5 w-full">
+                <div class="flex flex-col  mt-20 justify-center items-center md:flex-row gap-5 w-full">
                     <img class="h-[20rem]" src="https://i.ibb.co/Kj1HDCHX/hero-history.jpg" alt="hero-history"
                         border="0">
                     <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
                         <h1 class="text-3xl font-semibold">{{ __('daftar.title') }}</h1>
                         <p class="text-gray-500">{{ __('daftar.subtitle') }}</p>
                         <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
-                            <x-primary-button class="px-6 py-2 bg-yellowAccent text-white rounded-lg hover:bg-yellow-600">
+                            <x-primary-button
+                                class="px-6 py-2 bg-yellowAccent text-white rounded-lg hover:bg-yellow-600">
                                 {{ __('daftar.button') }}
                             </x-primary-button>
                         </a>
@@ -39,6 +40,16 @@
                 <form method="POST" action="{{ route('peserta.store') }}" enctype="multipart/form-data"
                     class="space-y-6">
                     @csrf
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- no_induk -->
