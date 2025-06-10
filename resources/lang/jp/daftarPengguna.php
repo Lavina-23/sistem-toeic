@@ -1,15 +1,15 @@
 <?php
 
-return[
-    'title'      =>'💻 Daftar Pengguna',
-    'search'     =>'Cari berdasarkan nama, email, level...',
-    'pengguna'    =>'Pengguna',
-    'halaman'    =>'perhalaman',
-    'name'       =>'nama',
-    'email'      => 'email',
-    'level'      => 'level',
-    'nodata'     =>'Tidak ada data pengguna ditemukan',
-    'reset'      =>'Coba gunakan kata kunci lain atau reset pencarian',
-    'noregist'   =>'Belum ada pengguna yang terdaftar',
-    'download'   =>'Unduh'
+return [
+    'title'      => '💻 ユーザー一覧',
+    'search'     => '名前、メール、レベルで検索...',
+    'pengguna'   => 'ユーザー',
+    'halaman'    => 'ページごと',
+    'name'       => '名前',
+    'email'      => 'メール',
+    'level'      => 'レベル',
+    'nodata'     => 'ユーザーデータが見つかりませんでした',
+    'reset'      => '別のキーワードを試すか、検索をリセットしてください',
+    'noregist'   => 'まだ登録されているユーザーはいません',
+    'download'   => 'ダウンロード',
 ];

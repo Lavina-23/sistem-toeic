@@ -38,8 +38,8 @@
         <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
             <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">📊 Data Score Management</h2>
-                    <p class="text-sm text-gray-600 mt-1">Kelola dan pantau semua data score peserta</p>
+                    <h2 class="text-2xl font-bold text-gray-800">{{__('scoreAdmin.manti')}}</h2>
+                    <p class="text-sm text-gray-600 mt-1">{{__('scoreAdmin.manage')}}</p>
                 </div>
                 <div class="text-right">
                     <div class="text-sm text-gray-600">Total Records</div>
@@ -52,7 +52,7 @@
                     <!-- Search and Filter -->
                     <div class="mb-6 space-y-4">
                         <div class="flex flex-col lg:flex-row gap-4">
-                            <div class="flex-1">
+                            <div class="flex-[3]">
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,14 +63,14 @@
                                         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                 </div>
                             </div>
-                            <div class="flex flex-wrap gap-3">
-                                <select id="categoryFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[150px]">
-                                    <option value="">🏷️Semua Kategori</option>
+                            <div class="flex flex-wrap gap-3 flex-[3]">
+                                <select id="categoryFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
+                                    <option value="">🏷️ Semua Kategori</option>
                                     @foreach($scores->pluck('category')->unique()->filter() as $category)
                                         <option value="{{ $category }}">{{ $category }}</option>
                                     @endforeach
                                 </select>
-                                <select id="groupFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[150px]">
+                                <select id="groupFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
                                     <option value="">👥 Semua Group</option>
                                     @foreach($scores->pluck('group')->unique()->filter() as $group)
                                         <option value="{{ $group }}">{{ $group }}</option>
@@ -87,16 +87,16 @@
                         <thead>
                             <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
                                 <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">No</th>
-                                <th class="w-24 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Result No</th>
-                                <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Nama Peserta</th>
-                                <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">No Induk</th>
-                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Score L</th>
-                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Score R</th>
-                                <th class="w-32 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Total Score</th>
-                                <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Group</th>
-                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Position</th>
-                                <th class="w-32 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Category</th>
-                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Test Date</th>
+                                <th class="w-24 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.Result')}}</th>
+                                <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.name')}}</th>
+                                <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.niduk')}}</th>
+                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.ScrlL')}}</th>
+                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.ScrlR')}}</th>
+                                <th class="w-32 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.total')}}</th>
+                                <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.group')}}</th>
+                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.pos')}}</th>
+                                <th class="w-32 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.cat')}}</th>
+                                <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">{{__('scoreAdmin.date')}}</th>
                             </tr>
                         </thead>
                         <tbody id="scoreTableBody" class="bg-white divide-y divide-gray-100">
@@ -207,10 +207,10 @@
         @else
             <div class="text-center py-16">
                 <div class="text-6xl text-gray-300 mb-4">📊</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada data score</h3>
-                <p class="text-gray-500 mb-4">Silakan import file Excel untuk menambah data score peserta.</p>
+                <h3 class="text-xl font-semibold text-gray-600 mb-2">{{__('scoreAdmin.notyet')}}</h3>
+                <p class="text-gray-500 mb-4">{{__('scoreAdmin.imp')}}</p>
                 <div class="text-sm text-gray-400">
-                    <p>Format file yang didukung: .xlsx, .xls</p>
+                    <p>{{__('scoreAdmin.format')}}</p>
                 </div>
             </div>
         @endif

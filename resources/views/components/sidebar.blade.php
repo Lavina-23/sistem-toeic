@@ -185,7 +185,7 @@
         const languageButton = document.getElementById("language-button");
         const languageDropdown = document.getElementById("language-dropdown");
 
-        // Toggle dropdown when button is clicked
+        // Toggle dropdown when button ins clicked
         languageButton.addEventListener("click", function(e) {
             e.stopPropagation();
             languageDropdown.classList.toggle("hidden");
