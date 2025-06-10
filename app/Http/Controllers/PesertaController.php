@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use App\Models\Score;
 use App\Models\Peserta;
 use App\Models\Pengguna;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Pengumuman;
 
 class PesertaController extends Controller
 {
 
     public function index()
     {
-        $pengumuman = Pengumuman::where('status', 0 )->latest()->first();
+        $pengumuman = Pengumuman::where('status', 0)->latest()->first();
 
         return view('peserta.dashboard', [
             "pengumuman" => $pengumuman
@@ -36,24 +37,29 @@ class PesertaController extends Controller
         $user = Auth::user();
         $registered = Peserta::where('pengguna_id', $user->pengguna_id)->first();
 
-        if (!$registered) {
-            $validatedData = $request->validate([
-                'nama' => 'required|string|max:255',
-                'no_induk' => 'required|string|max:255',
-                'nik' => 'required|string|max:255',
-                'no_telp' => 'required|string|max:255',
-                'alamat_asal' => 'required|string|max:255',
-                'alamat_sekarang' => 'required|string|max:255',
-                'tgl_lahir' => 'required|date',
-                'jurusan' => 'string|max:255',
-                'program_studi' => 'string|max:255',
-                'kampus' => 'required|string|max:255',
-                'ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'ktm' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
+        Log::info('Request data:', $request->all());
+        Log::info('Files:', $request->allFiles());
 
+        if ($registered === null) {
             try {
+                $validatedData = $request->validate([
+                    // 'nama' => 'required|string|max:255',
+                    'no_induk' => 'required|string|max:255',
+                    'nik' => 'required|string|max:255',
+                    'no_telp' => 'required|string|max:255',
+                    'alamat_asal' => 'required|string|max:255',
+                    'alamat_sekarang' => 'required|string|max:255',
+                    'tgl_lahir' => 'required|date',
+                    'jurusan' => 'string|max:255',
+                    'program_studi' => 'string|max:255',
+                    'kampus' => 'required|string|max:255',
+                    'ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                    'ktm' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                    'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                ]);
+
+                Log::info('Validation passed:', $validatedData);
+
                 $validatedData['pengguna_id'] = $user->pengguna_id;
                 $validatedData['nama'] = $user->nama;
                 $validatedData['ktp'] = $request->file('ktp')->store('ktp', 'public');
@@ -62,8 +68,12 @@ class PesertaController extends Controller
 
                 Peserta::create($validatedData);
 
-                return redirect()->route('peserta.dashboard')->with('success', 'Pendaftaran berhasil!');
+                return redirect()->route('peserta.riwayat')->with('success', 'Pendaftaran berhasil!');
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                Log::error('Validation failed:', $e->errors());
+                return back()->withErrors($e->errors())->withInput();
             } catch (\Exception $e) {
+                Log::error('Error saving:', $e->getMessage());
                 return back()->with('error', 'Terjadi error saat menyimpan: ' . $e->getMessage());
             }
         } else {

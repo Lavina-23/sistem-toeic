@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        $query = Peserta::query();
+        $query = Peserta::whereDoesntHave('score');
 
         if ($request->has('search')) {
             $search = $request->search;
@@ -43,6 +43,8 @@ class AdminController extends Controller
         $perPage = $request->input('perPage', 10);
 
         $peserta = $query->paginate($perPage);
+        // dd($peserta);
+        // exit;
 
         return view('admin.dashboard', [
             'peserta' => $peserta,
@@ -93,22 +95,21 @@ class AdminController extends Controller
     }
 
     public function storePengguna(Request $request)
-{
-    $request->validate([
-        'nama' => 'required|string|max:255',
-        'email' => 'required|email|unique:pengguna,email',
-        'level' => 'required|in:admin,peserta,ITC',
-        'password' => 'required|string|min:6',
-    ]);
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:pengguna,email',
+            'level' => 'required|in:admin,peserta,ITC',
+            'password' => 'required|string|min:6',
+        ]);
 
-    Pengguna::create([
-        'nama' => $request->nama,
-        'email' => $request->email,
-        'level' => $request->level,
-        'password' => Hash::make($request->password),
-    ]);
+        Pengguna::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'level' => $request->level,
+            'password' => Hash::make($request->password),
+        ]);
 
-    return redirect()->route('admin.pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
-}
-
+        return redirect()->route('admin.pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
+    }
 }

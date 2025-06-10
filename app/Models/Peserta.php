@@ -44,4 +44,9 @@ class Peserta extends Model
     {
         return $this->hasMany(VerificationReq::class, 'peserta_id', 'peserta_id');
     }
+
+    public function score()
+    {
+        return $this->hasOne(Score::class, 'no_induk', 'no_induk');
+    }
 }
