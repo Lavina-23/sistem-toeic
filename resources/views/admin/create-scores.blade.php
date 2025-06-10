@@ -52,7 +52,7 @@
                     <!-- Search and Filter -->
                     <div class="mb-6 space-y-4">
                         <div class="flex flex-col lg:flex-row gap-4">
-                            <div class="flex-1">
+                            <div class="flex-[3]">
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,14 +63,14 @@
                                         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                 </div>
                             </div>
-                            <div class="flex flex-wrap gap-3">
-                                <select id="categoryFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[150px]">
-                                    <option value="">🏷️Semua Kategori</option>
+                            <div class="flex flex-wrap gap-3 flex-[3]">
+                                <select id="categoryFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
+                                    <option value="">🏷️ Semua Kategori</option>
                                     @foreach($scores->pluck('category')->unique()->filter() as $category)
                                         <option value="{{ $category }}">{{ $category }}</option>
                                     @endforeach
                                 </select>
-                                <select id="groupFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[150px]">
+                                <select id="groupFilter" class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
                                     <option value="">👥 Semua Group</option>
                                     @foreach($scores->pluck('group')->unique()->filter() as $group)
                                         <option value="{{ $group }}">{{ $group }}</option>
