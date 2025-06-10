@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
+use App\Exports\NoTelpExport;
 use App\Models\Score;
 use App\Models\Peserta;
 use App\Models\Pengguna;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PesertaController extends Controller
 {
@@ -120,5 +122,30 @@ class PesertaController extends Controller
         $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
 
         return view('peserta.requestDokumen', compact('peserta', 'score'));
+    }
+
+    public function exportNoTelp()
+    {
+        $no_telp = Peserta::whereNotNull('no_telp')
+            ->where('no_telp', '!=', '')
+            ->pluck('no_telp')
+            ->unique()
+            ->map(function ($phone) {
+                $phone = preg_replace('/[^0-9]/', '', $phone);
+
+                if (substr($phone, 0, 2) === '08') {
+                    return '+62' . substr($phone, 1);
+                }
+
+                if (substr($phone, 0, 1) === '8') {
+                    return '+62' . $phone;
+                }
+
+                return '+62' . ltrim($phone, '0');
+            })
+            ->values()
+            ->toArray();
+
+        return Excel::download(new NoTelpExport($no_telp), 'data_no_telp.xlsx');
     }
 }
