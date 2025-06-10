@@ -83,7 +83,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/verification', [VerificationController::class, 'index'])->name('verification');
         Route::get('/verificationReq', [VerificationReqController::class, 'index'])->name('verificationReq');
-        Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
         Route::get('/pengumuman/create', [PengumumanController::class, 'createPengumuman'])->name('pengumuman.create');
         Route::post('/pengumuman', [PengumumanController::class, 'storePengumuman'])->name('pengumuman.store');
         Route::get('/pengguna', [AdminController::class, 'daftarPengguna'])->name('admin.pengguna');
@@ -93,7 +92,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('itc')->middleware(['role:itc'])->group(function () {
-        Route::get('/dashboard', [ITCController::class, 'index'])->name('itc.dashboard');
+        Route::get('/dashboard', [VerificationController::class, 'index'])->name('itc.dashboard');
+        Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send.message');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

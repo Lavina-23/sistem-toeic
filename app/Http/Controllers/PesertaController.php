@@ -68,7 +68,7 @@ class PesertaController extends Controller
 
                 Peserta::create($validatedData);
 
-                return redirect()->route('peserta.riwayat')->with('success', 'Pendaftaran berhasil!');
+                return redirect()->route('peserta.history')->with('success', 'Pendaftaran berhasil!');
             } catch (\Illuminate\Validation\ValidationException $e) {
                 Log::error('Validation failed:', $e->errors());
                 return back()->withErrors($e->errors())->withInput();
