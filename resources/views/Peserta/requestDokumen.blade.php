@@ -204,11 +204,11 @@
                                 style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));">
                             </div>
 
-        <!-- Nama dan NIP -->
-        <div class="font-bold underline text-lg">Atiqah Nurul Asri, S.Pd., M.Pd.</div>
-        <div class="mt-1 text-xs text-gray-700">NIP. 197606252005012001</div>
-    </div>
-</div>
+                        <!-- Nama dan NIP -->
+                            <div class="font-bold underline text-lg">Atiqah Nurul Asri, S.Pd., M.Pd.</div>
+                                <div class="mt-1 text-xs text-gray-700">NIP. 197606252005012001</div>
+                            </div>
+                        </div>
 
                                     <!-- Attachment -->
                                     <div class="attachment mt-8 text-xs">
@@ -220,14 +220,15 @@
 
                             <!-- Action Buttons -->
                             <div class="flex gap-4 mt-4">
-                                <button onclick="generatePDF()"
-                                    class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
+                                <button onclick="window.location.href='{{ route('pengumuman.download.pdf') }}'"
+                                        class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                     </svg>
                                     Download PDF
                                 </button>
+                            </div>
 
                                 <button onclick="printDocument()"
                                     class="inline-flex items-center px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg focus:ring-4 focus:ring-gray-200 transition-colors">
