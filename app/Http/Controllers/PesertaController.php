@@ -9,10 +9,12 @@ use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Exports\NoTelpExport;
 use App\Exports\PesertaExport;
+use App\Models\VerificationReq;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
 
 class PesertaController extends Controller
 {
@@ -117,15 +119,6 @@ class PesertaController extends Controller
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
     }
 
-    public function requestDokumen()
-    {
-        $user = Auth::user();
-        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
-        $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
-
-        return view('peserta.requestDokumen', compact('peserta', 'score'));
-    }
-
     public function exportPeserta()
     {
         $pesertas = Peserta::with('pengguna')->whereDoesntHave('score')->get()->map(function ($peserta) {
@@ -172,15 +165,15 @@ class PesertaController extends Controller
         return Excel::download(new NoTelpExport($no_telp), 'data_no_telp.xlsx');
     }
     public function downloadPDF()
-{
-    $pengumuman = Pengumuman::where('status', 0)->latest()->first();
-    
-    if (!$pengumuman) {
-        return redirect()->back()->with('error', 'Pengumuman tidak ditemukan');
+    {
+        $pengumuman = Pengumuman::where('status', 0)->latest()->first();
+
+        if (!$pengumuman) {
+            return redirect()->back()->with('error', 'Pengumuman tidak ditemukan');
+        }
+
+        $pdf = PDF::loadView('pdf.pengumuman', compact('pengumuman'));
+
+        return $pdf->download('pengumuman-' . date('Y-m-d') . '.pdf');
     }
-    
-    $pdf = PDF::loadView('pdf.pengumuman', compact('pengumuman'));
-    
-    return $pdf->download('pengumuman-' . date('Y-m-d') . '.pdf');
-}
 }

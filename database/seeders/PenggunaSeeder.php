@@ -13,6 +13,7 @@ class PenggunaSeeder extends Seeder
         //
         Pengguna::insert([
             [
+                'no_induk' => '1995031201',
                 'nama' => 'Ach Khoiron Athoillah',
                 'email' => 'ach.khoiron@example.com',
                 'password' => bcrypt('1234567890'),
@@ -22,6 +23,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1995-03-12',
             ],
             [
+                'no_induk' => '1996070802',
                 'nama' => 'Ahnaf Irsyad',
                 'email' => 'ahnaf.irsyad@example.com',
                 'password' => bcrypt('1234567890'),
@@ -31,6 +33,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1996-07-08',
             ],
             [
+                'no_induk' => '1994112503',
                 'nama' => 'Andhika Putra Agung',
                 'email' => 'andhika.putra@example.com',
                 'password' => bcrypt('1234567890'),
@@ -40,6 +43,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1994-11-25',
             ],
             [
+                'no_induk' => '1997021410',
                 'nama' => 'Annisa Zakiyah Najib',
                 'email' => 'annisa.zakiyah@example.com',
                 'password' => bcrypt('1234567890'),
@@ -49,6 +53,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1997-02-14',
             ],
             [
+                'no_induk' => '1998052011',
                 'nama' => 'Ayu Rosalinda',
                 'email' => 'ayu.rosalinda@example.com',
                 'password' => bcrypt('1234567890'),
@@ -58,6 +63,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1998-05-20',
             ],
             [
+                'no_induk' => '1995090304',
                 'nama' => 'Bagus Nur Huda',
                 'email' => 'bagus.nur@example.com',
                 'password' => bcrypt('1234567890'),
@@ -67,6 +73,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1995-09-03',
             ],
             [
+                'no_induk' => '1996121605',
                 'nama' => 'Daffa Hafizhan Nugraha',
                 'email' => 'daffa.hafizhan@example.com',
                 'password' => bcrypt('1234567890'),
@@ -76,6 +83,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1996-12-16',
             ],
             [
+                'no_induk' => '1990010106',
                 'nama' => 'Administrator',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('1234567890'),
@@ -85,6 +93,7 @@ class PenggunaSeeder extends Seeder
                 'tanggal_lahir' => '1990-01-01',
             ],
             [
+                'no_induk' => '2004040507',
                 'nama' => 'Tokuno Yushi',
                 'email' => 'tokuno.yushi@example.com',
                 'password' => bcrypt('1234567890'),

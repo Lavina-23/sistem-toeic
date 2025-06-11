@@ -13,6 +13,7 @@ class Pengguna extends Authenticatable
     protected $primaryKey = 'pengguna_id';
 
     protected $fillable = [
+        'no_induk',
         'nama',
         'email',
         'password',

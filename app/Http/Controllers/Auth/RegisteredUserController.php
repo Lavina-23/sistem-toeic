@@ -32,12 +32,14 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            'no_induk' => ['required', 'string', 'max:255', 'unique:' . Pengguna::class],
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Pengguna::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = Pengguna::create([
+            'no_induk' => $request->no_induk,
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
