@@ -165,14 +165,15 @@ class PesertaController extends Controller
         return Excel::download(new NoTelpExport($no_telp), 'data_no_telp.xlsx');
     }
     public function downloadPDF()
-{
-    $pengumuman = Pengumuman::where('status', 0)->latest()->first();
+    {
+        $pengumuman = Pengumuman::where('status', 0)->latest()->first();
 
-    if (!$pengumuman) {
-        return redirect()->back()->with('error', 'Pengumuman tidak ditemukan');
+        if (!$pengumuman) {
+            return redirect()->back()->with('error', 'Pengumuman tidak ditemukan');
+        }
+
+        $pdf = PDF::loadView('pdf.pengumuman', compact('pengumuman'));
+
+        return $pdf->download('pengumuman-' . date('Y-m-d') . '.pdf');
     }
-    $letterNumber = generateLetterNumber();
-    $pdf = PDF::loadView('pdf.pengumuman', compact('pengumuman', 'letterNumber'));
-    return $pdf->download('pengumuman-' . date('Y-m-d') . '.pdf');
-}
 }
