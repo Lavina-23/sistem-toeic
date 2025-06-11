@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\NoTelpExport;
 use App\Models\Score;
 use App\Models\Peserta;
 use App\Models\Pengguna;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use App\Exports\NoTelpExport;
+use App\Exports\PesertaExport;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -123,6 +124,27 @@ class PesertaController extends Controller
 
         return view('peserta.requestDokumen', compact('peserta', 'score'));
     }
+
+    public function exportPeserta()
+    {
+        $pesertas = Peserta::with('pengguna')->get()->map(function ($peserta) {
+            return [
+                'nama'              => $peserta->pengguna->nama,
+                'no_induk'          => $peserta->no_induk,
+                'nik'               => $peserta->nik,
+                'no_telp'           => (string) $peserta->no_telp,
+                'tgl_lahir'         => $peserta->tgl_lahir,
+                'alamat_asal'       => $peserta->alamat_asal,
+                'alamat_sekarang'   => $peserta->alamat_sekarang,
+                'jurusan'           => $peserta->jurusan,
+                'program_studi'     => $peserta->program_studi,
+                'kampus'            => $peserta->kampus,
+            ];
+        })->toArray();
+
+        return Excel::download(new PesertaExport($pesertas), 'data_peserta.xlsx');
+    }
+
 
     public function exportNoTelp()
     {

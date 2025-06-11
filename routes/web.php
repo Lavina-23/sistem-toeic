@@ -90,6 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/update-verification/{id}', [VerificationReqController::class, 'updateVerification'])->name('update-verification');
         Route::post('/pengguna/tambah', [AdminController::class, 'storePengguna'])->name('admin.pengguna.tambah');
         Route::get('/export-nomor', [PesertaController::class, 'exportNoTelp'])->name('admin.export.nomor');
+        Route::get('/export-peserta', [PesertaController::class, 'exportPeserta'])->name('admin.export.peserta');
     });
 
     Route::prefix('itc')->middleware(['role:itc'])->group(function () {
