@@ -6,6 +6,6 @@ return[
   'skor'        => 'Upload Score📊',
   'logout'      => 'Logout',
   'pengumuman'  =>  'Announcement ‼️',
-  'ver' => 'request verification',
+  'ver' => 'Request Verification 📥',
 
 ];
