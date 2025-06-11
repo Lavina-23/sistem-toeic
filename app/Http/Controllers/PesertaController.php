@@ -9,9 +9,11 @@ use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Exports\NoTelpExport;
 use App\Exports\PesertaExport;
+use App\Models\VerificationReq;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
 
 class PesertaController extends Controller
 {
@@ -114,15 +116,6 @@ class PesertaController extends Controller
         }
 
         return view('peserta.riwayat', ['peserta' => $peserta, 'score' => $score]);
-    }
-
-    public function requestDokumen()
-    {
-        $user = Auth::user();
-        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
-        $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
-
-        return view('peserta.requestDokumen', compact('peserta', 'score'));
     }
 
     public function exportPeserta()

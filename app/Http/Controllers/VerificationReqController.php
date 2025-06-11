@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Score;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use App\Models\VerificationReq;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class VerificationReqController extends Controller
 {
@@ -15,7 +17,7 @@ class VerificationReqController extends Controller
     {
         $filter = $request->input('filter', 'all');
 
-        $query = VerificationReq::with('peserta');
+        $query = VerificationReq::with('pengguna');
         // dd($query);
         // exit;
 
@@ -28,8 +30,8 @@ class VerificationReqController extends Controller
         $verificationReqs = $query->get()->map(function ($req) {
             return [
                 'id' => $req->id ? $req->id : null,
-                'peserta_id' => $req->peserta ? $req->peserta->peserta_id : null,
-                'nama' => $req->peserta ? $req->peserta->nama : null,
+                'pengguna_id' => $req->pengguna ? $req->pengguna->pengguna_id : null,
+                'nama' => $req->pengguna ? $req->pengguna->nama : null,
                 'keterangan' => $req->keterangan,
                 'bukti_pendukung' => $req->bukti_pendukung,
                 'status' => $req->status,
@@ -47,14 +49,25 @@ class VerificationReqController extends Controller
     public function requestDocument()
     {
         $user = Auth::user();
-        $request = VerificationReq::where('peserta_id', $user->peserta->peserta_id)->get();
-        // dd($request);
-        // exit;
+        $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
+        $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
+        $requests = VerificationReq::where('pengguna_id', $user->pengguna_id)
+            ->orderByDesc('created_at')
+            ->get();
+        $rejectionReason = VerificationReq::where('pengguna_id', $user->pengguna_id)
+            ->where('status', 'rejected')
+            ->latest()
+            ->value('alasan');
 
         return view('peserta.requestDokumen', [
-            'request' => $request,
+            'request' => $requests,
+            'peserta' => $peserta,
+            'score' => $score,
+            'rejectionReason' => $rejectionReason,
+            'userData' => $user,
         ]);
     }
+
 
     public function storeRequest(Request $request)
     {
@@ -64,7 +77,7 @@ class VerificationReqController extends Controller
         ]);
 
         try {
-            $verifData['peserta_id'] = Auth::user()->peserta->peserta_id;
+            $verifData['pengguna_id'] = Auth::user()->pengguna_id;
             $verifData['keterangan'] = $request->keterangan;
             if ($request->hasFile('bukti_pendukung')) {
                 $verifData['bukti_pendukung'] = $request->file('bukti_pendukung')->store('bukti_pendukung', 'public');
@@ -86,9 +99,11 @@ class VerificationReqController extends Controller
 
         $id = $request->input('id');
         $status = $request->input('status');
+        $reason = $request->input('reason');
 
         VerificationReq::where('id', $id)->update([
             'status' => $status,
+            'alasan' => $reason,
             'updated_at' => now(),
         ]);
         // dd($request->all());

@@ -3,10 +3,7 @@
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
             <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
-
-            <div
-                class="
-            {{-- {{ !is_null($r->peserta_id) ? 'hidden' : '' }} --}}
+            <div class="
             w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 @if (session('success'))
                     <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
@@ -247,8 +244,12 @@
                                         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
                                     </path>
                                 </svg>
-                                <span class="text-redMain font-medium">Mohon maaf, permintaan dokumen kamu
-                                    ditolak</span>
+                                @if (!empty($rejectionReason))
+                                    <span class="text-redMain font-medium">
+                                        Mohon maaf, permintaan dokumen kamu ditolak, karena
+                                        <strong>{{ $rejectionReason }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>

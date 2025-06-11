@@ -75,16 +75,6 @@
                                     <td class="px-4 py-2 border text-center">
                                         <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
                                     </td>
-
-                                    {{-- <button type="submit" onclick="viewDetails({{ $req['id'] }})"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                    title="Lihat Detail">
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M15 12h.01M9 12h.01M12 15h.01M12 9h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                </button> --}}
                                     <td class="px-4 py-2 border text-center">
                                         <div class="flex justify-center space-x-2">
                                             @if ($req['status'] === 'approved')
@@ -99,9 +89,23 @@
                                                 </span>
                                             @else
                                                 <form action="{{ route('update-verification', ['id' => $req['id']]) }}"
-                                                    method="POST">
+                                                    method="POST" id="form-{{ $req['id'] }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $req['id'] }}">
+
+                                                    <div id="reason-container-{{ $req['id'] }}" class="hidden mb-2">
+                                                        <select name="reason" class="text-xs border rounded px-2 py-1"
+                                                            id="reason-select-{{ $req['id'] }}">
+                                                            <option value="">Pilih alasan penolakan</option>
+                                                            <option value="Data tidak lengkap">Data tidak lengkap
+                                                            </option>
+                                                            <option value="Bukti tidak diterima">Bukti tidak diterima
+                                                            </option>
+                                                            <option value="Identitas tidak valid">Identitas tidak valid
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
                                                     <button type="submit" name="status" value="approved"
                                                         onclick="return confirm('Yakin ingin memverifikasi data ini?');"
                                                         class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primaryLight"
@@ -113,8 +117,7 @@
                                                         </svg>
                                                     </button>
 
-                                                    <button type="submit" name="status" value="rejected"
-                                                        onclick="return confirm('Yakin ingin menolak data ini?');"
+                                                    <button type="button" onclick="handleReject({{ $req['id'] }})"
                                                         class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-redMain hover:bg-redAlert focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-redAlert"
                                                         title="Tolak">
                                                         <svg class="w-3 h-3" fill="none" stroke="currentColor"
@@ -123,43 +126,12 @@
                                                                 stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                         </svg>
                                                     </button>
+
+                                                    <button type="submit" name="status" value="rejected"
+                                                        id="submit-reject-{{ $req['id'] }}" class="hidden"></button>
                                                 </form>
                                             @endif
-
-                                            {{-- <button type="button" onclick="approveRequest({{ $req['id'] }})"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                                title="Setujui">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                </svg>
-                                            </button>
-
-                                            <button type="button" onclick="rejectRequest({{ $req['id'] }})"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                                title="Tolak">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg>
-                                            </button> --}}
-
-                                            {{-- <button type="button"
-                                                onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                title="Preview Bukti">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M15 10l4.553-2.276a1 1 0 011.447 1.156L18 12l3 6-4.553 2.276a1 1 0 01-1.447-1.156L15 14l-3-6 4.553-2.276z">
-                                                    </path>
-                                                </svg>
-                                            </button> --}}
                                         </div>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -205,8 +177,8 @@
             </div>
         @endif
 
-        {{-- Modal for Request Details --}}
-        <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div id="detailModal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
             <div class="bg-white rounded-lg max-w-4xl max-h-screen overflow-y-auto m-4 w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900">Detail Verification Request</h3>
@@ -227,6 +199,26 @@
         </div>
     </section>
     <script>
+        function handleReject(id) {
+            const reasonContainer = document.getElementById(`reason-container-${id}`);
+            const reasonSelect = document.getElementById(`reason-select-${id}`);
+            const submitBtn = document.getElementById(`submit-reject-${id}`);
+
+            if (reasonContainer.classList.contains('hidden')) {
+                reasonContainer.classList.remove('hidden');
+                return;
+            }
+
+            if (!reasonSelect.value) {
+                alert('Silakan pilih alasan penolakan terlebih dahulu.');
+                return;
+            }
+
+            if (confirm('Yakin ingin menolak data ini?')) {
+                submitBtn.click();
+            }
+        }
+
         function approveRequest(requestId) {
             if (confirm('Apakah Anda yakin ingin menyetujui verification request ini?')) {
                 fetch(`/admin/verification-reqs/${requestId}/approve`, {
