@@ -93,7 +93,7 @@
 
                                     <!-- Document Number -->
                                     <div class="text-xs text-center mb-5">
-                                        Nomor: ….…./PL2. UPA BHS/2024
+                                        Nomor: {{ $letterNumber->full_number ?? '/PL2. UPA BHS/2025' }}
                                     </div>
 
                                     <!-- Content -->
@@ -192,14 +192,23 @@
                                         </div>
                                     </div>
 
-                                    <!-- Signature Section -->
-                                    <div class="signature-section text-right mt-10">
-                                        <div class="w-1/2 ml-auto">
-                                            <div class="font-bold mb-16">Kepala UPA Bahasa,</div>
-                                            <div class="font-bold underline">Atiqah Nurul Asri, S.Pd., M.Pd.</div>
-                                            <div class="mt-1 text-xs">NIP. 197606252005012001</div>
-                                        </div>
-                                    </div>
+                        <!-- Signature Section -->
+                            <div class="signature-section text-right mt-10">
+                                <div class="w-1/2 ml-auto text-center">
+                                    <div class="font-bold mb-6">Kepala UPA Bahasa,</div>
+
+                        <!-- Gambar tanda tangan -->
+                            <div class="mb-4">
+                                <img src="{{ asset('images/ttd.png') }}" alt="Tanda Tangan" 
+                                    class="mx-auto h-48 opacity-90" 
+                                style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));">
+                            </div>
+
+        <!-- Nama dan NIP -->
+        <div class="font-bold underline text-lg">Atiqah Nurul Asri, S.Pd., M.Pd.</div>
+        <div class="mt-1 text-xs text-gray-700">NIP. 197606252005012001</div>
+    </div>
+</div>
 
                                     <!-- Attachment -->
                                     <div class="attachment mt-8 text-xs">
