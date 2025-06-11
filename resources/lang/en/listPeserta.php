@@ -16,5 +16,5 @@ return [
     'nodata'    =>'No participant data found',
     'reset'     =>'Try using another keyword or reset the search',
     'noregist'  =>'No participants registered yet',
-    'download'  =>'Download'
+    'download'  =>'Download PDF'
 ];

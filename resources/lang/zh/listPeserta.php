@@ -15,5 +15,5 @@ return [
     'nodata'     => '未找到考生数据',
     'reset'      => '请尝试使用其他关键词或重置搜索',
     'noregist'   => '尚无已注册的考生',
-    'download'   => '下载',
+    'download'   => 'PDF 下载',
 ];

@@ -16,5 +16,5 @@ return[
     'nodata'     =>'Tidak ada data peserta ditemukan',
     'reset'      =>'Coba gunakan kata kunci lain atau reset pencarian',
     'noregist'   =>'Belum ada peserta yang terdaftar',
-    'download'   =>'Unduh'
+    'download'   =>'Unduh PDF'
 ];
