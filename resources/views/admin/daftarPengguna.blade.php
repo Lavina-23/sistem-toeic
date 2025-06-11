@@ -32,7 +32,7 @@
 
             <!-- Informasi jumlah data -->
             <div class="flex justify-between items-center mb-4">
-                <p class="text-gray-600">Total: <span class="font-medium">{{ $pengguna->total() }}</span>
+                <p class="text-gray-600">{{__('daftarPengguna.total')}}: <span class="font-medium">{{ $pengguna->total() }}</span>
                     {{ __('daftarPengguna.pengguna') }}</p>
                 <div class="flex space-x-2">
                     <select id="perPage" onchange="changePerPage()"

@@ -110,7 +110,7 @@
                                     d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">{{ __('Verifikasi Request') }}</span>
+                            <span class="ml-3">{{ __('sidebaradmin.ver') }}</span>
                         </a>
                     </li>
                     </li>
@@ -183,6 +183,26 @@
                                         <img src="{{ asset('images/china.jpg') }}" alt="Mandarin Flag"
                                             class="h-4 w-4 rounded-full mr-2" />
                                         Mandarin
+                                    </div>
+                                </a>
+                            </li>
+                                                        <li>
+                                <a href="{{ route('language.switch', 'kr') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <img src="{{ asset('images/korean.webp') }}" alt="Korea Flag"
+                                            class="h-4 w-4 rounded-full mr-2" />
+                                        Korea
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'jp') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <img src="{{ asset('images/japan.png') }}" alt="Korea Flag"
+                                            class="h-4 w-4 rounded-full mr-2" />
+                                        Japan
                                     </div>
                                 </a>
                             </li>

@@ -29,7 +29,7 @@
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                 </div>
                 <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                    Import
+                    {{ __('scoreAdmin.import') }}
                 </button>
             </form>
         </div>
@@ -42,7 +42,7 @@
                     <p class="text-sm text-gray-600 mt-1">{{__('scoreAdmin.manage')}}</p>
                 </div>
                 <div class="text-right">
-                    <div class="text-sm text-gray-600">Total Records</div>
+                    <div class="text-sm text-gray-600">{{__('scoreAdmin.records')}}</div>
                     <div class="text-2xl font-bold text-blue-600">{{ $scores->count() }}</div>
                 </div>
             </div>

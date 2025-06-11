@@ -12,5 +12,6 @@ return [
     'reset'      => 'Try using a different keyword or reset the search',
     'noregist'   => 'No users have been registered yet',
     'download'   => 'Download',
-    'add'        => 'Add Announcement'
+    'add'        => 'Add User',
+    'total'      => 'Total',
 ];

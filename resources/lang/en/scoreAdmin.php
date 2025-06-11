@@ -9,6 +9,7 @@ return[
     'notyet'      => 'No score data yet',
     'imp'         => 'Please import the Excel file to add participant score data.',
     'format'      => 'Supported file formats: .xlsx, .xls',
+    'records'     => 'Total Records',
 
     'Result'      => 'Result No',
     'name'        => 'Participant Name',

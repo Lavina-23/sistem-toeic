@@ -9,11 +9,11 @@
             <div
                 class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">📋 Daftar Peserta Terdaftar</h2>
-                    <p class="text-sm text-gray-600 mt-1">Kelola dan pantau data peserta yang terdaftar</p>
+                    <h2 class="text-2xl font-bold text-gray-800">{{__('listPeserta.list')}}</h2>
+                    <p class="text-sm text-gray-600 mt-1">{{__('listPeserta.desc')}}</p>
                 </div>
                 <div class="text-right">
-                    <div class="text-sm text-gray-600">Total Peserta</div>
+                    <div class="text-sm text-gray-600">{{__('listPeserta.peserta')}}</div>
                     <div class="text-2xl font-bold text-blue-600">{{ $peserta->total() }}</div>
                 </div>
             </div>
@@ -266,8 +266,8 @@
                 <!-- Enhanced Pagination -->
                 <div class="mt-6 flex justify-between items-center">
                     <div class="text-sm text-gray-700">
-                        Menampilkan {{ $peserta->firstItem() ?? 0 }} - {{ $peserta->lastItem() ?? 0 }} dari
-                        {{ $peserta->total() }} peserta
+                        {{__('listPeserta.show')}} {{ $peserta->firstItem() ?? 0 }} - {{ $peserta->lastItem() ?? 0 }} {{__('listPeserta.of') }}
+                        {{ $peserta->total() }} {{__('listPeserta.pes') }}
                     </div>
                     <div>
                         {{ $peserta->appends(request()->except('page'))->links() }}
@@ -294,7 +294,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
-                    Export Nomor Telepon
+                    {{__('listPeserta.expno')}}
                 </a>
             </div>
             <div class="mt-1 flex justify-center">
@@ -305,7 +305,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
-                    {{ __('Export Peserta') }}
+                    {{ __('listPeserta.expes') }}
                 </a>
             </div>
         </div>

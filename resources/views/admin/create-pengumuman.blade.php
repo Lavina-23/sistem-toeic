@@ -1,6 +1,7 @@
 @php
     use Illuminate\Support\Str;
 @endphp
+
 <x-layout>
     <x-sidebaradmin />
 
@@ -36,7 +37,7 @@
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                         <span class="mr-2">📋</span>
-                        Daftar Pengumuman
+                        {{__('pengumuman.list')}}
                     </h2>
                     
                     <div class="overflow-x-auto">
@@ -46,9 +47,9 @@
                                     <th class="px-4 py-2 border">No</th>
                                     <th class="px-4 py-2 border">{{ __('pengumuman.announce') }}</th>
                                     <th class="px-4 py-2 border">{{ __('pengumuman.desc') }}</th>
-                                    <th class="px-4 py-2 border">File</th>
-                                    <th class="px-4 py-2 border">Status</th>
-                                    <th class="px-4 py-2 border text-center min-w-[200px]">Aksi</th>
+                                    <th class="px-4 py-2 border">{{__('pengumuman.file')}}</th>
+                                    <th class="px-4 py-2 border">{{__("pengumuman.status")}}</th>
+                                    <th class="px-4 py-2 border text-center min-w-[200px]">{{__('pengumuman.aksi')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,14 +75,14 @@
                                                         {{ Str::limit($pengumuman->isi, 100) }}
                                                         <button onclick="toggleFullDescription({{ $pengumuman->pengumuman_id }})" 
                                                                 class="text-blue-600 hover:text-blue-800 text-sm ml-1">
-                                                            Selengkapnya
+                                                            {{ __('pengumuman.more') }}
                                                         </button>
                                                     </div>
                                                     <div id="full-desc-{{ $pengumuman->pengumuman_id }}" class="hidden">
                                                         {{ $pengumuman->isi }}
                                                         <button onclick="toggleFullDescription({{ $pengumuman->pengumuman_id }})" 
                                                                 class="text-blue-600 hover:text-blue-800 text-sm ml-1">
-                                                            Tutup
+                                                            {{ __('pengumuman.ttp') }}
                                                         </button>
                                                     </div>
                                                 @else
@@ -135,12 +136,12 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" 
-                                                            class="bg-{{ $pengumuman->status ? 'orange' : 'green' }}-500 hover:bg-{{ $pengumuman->status ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
-                                                            title="{{ $pengumuman->status ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
-                                                        {{ $pengumuman->is_active ? '🔄 Nonaktifkan' : '✅ Aktifkan' }}
+                                                            class="bg-{{ $pengumuman->status == 0 ? 'red' : 'green' }}-500 hover:bg-{{ $pengumuman->status == 0 ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
+                                                            title="{{ $pengumuman->status == 0 ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
+                                                        {{ $pengumuman->status == 0 ? '❌ Nonaktifkan' : '✅ Aktifkan' }}
                                                     </button>
                                                 </form>
-                                                
+
                                                 <!-- Edit Button -->
                                                 <button onclick="openEditModal({{ json_encode($pengumuman) }})"
                                                         class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
