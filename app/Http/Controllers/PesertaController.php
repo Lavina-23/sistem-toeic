@@ -127,7 +127,7 @@ class PesertaController extends Controller
 
     public function exportPeserta()
     {
-        $pesertas = Peserta::with('pengguna')->get()->map(function ($peserta) {
+        $pesertas = Peserta::with('pengguna')->whereDoesntHave('score')->get()->map(function ($peserta) {
             return [
                 'nama'              => $peserta->pengguna->nama,
                 'no_induk'          => $peserta->no_induk,
