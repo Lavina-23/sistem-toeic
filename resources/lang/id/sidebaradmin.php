@@ -5,5 +5,6 @@ return [
     'pengguna'    => 'Daftar Pengguna 🔖',  
     'skor'        => 'Upload Nilai 📊',
     'logout'      => 'Keluar',
-    'pengumuman'  => 'Pengumuman ‼️'
+    'pengumuman'  => 'Pengumuman ‼️',
+    'ver'         => 'verifikasi request'
 ];

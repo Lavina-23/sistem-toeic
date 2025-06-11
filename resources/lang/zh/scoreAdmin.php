@@ -9,6 +9,7 @@ return [
     'notyet'      => '暂无成绩数据',
     'imp'         => '请导入 Excel 文件以添加参与者成绩数据。',
     'format'      => '支持的文件格式：.xlsx, .xls',
+    'records'     => '总记录数',
 
     'Result'      => '结果编号',
     'name'        => '参与者姓名',

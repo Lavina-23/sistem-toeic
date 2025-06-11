@@ -9,6 +9,7 @@ return [
     'notyet'      => 'Belum ada data nilai',
     'imp'         => 'Silakan impor file Excel untuk menambahkan data nilai peserta.',
     'format'      => 'Format file yang didukung: .xlsx, .xls',
+    'records'     => 'Total Rekor',
 
     'Result'      => 'No Hasil',
     'name'        => 'Nama Peserta',

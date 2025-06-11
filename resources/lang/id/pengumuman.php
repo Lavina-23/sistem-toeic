@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'daf'       =>  'Daftar Pengumuman',
+    'file'      =>  'File',
+    'status'    =>  'Status',
+    'aksi'      =>  'Aksi',
+    'more'      =>  'Lihat Selengkapnya',
+    'ttp'       =>  'Tutup',
     'title'     =>  '📢 Pengumuman',
     'announce'  =>  'Judul Pengumuman',
     'desc'      =>  'Isi/Deskripsi Pengumuman',

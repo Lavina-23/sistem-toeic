@@ -2,8 +2,10 @@
 
 return[
     'title'      =>'🎓 List Peserta',
+    'list'       =>'📋 Daftar Peserta Terdaftar',
+    'desc'       =>'Kelola dan pantau data peserta yang terdaftar',
     'search'     =>'Cari berdasarkan nama, no. induk, atau program studi...',
-    'peserta'    =>'Peserta',
+    'peserta'    =>'Total Peserta',
     'halaman'    =>'perhalaman',
     'no'         =>'NO',
     'name'       =>'nama',
@@ -16,5 +18,10 @@ return[
     'nodata'     =>'Tidak ada data peserta ditemukan',
     'reset'      =>'Coba gunakan kata kunci lain atau reset pencarian',
     'noregist'   =>'Belum ada peserta yang terdaftar',
-    'download'   =>'Unduh'
+    'download'   =>'Unduh',
+    'show'       =>'Menampilkan',
+    'of'         =>'dari',
+    'pes'        =>'Daftar Peserta',
+    'expno'      =>'Export Nomor Telepon',
+    'expes'      =>'Export Peserta',
 ];

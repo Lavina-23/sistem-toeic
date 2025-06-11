@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Exports\NoTelpExport;
 use App\Exports\PesertaExport;
 use App\Models\VerificationReq;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -162,5 +163,17 @@ class PesertaController extends Controller
             ->toArray();
 
         return Excel::download(new NoTelpExport($no_telp), 'data_no_telp.xlsx');
+    }
+    public function downloadPDF()
+    {
+        $pengumuman = Pengumuman::where('status', 0)->latest()->first();
+
+        if (!$pengumuman) {
+            return redirect()->back()->with('error', 'Pengumuman tidak ditemukan');
+        }
+
+        $pdf = PDF::loadView('pdf.pengumuman', compact('pengumuman'));
+
+        return $pdf->download('pengumuman-' . date('Y-m-d') . '.pdf');
     }
 }

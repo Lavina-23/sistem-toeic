@@ -11,5 +11,7 @@ return[
     'nodata'     =>'Tidak ada data pengguna ditemukan',
     'reset'      =>'Coba gunakan kata kunci lain atau reset pencarian',
     'noregist'   =>'Belum ada pengguna yang terdaftar',
-    'download'   =>'Unduh'
+    'download'   =>'Unduh',
+    'add'        =>'Tambah Pengguna',
+    'total'      =>'Total',
 ];
