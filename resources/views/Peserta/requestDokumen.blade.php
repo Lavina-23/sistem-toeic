@@ -90,7 +90,7 @@
 
                                     <!-- Document Number -->
                                     <div class="text-xs text-center mb-5">
-                                        Nomor: {{ $letterNumber->full_number ?? '/PL2. UPA BHS/2025' }}
+                                        Nomor: {{ generateLetterNumber() }}
                                     </div>
 
                                     <!-- Content -->
@@ -217,7 +217,7 @@
 
                             <!-- Action Buttons -->
                             <div class="flex gap-4 mt-4">
-                                <button onclick="window.location.href='{{ route('pengumuman.download.pdf') }}'"
+                               <button onclick="generatePDF()"
                                         class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -226,17 +226,6 @@
                                     Download PDF
                                 </button>
                             </div>
-
-                                <button onclick="printDocument()"
-                                    class="inline-flex items-center px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg focus:ring-4 focus:ring-gray-200 transition-colors">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
-                                        </path>
-                                    </svg>
-                                    Print
-                                </button>
                             </div>
                         </div>
                     </div>
