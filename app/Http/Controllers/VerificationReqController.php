@@ -16,6 +16,7 @@ class VerificationReqController extends Controller
     public function index(Request $request)
     {
         $filter = $request->input('filter', 'all');
+        $search = $request->input('search'); // Ambil input search
 
         $query = VerificationReq::with('pengguna');
 
@@ -23,6 +24,13 @@ class VerificationReqController extends Controller
             $query->whereNotNull('bukti_pendukung');
         } elseif ($filter === 'without_bukti') {
             $query->whereNull('bukti_pendukung');
+        }
+
+        // ✅ Tambahkan filter pencarian nama pengguna
+        if ($search) {
+            $query->whereHas('pengguna', function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%');
+            });
         }
 
         $verificationReqs = $query->get()->map(function ($req) {
@@ -42,9 +50,9 @@ class VerificationReqController extends Controller
         return view('admin.verificationRequest', [
             'verificationReqs' => $verificationReqs,
             'filter' => $filter,
+            'search' => $search,
         ]);
     }
-
 
     public function requestDocument()
     {
@@ -54,6 +62,7 @@ class VerificationReqController extends Controller
         $requests = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->orderByDesc('created_at')
             ->get();
+
         $rejectionReason = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->where('status', 'rejected')
             ->latest()
@@ -112,7 +121,6 @@ class VerificationReqController extends Controller
             'status' => 'required|in:approved,rejected',
         ]);
 
-        $id = $request->input('id');
         $status = $request->input('status');
         $reason = $request->input('reason');
 

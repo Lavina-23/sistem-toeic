@@ -31,48 +31,140 @@
             </div>
         @endif
 
-        <!-- Tabel Data Pengumuman -->
-        @if(isset($pengumumans) && $pengumumans->count() > 0)
-            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 mb-6">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="mr-2">📋</span>
-                        {{__('pengumuman.list')}}
-                    </h2>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-gray-300">
+        <!-- Enhanced Main Container -->
+        <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mb-6">
+            <!-- Header Section with Gradient -->
+            <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">📢 {{ __('pengumuman.list') }}</h2>
+                    <p class="text-sm text-gray-600 mt-1">{{ __('Kelola dan pantau pengumuman sistem') ?? 'Kelola daftar pengumuman' }}</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-gray-600">Total Pengumuman</div>
+                    <div class="text-2xl font-bold text-blue-600">{{ isset($pengumumans) ? $pengumumans->count() : 0 }}</div>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <!-- Search and Filter Section -->
+                <div class="mb-6 space-y-4">
+                    <div class="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+                        <!-- Search Input -->
+                        <div class="w-full lg:w-[600px]">
+                            <form action="{{ route('pengumuman.index') }}" method="GET" class="flex flex-wrap lg:flex-nowrap gap-2 items-center">
+                                <!-- Search Box -->
+                                <div class="relative w-[390px]">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <input type="text" name="search" value="{{ request('search') }}"
+                                        placeholder="🔍 Cari pengumuman..."
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                </div>
+
+                                <!-- Search Button -->
+                                <button type="submit"
+                                    class="px-6 py-3 bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </button>
+
+                                <!-- Reset Button -->
+                                @if (request('search'))
+                                    <a href="{{ route('pengumuman.index') }}"
+                                        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                        Reset
+                                    </a>
+                                @endif
+                            </form>
+                        </div>
+
+                        <!-- Per Page Selector + Add Button -->
+                        <div class="flex gap-2 items-center">
+                            <!-- Per Page Dropdown -->
+                            <div class="mt-0">
+                                <select id="perPage" onchange="changePerPage()"
+                                    class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[180px]">
+                                    @foreach ([10, 25, 50, 100] as $value)
+                                        <option value="{{ $value }}" {{ request('perPage', 10) == $value ? 'selected' : '' }}>
+                                            {{ $value }} per halaman
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Add Pengumuman Button -->
+                            <button onclick="togglePengumumanForm()" id="toggleBtn"
+                                class="w-[250px] flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <span id="toggleText" class="ml-2">{{__('pengumuman.addbot')}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Table -->
+                @if(isset($pengumumans) && $pengumumans->count() > 0)
+                    <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
+                        <table class="min-w-full table-fixed border-collapse bg-white">
                             <thead>
-                                <tr class="bg-gray-100 text-gray-700 text-left">
-                                    <th class="px-4 py-2 border">No</th>
-                                    <th class="px-4 py-2 border">{{ __('pengumuman.announce') }}</th>
-                                    <th class="px-4 py-2 border">{{ __('pengumuman.desc') }}</th>
-                                    <th class="px-4 py-2 border">{{__('pengumuman.file')}}</th>
-                                    <th class="px-4 py-2 border">{{__("pengumuman.status")}}</th>
-                                    <th class="px-4 py-2 border text-center min-w-[200px]">{{__('pengumuman.aksi')}}</th>
+                                <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
+                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        No
+                                    </th>
+                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('pengumuman.announce') }}
+                                    </th>
+                                    <th class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('pengumuman.desc') }}
+                                    </th>
+                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{__('pengumuman.file')}}
+                                    </th>
+                                    <th class="w-24 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{__("pengumuman.status")}}
+                                    </th>
+                                    <th class="w-48 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        {{__('pengumuman.aksi')}}
+                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="bg-white divide-y divide-gray-100">
                                 @foreach($pengumumans as $index => $pengumuman)
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3 border text-center font-medium">
-                                            {{ $index + 1 }}
-                                        </td>
-                                        
-                                        <td class="px-4 py-3 border">
-                                            <div class="font-semibold text-gray-800 truncate max-w-xs" title="{{ $pengumuman->judul }}">
-                                                {{ $pengumuman->judul }}
-                                            </div>
-                                            <div class="text-xs text-gray-500 mt-1">
-                                                {{-- {{ $pengumuman->created_at->format('d M Y, H:i') }} --}}
+                                    <tr class="hover:bg-blue-50 transition-colors duration-200 score-row">
+                                        <td class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
+                                            <div class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
+                                                {{ $index + 1 }}
                                             </div>
                                         </td>
                                         
-                                        <td class="px-4 py-3 border">
+                                        <td class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
+                                            <div class="flex items-center space-x-3">
+                                                <div>
+                                                    <div class="font-medium text-gray-900 break-words">
+                                                        {{ $pengumuman->judul }}
+                                                    </div>
+                                                    <div class="text-xs text-gray-500 mt-1">
+                                                        {{-- {{ $pengumuman->created_at->format('d M Y, H:i') }} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
                                             <div class="max-w-xs">
                                                 @if(strlen($pengumuman->isi) > 100)
                                                     <div id="short-desc-{{ $pengumuman->pengumuman_id }}">
-                                                        {{ Str::limit($pengumuman->isi, 100) }}
+                                                        <span class="truncate">{{ Str::limit($pengumuman->isi, 100) }}</span>
                                                         <button onclick="toggleFullDescription({{ $pengumuman->pengumuman_id }})" 
                                                                 class="text-blue-600 hover:text-blue-800 text-sm ml-1">
                                                             {{ __('pengumuman.more') }}
@@ -86,12 +178,12 @@
                                                         </button>
                                                     </div>
                                                 @else
-                                                    {{ $pengumuman->isi }}
+                                                    <span class="truncate">{{ $pengumuman->isi }}</span>
                                                 @endif
                                             </div>
                                         </td>
                                         
-                                        <td class="px-4 py-3 border text-center">
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
                                             @if($pengumuman->file)
                                                 @php
                                                     $fileExtension = strtolower(pathinfo($pengumuman->file, PATHINFO_EXTENSION));
@@ -100,16 +192,16 @@
                                                 <div class="flex flex-col items-center space-y-2">
                                                     @if($fileExtension === 'pdf')
                                                         <object data="{{ asset('storage/' . $pengumuman->file) }}" type="application/pdf" width="100" height="120">
-                                                            <p class="text-gray-500">{{__('pengumuman.pdf')}}</p>
+                                                            <p class="text-gray-500">Preview PDF tidak tersedia.</p>
                                                         </object>
                                                     @else
-                                                        <p class="text-gray-500 text-sm">{{__('pengumuman.preview')}}</p>
+                                                        <p class="text-gray-500 text-sm">Tidak dapat menampilkan preview.</p>
                                                     @endif
 
                                                     <a href="{{ asset('storage/' . $pengumuman->file) }}" 
                                                     target="_blank"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
-                                                         {{__('pengumuman.show')}}
+                                                        👀 Lihat
                                                     </a>
                                                 </div>
                                             @else
@@ -117,26 +209,26 @@
                                             @endif
                                         </td>
                                         
-                                        <td class="px-4 py-3 border text-center">
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
                                             @if($pengumuman->status)
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ❌ {{__('pengumuman.non')}}
+                                                    ❌ Tidak Aktif
                                                 </span>
                                             @else
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    ✅ {{__('pengumuman.aktif')}}
+                                                    ✅ Aktif
                                                 </span>
                                             @endif
                                         </td>
                                         
-                                        <td class="px-4 py-3 border">
+                                        <td class="px-4 py-4 text-sm text-gray-900">
                                             <div class="flex flex-wrap gap-2 justify-center">
                                                 <!-- Toggle Status Button -->
                                                 <form action="{{ route('pengumuman.toggle-status', ['id' => $pengumuman->pengumuman_id]) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" 
-                                                            class="bg-{{ $pengumuman->status == 0 ? 'red' : 'green' }}-500 hover:bg-{{ $pengumuman->status == 0 ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
+                                                            class="bg-{{ $pengumuman->status == 0 ? 'red' : 'green' }}-500 hover:bg-{{ $pengumuman->status == 0 ? 'red' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
                                                             title="{{ $pengumuman->status == 0 ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
                                                         {{ $pengumuman->status == 0 ? '❌ ' . __('pengumuman.non') : '✅ ' . __('pengumuman.aktif') }}
                                                     </button>
@@ -167,10 +259,15 @@
                         </table>
                     </div>
                     
-                    <!-- Pagination jika diperlukan -->
+                    <!-- Enhanced Pagination -->
                     @if(method_exists($pengumumans, 'links'))
-                        <div class="mt-4">
-                            {{ $pengumumans->links() }}
+                        <div class="mt-6 flex justify-between items-center">
+                            <div class="text-sm text-gray-700">
+                                Menampilkan {{ $pengumumans->firstItem() ?? 0 }} - {{ $pengumumans->lastItem() ?? 0 }} dari {{ $pengumumans->total() }} pengumuman
+                            </div>
+                            <div>
+                                {{ $pengumumans->appends(request()->except('page'))->links() }}
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -182,19 +279,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">{{__('pengumuman.blm')}}</h3>
-                <p class="text-gray-600">{{__(pengumuman.first)}}</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Belum ada pengumuman</h3>
+                <p class="text-gray-600">Tambahkan pengumuman pertama Anda untuk peserta.</p>
             </div>
-        @endif
-
-        <!-- Tombol Tambahkan Pengumuman -->
-        <div class="mb-6">
-            <button onclick="togglePengumumanForm()" id="toggleBtn"
-                class="inline-flex items-center px-6 py-3 text-sm font-medium bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 hover:scale-105">
-                <span id="toggleIcon">➕</span>
-                <span id="toggleText" class="ml-2">{{__('pengumuman.addbot')}}</span>
-            </button>
         </div>
+        @endif
 
         <!-- Form Tambah Pengumuman (Hidden by default) -->
         <div id="pengumumanForm" style="display: none;">
@@ -296,9 +385,85 @@
                         </form>
                     </div>
                 </div>
+
+                <div>
+                    <label for="isi"
+                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.desc') }}</label>
+                    <textarea name="isi" id="isi" rows="4" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"></textarea>
+                </div>
+
+                <div>
+                    <label for="file"
+                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.select') }}</label>
+                    <input type="file" name="file" id="file" accept="application/pdf" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
+                </div>
+
+                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
+                    Import
+                </button>
             </form>
         </div>
     </section>
+
+    <style>
+        /* Custom styles for wider table */
+        .min-w-full {
+            min-width: 1000px;
+        }
+
+        /* Ensure table stretches full width */
+        .table-fixed {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        /* Better scrollbar styling */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Enhanced hover effects */
+        .score-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Better mobile responsiveness */
+        @media (max-width: 768px) {
+            .min-w-full {
+                min-width: 800px;
+            }
+
+            .flex-col {
+                flex-direction: column;
+            }
+
+            .sm\:flex-row {
+                flex-direction: row;
+            }
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+            transition: all 0.2s ease-out;
+        }
+    </style>
 
     <script>
         function togglePengumumanForm() {
