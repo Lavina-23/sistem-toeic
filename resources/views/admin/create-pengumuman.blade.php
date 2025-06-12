@@ -283,6 +283,7 @@
                 <p class="text-gray-600">Tambahkan pengumuman pertama Anda untuk peserta.</p>
             </div>
         </div>
+        @endif
 
         <!-- Form Tambah Pengumuman (Hidden by default) -->
         <div id="pengumumanForm" style="display: none;">
