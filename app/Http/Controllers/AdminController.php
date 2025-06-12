@@ -53,7 +53,6 @@ public function index(Request $request)
     ]);
 }
 
-
     public function exportPDF()
     {
         $peserta = Peserta::all();
