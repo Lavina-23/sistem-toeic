@@ -2,7 +2,7 @@
     <x-sidebar :userData="$userData" />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
+            <h1 class="text-4xl font-bold text-primary mb-6 text-center">{{__('reqdokum.title')}}</h1>
             <div class="
             w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 @if (session('success'))
@@ -25,19 +25,19 @@
                     class="space-y-4">
                     @csrf
                     <div>
-                        <label class="block text-gray-700 mb-2 font-medium">Keterangan</label>
+                        <label class="block text-gray-700 mb-2 font-medium">{{__('reqdokum.keterangan')}}</label>
                         <textarea name="keterangan" id="keterangan" rows="5" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
                             placeholder="Masukkan keteranganmu..."></textarea>
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-2 font-medium">File Bukti Pendukung</label>
+                        <label class="block text-gray-700 mb-2 font-medium">{{__('reqdokum.file')}}</label>
                         <input type="file" name="bukti_pendukung" accept=".png,.jpg,.jpeg,.pdf,.docx"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                     </div>
                     <button type="submit"
                         class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                        Kirim
+                        {{__('reqdokum.send')}}
                     </button>
                 </form>
             </div>
@@ -48,8 +48,8 @@
                         <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history"
                             border="0">
                         <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                            <h1 class="text-3xl font-semibold">Tunggu Ya!</h1>
-                            <p class="text-gray-500">Dokumen yang kamu request sedang kami urus</p>
+                            <h1 class="text-3xl font-semibold">{{__('reqdokum.wait')}}</h1>
+                            <p class="text-gray-500">{{__('reqdokum.urus')}}</p>
                             <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
                             </a>
                         </div>
@@ -57,7 +57,7 @@
                 @elseif ($r->status == 'approved')
                     <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                         <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
-                            Preview Surat Keterangan
+                            {{__('reqdokum.preview')}}
                         </h2>
                         <!-- Preview Container -->
                         <div class="w-full flex flex-col items-center">
@@ -214,15 +214,7 @@
                                 </div>
                             </div>
 
-                            <!-- Action Buttons -->
-                            <a href="{{ route('download.pdf') }}"
-                            class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
-                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                             </svg>
-                             Download PDF
-                         </a>
+
                             </div>
                             </div>
                         </div>

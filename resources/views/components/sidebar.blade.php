@@ -92,7 +92,7 @@
                             <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
                     <li>
-                        <a href="{{ route('peserta.requestDokumen') }}"
+                        <a href="{{ route('request-document') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                             <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

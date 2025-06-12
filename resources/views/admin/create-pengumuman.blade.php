@@ -183,7 +183,7 @@
                     </svg>
                 </div>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">{{__('pengumuman.blm')}}</h3>
-                <p class="text-gray-600">{{__(pengumuman.first)}}</p>
+                <p class="text-gray-600">{{__('pengumuman.list')}}</p>
             </div>
         @endif
 

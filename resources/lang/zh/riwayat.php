@@ -14,4 +14,17 @@ return [
     'tidak_ada_data' => '哎呀.. 🤨！我们还未找到您的考试注册信息。',
     'klik_untuk_daftar' => '请点击下面的按钮进行注册！',
     'ikut_tes' => '立即参加测试',
+    'hasil' => '考试结果',
+    'total' => '总分',
+    'skorR' => '阅读分数',
+    'skorL' => '听力分数',
+    'tesS' => '之前的考试结果',
+    'totalS' => '总分',
+    'skordes' => '阅读和听力部分获得的总分数',
+    'skordesR' => '阅读部分获得的总分数',
+    'skordesL' => '听力部分获得的总分数',
+    'hasildes' => '您的TOEIC考试结果将在这里显示',
+    'skorT' => '最高分',
+    'perjalanan' => '您的TOEIC之旅',
+    'semangat' => '继续加油！看看您取得了多大的进步。'
 ];
