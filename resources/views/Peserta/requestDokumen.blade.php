@@ -2,7 +2,7 @@
     <x-sidebar :userData="$userData" />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
+            <h1 class="text-4xl font-bold text-primary mb-6 text-center">{{ __('reqdokum.title') }}</h1>
             <div class="
             w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 @if (session('success'))
@@ -25,40 +25,50 @@
                     class="space-y-4">
                     @csrf
                     <div>
-                        <label class="block text-gray-700 mb-2 font-medium">Pilih Alasan Permohonan Surat
+                        <<<<<<< HEAD <label class="block text-gray-700 mb-2 font-medium">Pilih Alasan Permohonan Surat
                             Pernyataan</label>
 
-                        <div class="mb-2">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="keterangan" value="Skor dibawah ketentuan"
-                                    class="form-radio text-primary focus:ring-primaryLight">
-                                <span class="ml-2">Skor tes TOEIC di bawah ketentuan</span>
-                            </label>
-                        </div>
+                            <div class="mb-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="keterangan" value="Skor dibawah ketentuan"
+                                        class="form-radio text-primary focus:ring-primaryLight">
+                                    <span class="ml-2">Skor tes TOEIC di bawah ketentuan</span>
+                                </label>
+                            </div>
 
-                        <div class="mb-2">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="keterangan" value="Khusus" id="radio-khusus"
-                                    class="form-radio text-primary focus:ring-primaryLight"
-                                    onclick="toggleAlasanKhusus(true)">
-                                <span class="ml-2">Alasan khusus (misalnya karena sakit atau kondisi lainnya)</span>
-                            </label>
-                        </div>
+                            <div class="mb-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="keterangan" value="Khusus" id="radio-khusus"
+                                        class="form-radio text-primary focus:ring-primaryLight"
+                                        onclick="toggleAlasanKhusus(true)">
+                                    <span class="ml-2">Alasan khusus (misalnya karena sakit atau kondisi
+                                        lainnya)</span>
+                                </label>
+                            </div>
 
-                        <div id="input-alasan-khusus" class="mt-3 hidden">
-                            <label class="block text-gray-700 font-medium">Keterangan</label>
-                            <textarea name="keterangan_khusus" class="w-full px-4 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
-                                placeholder="Tuliskan alasan Anda di sini..."></textarea>
-                        </div>
+                            <div id="input-alasan-khusus" class="mt-3 hidden">
+                                <label class="block text-gray-700 font-medium">Keterangan</label>
+                                <textarea name="keterangan_khusus" class="w-full px-4 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
+                                    placeholder="Tuliskan alasan Anda di sini..."></textarea>
+                            </div>
                     </div>
                     <div id="input-bukti-pendukung" class="hidden">
                         <label class="block text-gray-700 mb-2 font-medium">File Bukti Pendukung</label>
+                        =======
+                        <label class="block text-gray-700 mb-2 font-medium">{{ __('reqdokum.keterangan') }}</label>
+                        <textarea name="keterangan" id="keterangan" rows="5" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
+                            placeholder="Masukkan keteranganmu..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">{{ __('reqdokum.file') }}</label>
+                        >>>>>>> 2499f5695a4a30f4734a162cbc063c5632161725
                         <input type="file" name="bukti_pendukung" accept=".png,.jpg,.jpeg,.pdf,.docx"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                     </div>
                     <button type="submit"
                         class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                        Kirim
+                        {{ __('reqdokum.send') }}
                     </button>
                 </form>
             </div>
@@ -69,8 +79,8 @@
                         <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history"
                             border="0">
                         <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                            <h1 class="text-3xl font-semibold">Tunggu Ya!</h1>
-                            <p class="text-gray-500">Dokumen yang kamu request sedang kami urus</p>
+                            <h1 class="text-3xl font-semibold">{{ __('reqdokum.wait') }}</h1>
+                            <p class="text-gray-500">{{ __('reqdokum.urus') }}</p>
                             <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
                             </a>
                         </div>
@@ -78,7 +88,7 @@
                 @elseif ($r->status == 'approved')
                     <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                         <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
-                            Preview Surat Keterangan
+                            {{ __('reqdokum.preview') }}
                         </h2>
                         <!-- Preview Container -->
                         <div class="w-full flex flex-col items-center">

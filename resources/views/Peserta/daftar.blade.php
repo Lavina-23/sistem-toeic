@@ -131,9 +131,6 @@
                                 value="{{ old('tgl_lahir') }}" required />
                             <x-input-error :messages="$errors->get('tgl_lahir')" class="mt-2" />
                         </div>
-
-
-
                         <!-- uploads -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>

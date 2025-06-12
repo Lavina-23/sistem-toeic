@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/request-document', [VerificationReqController::class, 'requestDocument'])->name('request-document');
         Route::post('/store/request-document', [VerificationReqController::class, 'storeRequest'])->name('store.request-document');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
-        Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
+        // Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
     });
 
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
