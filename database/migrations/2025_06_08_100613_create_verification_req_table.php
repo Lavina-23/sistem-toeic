@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('verification_req', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peserta_id');
+            $table->unsignedBigInteger('pengguna_id');
             $table->text('keterangan');
             $table->string('bukti_pendukung')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->foreign('peserta_id')->references('peserta_id')->on('peserta')->onDelete('cascade');
+            $table->string('alasan')->nullable();
+            $table->foreign('pengguna_id')->references('pengguna_id')->on('pengguna')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,10 +3,7 @@
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
             <h1 class="text-4xl font-bold text-primary mb-6 text-center">Request Dokumen TOEIC</h1>
-
-            <div
-                class="
-            {{-- {{ !is_null($r->peserta_id) ? 'hidden' : '' }} --}}
+            <div class="
             w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 @if (session('success'))
                     <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
@@ -62,7 +59,6 @@
                         <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
                             Preview Surat Keterangan
                         </h2>
-
                         <!-- Preview Container -->
                         <div class="w-full flex flex-col items-center">
                             <div id="document-preview"
@@ -93,7 +89,7 @@
 
                                     <!-- Document Number -->
                                     <div class="text-xs text-center mb-5">
-                                        Nomor: {{ $letterNumber->full_number ?? '/PL2. UPA BHS/2025' }}
+                                        Nomor: {{ generateLetterNumber() }}
                                     </div>
 
                                     <!-- Content -->
@@ -219,27 +215,15 @@
                             </div>
 
                             <!-- Action Buttons -->
-                            <div class="flex gap-4 mt-4">
-                                <button onclick="window.location.href='{{ route('peserta.export.pdf') }}'"
-                                        class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                    </svg>
-                                    Download PDF
-                                </button>
+                            <a href="{{ route('download.pdf') }}"
+                            class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
+                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                             </svg>
+                             Download PDF
+                         </a>
                             </div>
-
-                                <button onclick="printDocument()"
-                                    class="inline-flex items-center px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg focus:ring-4 focus:ring-gray-200 transition-colors">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
-                                        </path>
-                                    </svg>
-                                    Print
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -257,8 +241,12 @@
                                         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
                                     </path>
                                 </svg>
-                                <span class="text-redMain font-medium">Mohon maaf, permintaan dokumen kamu
-                                    ditolak</span>
+                                @if (!empty($rejectionReason))
+                                    <span class="text-redMain font-medium">
+                                        Mohon maaf, permintaan dokumen kamu ditolak, karena
+                                        <strong>{{ $rejectionReason }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>

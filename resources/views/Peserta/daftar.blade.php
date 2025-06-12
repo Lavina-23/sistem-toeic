@@ -55,7 +55,7 @@
                         <!-- no_induk -->
                         <div>
                             <x-input-label for="no_induk" :value="__('daftar.nim_nidn_nip')" />
-                            <x-text-input id="no_induk" class="mt-1 block w-full" type="text" name="no_induk"
+                            <x-text-input id="no_induk" class="mt-1 block w-full" type="number" name="no_induk"
                                 :value="old('no_induk')" required autofocus />
                             <x-input-error :messages="$errors->get('no_induk')" class="mt-2" />
                         </div>
@@ -63,7 +63,7 @@
                         <!-- nik -->
                         <div>
                             <x-input-label for="nik" :value="__('daftar.nik')" />
-                            <x-text-input id="nik" class="mt-1 block w-full" type="text" name="nik"
+                            <x-text-input id="nik" class="mt-1 block w-full" type="number" name="nik"
                                 :value="old('nik')" required />
                             <x-input-error :messages="$errors->get('nik')" class="mt-2" />
                         </div>
@@ -71,7 +71,7 @@
                         <!-- no_telp -->
                         <div>
                             <x-input-label for="no_telp" :value="__('daftar.no_telp')" />
-                            <x-text-input id="no_telp" class="mt-1 block w-full" type="text" name="no_telp"
+                            <x-text-input id="no_telp" class="mt-1 block w-full" type="number" name="no_telp"
                                 :value="old('no_telp')" required />
                             <x-input-error :messages="$errors->get('no_telp')" class="mt-2" />
                         </div>

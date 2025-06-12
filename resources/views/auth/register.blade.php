@@ -9,11 +9,19 @@
             {{ __('Silakan isi data diri, email, dan password untuk membuat akun baru dan mengakses sistem toeicIN.') }}
         </p>
 
+        <!-- NIM/NIDN/NIP -->
+        <div>
+            <x-input-label for="no_induk" :value="__('NIM/NIDN/NIP')" />
+            <x-text-input id="no_induk" class="block mt-1 w-full" type="number" name="no_induk" :value="old('no_induk')" required
+                autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('no_induk')" class="mt-2" />
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="nama" :value="__('Nama')" />
-            <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')" required
-                autofocus autocomplete="name" />
+            <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')"
+                required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('nama')" class="mt-2" />
         </div>
 

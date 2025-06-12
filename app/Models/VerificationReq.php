@@ -12,14 +12,15 @@ class VerificationReq extends Model
     protected $table = 'verification_req';
 
     protected $fillable = [
-        'peserta_id',
+        'pengguna_id',
         'keterangan',
         'bukti_pendukung',
+        'alasan'
     ];
 
 
-    public function peserta()
+    public function pengguna()
     {
-        return $this->belongsTo(Peserta::class, 'peserta_id');
+        return $this->belongsTo(Pengguna::class, 'pengguna_id', 'pengguna_id');
     }
 }

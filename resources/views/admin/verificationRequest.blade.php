@@ -166,6 +166,7 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
 
                 {{-- Footer Info --}}
                 <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
@@ -205,7 +206,168 @@
             </div>
         @endif
 
-        {{-- Modal for Request Details --}}
+                @if ($verificationReqs->count() > 0)
+                    <!-- Enhanced Table -->
+                    <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
+                        <table class="min-w-full table-fixed border-collapse bg-white">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
+                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        No
+                                    </th>
+                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Nama Peserta
+                                    </th>
+                                    <th class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Keterangan
+                                    </th>
+                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Bukti Pendukung
+                                    </th>
+                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Tanggal
+                                    </th>
+                                    <th class="w-40 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Aksi
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-100">
+                                @foreach ($verificationReqs as $index => $req)
+                                    <tr class="hover:bg-blue-50 transition-colors duration-200 score-row">
+                                        <td class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
+                                            <div class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
+                                                {{ $index + 1 }}
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
+                                            <div class="flex items-center space-x-3">
+                                                <div>
+                                                    @if ($req['nama'])
+                                                        <div class="font-medium text-gray-900 truncate" title="{{ $req['nama'] }}">
+                                                            {{ $req['nama'] }}
+                                                        </div>
+                                                    @else
+                                                        <span class="text-red-500 font-medium">Peserta tidak ditemukan</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
+                                            <div class="max-w-xs">
+                                                @if ($req['keterangan'])
+                                                    <div class="truncate" title="{{ $req['keterangan'] }}">
+                                                        {{ $req['keterangan'] }}
+                                                    </div>
+                                                @else
+                                                    <span class="text-gray-400">-</span>
+                                                @endif
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                            @if ($req['bukti_pendukung'])
+                                                <a type="button"
+                                                    onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
+                                                    class="underline cursor-pointer inline-flex items-center font-medium text-blue-600 hover:text-blue-800 focus:font-bold hover:font-bold transition-colors"
+                                                    title="Preview Bukti">
+                                                    Lihat Bukti
+                                                </a>
+                                            @else
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                    Tidak Ada
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
+                                            <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">
+                                            <div class="flex justify-center space-x-2">
+                                                @if ($req['status'] === 'approved')
+                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                        ✅ Diterima
+                                                    </span>
+                                                @elseif ($req['status'] === 'rejected')
+                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                        ❌ Ditolak
+                                                    </span>
+                                                @else
+                                                    <form action="{{ route('update-verification', ['id' => $req['id']]) }}" method="POST" id="form-{{ $req['id'] }}">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $req['id'] }}">
+
+                                                        <div id="reason-container-{{ $req['id'] }}" class="hidden mb-2">
+                                                            <select name="reason" class="text-xs border rounded px-2 py-1" id="reason-select-{{ $req['id'] }}">
+                                                                <option value="">Pilih alasan penolakan</option>
+                                                                <option value="Data tidak lengkap">Data tidak lengkap</option>
+                                                                <option value="Bukti tidak diterima">Bukti tidak diterima</option>
+                                                                <option value="Identitas tidak valid">Identitas tidak valid</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="flex space-x-1">
+                                                            <button type="submit" name="status" value="approved"
+                                                                onclick="return confirm('Yakin ingin memverifikasi data ini?');"
+                                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                                                                title="Setujui">
+                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                                </svg>
+                                                            </button>
+
+                                                            <button type="button" onclick="handleReject({{ $req['id'] }})"
+                                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+                                                                title="Tolak">
+                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+
+                                                        <button type="submit" name="status" value="rejected" id="submit-reject-{{ $req['id'] }}" class="hidden"></button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Enhanced Footer Info -->
+                    <div class="mt-6 flex justify-between items-center">
+                        <div class="text-sm text-gray-700">
+                            Menampilkan {{ $verificationReqs->count() }} request
+                            @if ($filter !== 'all')
+                                ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
+                            @endif
+                        </div>
+                    </div>
+                @else
+                    <!-- Empty State -->
+                    <div class="text-center py-16">
+                        <div class="flex flex-col items-center justify-center space-y-4">
+                            <div class="text-6xl text-gray-300 mb-4">📋</div>
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">
+                                Tidak ada verification request
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                @if ($filter === 'with_bukti')
+                                    Tidak ada request dengan bukti pendukung.
+                                @elseif($filter === 'without_bukti')
+                                    Tidak ada request tanpa bukti pendukung.
+                                @else
+                                    Belum ada verification request yang masuk.
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <!-- Modal for Bukti Preview -->
         <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
             <div class="bg-white rounded-lg max-w-4xl max-h-screen overflow-y-auto m-4 w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
@@ -226,7 +388,86 @@
             </div>
         </div>
     </section>
+
+    <style>
+        /* Custom styles for wider table */
+        .min-w-full {
+            min-width: 800px;
+        }
+
+        /* Ensure table stretches full width */
+        .table-fixed {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        /* Better scrollbar styling */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Enhanced hover effects */
+        .score-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Better mobile responsiveness */
+        @media (max-width: 768px) {
+            .min-w-full {
+                min-width: 600px;
+            }
+
+            .flex-col {
+                flex-direction: column;
+            }
+
+            .sm\:flex-row {
+                flex-direction: row;
+            }
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+            transition: all 0.2s ease-out;
+        }
+    </style>
+
     <script>
+        function handleReject(id) {
+            const reasonContainer = document.getElementById(`reason-container-${id}`);
+            const reasonSelect = document.getElementById(`reason-select-${id}`);
+            const submitBtn = document.getElementById(`submit-reject-${id}`);
+
+            if (reasonContainer.classList.contains('hidden')) {
+                reasonContainer.classList.remove('hidden');
+                return;
+            }
+
+            if (!reasonSelect.value) {
+                alert('Silakan pilih alasan penolakan terlebih dahulu.');
+                return;
+            }
+
+            if (confirm('Yakin ingin menolak data ini?')) {
+                submitBtn.click();
+            }
+        }
+
         function approveRequest(requestId) {
             if (confirm('Apakah Anda yakin ingin menyetujui verification request ini?')) {
                 fetch(`/admin/verification-reqs/${requestId}/approve`, {
