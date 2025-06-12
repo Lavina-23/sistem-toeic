@@ -9,7 +9,7 @@
             <!-- Header Section with Gradient -->
             <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Daftar Permintaan Verifikasi</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">📨 Daftar Permintaan Verifikasi</h2>
                     <p class="text-sm text-gray-600 mt-1">Kelola dan review permintaan verifikasi dari peserta</p>
                 </div>
                 <div class="text-right">
