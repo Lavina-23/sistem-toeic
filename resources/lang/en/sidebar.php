@@ -1,11 +1,11 @@
 <?php
 return [
-    'register_test' => 'Register Test 🚀',
-    'dashboard' => 'Schedule Test',
-    'history' => 'History',
-    'request' => 'Request Dokumen',
-    'logout' => 'Log Out',
-    'edit' => 'Edit',
-    'export' => 'Export Data',
-    'delete' => 'Delete',
+    'register_test' => 'Register for Test 🚀',
+    'dashboard'     => 'Announcements‼️📣',
+    'history'       => 'History📒',
+    'request'       => 'Document Request📬',
+    'logout'        => 'Log Out',
+    'edit'          => 'Edit',
+    'export'        => 'Export Data',
+    'delete'        => 'Delete',
 ];

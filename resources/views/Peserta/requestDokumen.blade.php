@@ -220,7 +220,7 @@
 
                             <!-- Action Buttons -->
                             <div class="flex gap-4 mt-4">
-                                <button onclick="window.location.href='{{ route('pengumuman.download.pdf') }}'"
+                                <button onclick="window.location.href='{{ route('peserta.export.pdf') }}'"
                                         class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

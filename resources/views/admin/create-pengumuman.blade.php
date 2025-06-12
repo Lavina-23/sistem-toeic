@@ -100,31 +100,31 @@
                                                 <div class="flex flex-col items-center space-y-2">
                                                     @if($fileExtension === 'pdf')
                                                         <object data="{{ asset('storage/' . $pengumuman->file) }}" type="application/pdf" width="100" height="120">
-                                                            <p class="text-gray-500">Preview PDF tidak tersedia.</p>
+                                                            <p class="text-gray-500">{{__('pengumuman.pdf')}}</p>
                                                         </object>
                                                     @else
-                                                        <p class="text-gray-500 text-sm">Tidak dapat menampilkan preview.</p>
+                                                        <p class="text-gray-500 text-sm">{{__('pengumuman.preview')}}</p>
                                                     @endif
 
                                                     <a href="{{ asset('storage/' . $pengumuman->file) }}" 
                                                     target="_blank"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
-                                                        👀 Lihat
+                                                         {{__('pengumuman.show')}}
                                                     </a>
                                                 </div>
                                             @else
-                                                <span class="text-gray-500 text-sm">Tidak ada file</span>
+                                                <span class="text-gray-500 text-sm">{{__('pengumuman.nofile')}}</span>
                                             @endif
                                         </td>
                                         
                                         <td class="px-4 py-3 border text-center">
                                             @if($pengumuman->status)
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ❌ Tidak Aktif
+                                                    ❌ {{__('pengumuman.non')}}
                                                 </span>
                                             @else
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    ✅ Aktif
+                                                    ✅ {{__('pengumuman.aktif')}}
                                                 </span>
                                             @endif
                                         </td>
@@ -138,7 +138,7 @@
                                                     <button type="submit" 
                                                             class="bg-{{ $pengumuman->status == 0 ? 'red' : 'green' }}-500 hover:bg-{{ $pengumuman->status == 0 ? 'orange' : 'green' }}-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
                                                             title="{{ $pengumuman->status == 0 ? 'Nonaktifkan' : 'Aktifkan' }} pengumuman">
-                                                        {{ $pengumuman->status == 0 ? '❌ Nonaktifkan' : '✅ Aktifkan' }}
+                                                        {{ $pengumuman->status == 0 ? '❌ ' . __('pengumuman.non') : '✅ ' . __('pengumuman.aktif') }}
                                                     </button>
                                                 </form>
 
@@ -146,7 +146,7 @@
                                                 <button onclick="openEditModal({{ json_encode($pengumuman) }})"
                                                         class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
                                                         title="Edit pengumuman">
-                                                    ✏️ Edit
+                                                    ✏️ {{__('pengumuman.edit')}}
                                                 </button>
                                                 
                                                 <form action="{{ route('pengumuman.destroy', ['id' => $pengumuman->pengumuman_id]) }}" method="POST" class="inline">
@@ -156,7 +156,7 @@
                                                             class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs transition-colors whitespace-nowrap"
                                                             onclick="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini secara permanen?')"
                                                             title="Hapus pengumuman">
-                                                        🗑️ Hapus
+                                                        🗑️ {{__('pengumuman.delete')}}
                                                     </button>
                                                 </form>
                                             </div>
@@ -182,8 +182,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">Belum ada pengumuman</h3>
-                <p class="text-gray-600">Tambahkan pengumuman pertama Anda untuk peserta.</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{__('pengumuman.blm')}}</h3>
+                <p class="text-gray-600">{{__(pengumuman.first)}}</p>
             </div>
         @endif
 
@@ -212,15 +212,15 @@
                         <input type="text" name="judul" id="judul" required
                             value="{{ old('judul') }}"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                            placeholder="Masukkan judul pengumuman...">
+                            placeholder="{{__('pengumuman.jdl')}}...">
                     </div>
 
                     <div>
                         <label for="isi" class="block text-gray-700 mb-2 font-medium">{{__('pengumuman.desc')}} <span class="text-red-500">*</span></label>
                         <textarea name="isi" id="isi" rows="5" required
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
-                            placeholder="Masukkan deskripsi pengumuman...">{{ old('isi') }}</textarea>
-                        <div class="text-sm text-gray-500 mt-1">Minimum 10 karakter</div>
+                            placeholder="{{__('pengumuman.des')}}">{{ old('isi') }}</textarea>
+                        <div class="text-sm text-gray-500 mt-1">{{__('pengumuman.ten')}}</div>
                     </div>
 
                     <div>
@@ -230,7 +230,7 @@
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         </div>
                         <div class="text-sm text-gray-500 mt-1">
-                            Format yang didukung: PDF, DOC, DOCX, JPG, JPEG, PNG (Maksimal 5MB)
+                            {{__('pengumuman.select')}}
                         </div>
                         <div id="filePreview" class="mt-2 hidden">
                             <div class="flex items-center p-2 bg-gray-50 rounded border">
@@ -238,13 +238,6 @@
                                 <span id="fileSize" class="text-xs text-gray-500 ml-2"></span>
                             </div>
                         </div>
-                    </div>
-
-                    <div>
-                        <label class="flex items-center">
-                            <input type="checkbox" name="is_active" value="1" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                            <span class="ml-2 text-gray-700">Tampilkan pengumuman ini secara langsung setelah disimpan</span>
-                        </label>
                     </div>
 
                     <div class="flex gap-4 pt-4">
@@ -266,61 +259,43 @@
             <div class="flex items-center justify-center min-h-screen p-4">
                 <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Edit Pengumuman</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">{{__('pengumuman.edit')}}</h3>
                         <form id="editForm" method="POST" enctype="multipart/form-data" class="space-y-4">
                             @csrf
                             @method('PUT')
                             
                             <div>
-                                <label class="block text-gray-700 mb-2 font-medium">Judul Pengumuman</label>
+                                <label class="block text-gray-700 mb-2 font-medium">{{__('pengumuman.announce')}}</label>
                                 <input type="text" name="judul" id="editJudul" required
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
 
                             <div>
-                                <label class="block text-gray-700 mb-2 font-medium">Deskripsi</label>
+                                <label class="block text-gray-700 mb-2 font-medium">{{__('pengumuman.desc')}}</label>
                                 <textarea name="isi" id="editIsi" rows="4" required
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
                             </div>
 
                             <div>
-                                <label class="block text-gray-700 mb-2 font-medium">File Baru (Opsional)</label>
+                                <label class="block text-gray-700 mb-2 font-medium">{{__('pengumuman.new')}}</label>
                                 <input type="file" name="file" accept="application/pdf,.doc,.docx,.jpg,.jpeg,.png"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                                <div class="text-sm text-gray-500 mt-1">Kosongkan jika tidak ingin mengubah file</div>
+                                <div class="text-sm text-gray-500 mt-1">{{__('pengumuman.kosong')}}</div>
                             </div>
 
                             <div class="flex gap-4 pt-4">
                                 <button type="submit"
                                     class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                    Simpan Perubahan
+                                    {{__('pengumuman.save')}}
                                 </button>
                                 <button type="button" onclick="closeEditModal()"
                                     class="flex-1 px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
-                                    Batal
+                                    {{__('pengumuman.cancel')}}
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <div>
-                    <label for="isi"
-                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.desc') }}</label>
-                    <textarea name="isi" id="isi" rows="4" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"></textarea>
-                </div>
-
-                <div>
-                    <label for="file"
-                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.select') }}</label>
-                    <input type="file" name="file" id="file" accept="application/pdf" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
-                </div>
-
-                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                    Import
-                </button>
             </form>
         </div>
     </section>

@@ -24,5 +24,6 @@ return [
     'pes'        => 'Participant List',
     'expno'      => 'Export Phone Numbers',
     'expes'      => 'Export Participants',
+    'excel'      => 'Download Excel',
 ];
 

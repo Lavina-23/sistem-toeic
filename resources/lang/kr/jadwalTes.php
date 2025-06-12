@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'title' => '📝 시험 일정 📝',
-    'sub_title' => '2025년 TOEIC 시험 일정',
-    'description' => '다음은 국제 커뮤니케이션 영어 능력 시험(TOEIC) 일정입니다.',
-    'notsupport' => '관리자가 아직 공지를 업로드하지 않았어요. 조금만 기다려 주세요!',
-    'notyet' => '현재 이용 가능한 공지사항이나 PDF 파일이 없습니다.',
+    'title' => '📝 공지사항 📝',
+    'sub_title' => '2025년 TOEIC 공지사항',
+    'description' => '아래는 국제 커뮤니케이션을 위한 영어 시험(TOEIC)에 대한 정보입니다.',
+    'notsupport' => '귀하의 브라우저는 PDF 미리보기를 지원하지 않습니다. 아래에서 다운로드해주세요.',
+    'notyet' => '아직 공지사항이나 PDF 파일이 없습니다.',
     'download' => '다운로드',
 
     'button_download' => 'TOEIC 일정 다운로드',

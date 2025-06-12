@@ -54,14 +54,14 @@ class PengumumanController extends Controller
                 'status' => $request->has('status') ? 0 : 1,
             ]);
             
-            $message = 'Pengumuman berhasil ditambahkan';
+            $message = __('pengumuman.success');
             if ($request->has('status')) {
                 $message .= ' dan langsung ditampilkan di laman peserta';
             }
             
             return redirect()->back()->with('success', $message . '.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menambahkan pengumuman: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('pengumuman.error') . $e->getMessage());
         }
     }
 
@@ -80,15 +80,15 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::find($id);
 
         if (!$pengumuman) {
-            return back()->with('error', 'Pengumuman tidak ditemukan');
+            return back()->with('error', __('pengumuman.stnf'));
         }
 
         $pengumuman->status = !$pengumuman->status;
 
         if ($pengumuman->save()) {
-            return back()->with('success', 'Status pengumuman berhasil diubah');
+            return back()->with('success', __('pengumuman.stg'));
         } else {
-            return back()->with('error', 'Gagal mengubah status pengumuman');
+            return back()->with('error', __('pengumuman.stng'));
         }
     }
 
@@ -113,7 +113,7 @@ class PengumumanController extends Controller
         $pengumuman->status = $request->has('status') ? 0 : 1;
         $pengumuman->save();
 
-        return redirect()->back()->with('success', 'Pengumuman berhasil diperbarui.');
+        return redirect()->back()->with('success',__('pengumuman.success'));
     }
 
     public function destroy($id)
@@ -126,7 +126,7 @@ class PengumumanController extends Controller
 
         $pengumuman->delete();
 
-        return redirect()->back()->with('success', 'Pengumuman berhasil dihapus.');
+        return redirect()->back()->with('success', __('pengumuman.std'));
     }
     
 }

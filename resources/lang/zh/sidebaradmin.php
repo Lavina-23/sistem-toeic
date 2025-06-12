@@ -6,5 +6,5 @@ return [
   'skor'        => '上传成绩 📊',
   'logout'      => '登出',
   'pengumuman'  => '公告 ‼️',
-  'ver'         => '请求验证',
+  'ver'         => '请求验证📑',
 ];

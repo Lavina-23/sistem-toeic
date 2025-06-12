@@ -6,5 +6,5 @@ return [
     'skor'        => 'Upload Nilai 📊',
     'logout'      => 'Keluar',
     'pengumuman'  => 'Pengumuman ‼️',
-    'ver'         => 'verifikasi request'
+    'ver'         => 'Verifikasi Request📑'
 ];

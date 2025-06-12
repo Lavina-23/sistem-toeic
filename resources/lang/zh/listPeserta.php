@@ -24,4 +24,5 @@ return [
     'pes'        => '学员名单',
     'expno'      => '导出电话号码',
     'expes'      => '导出学员',
+    'excel'      => '下载Excel',
 ];

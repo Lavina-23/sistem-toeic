@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'title' => '📝 Jadwal Tes 📝',
-    'sub_title' => 'Jadwal TOEIC Periode Tahun 2025',
-    'description' => 'Berikut adalah jadwal pelaksanaan Test of English for International Communication (TOEIC).',
-    'notsupport' => 'Sabar ya admin belom upload pengumuman apa apa..',
-    'notyet' => 'Belum ada pengumuman atau file PDF tersedia.',
+    'title' => '📝 Pengumuman 📝',
+    'sub_title' => 'Pengumuman TOEIC Tahun 2025',
+    'description' => 'Berikut adalah informasi mengenai Tes Bahasa Inggris untuk Komunikasi Internasional (TOEIC).',
+    'notsupport' => 'Browser Anda tidak mendukung pratinjau PDF, silakan unduh di bawah ini.',
+    'notyet' => 'Belum ada pengumuman atau file PDF yang tersedia.',
     'download' => 'Unduh',
 
     'button_download' => 'Unduh Jadwal TOEIC',
