@@ -1,9 +1,9 @@
 <?php
 return [
     'register_test' => 'テスト登録 🚀',
-    'dashboard'     => 'テストスケジュール',
-    'history'       => '履歴',
-    'request'       => '書類申請',
+    'dashboard'     => 'お知らせ‼️📣',
+    'history'       => '履歴📒',
+    'request'       => '書類申請📬',
     'logout'        => 'ログアウト',
     'edit'          => '編集',
     'export'        => 'データエクスポート',

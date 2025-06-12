@@ -5,7 +5,7 @@ return[
   'pengguna'    => 'User List 🔖',  
   'skor'        => 'Upload Score📊',
   'logout'      => 'Logout',
-  'pengumuman'  =>  'Announcement ‼️',
-  'ver' => 'Request Verification 📥',
+  'pengumuman'  => 'Announcement ‼️',
+  'ver'         => 'Request Verification📑',
 
 ];

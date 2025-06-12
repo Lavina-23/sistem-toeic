@@ -92,7 +92,7 @@
                             <span class="ml-3">{{ __('sidebar.history') }}</span>
                         </a>
                     <li>
-                        <a href="{{ route('request-document') }}"
+                        <a href="{{ route('peserta.requestDokumen') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                             <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -101,7 +101,7 @@
                                     d="M11 7V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm4.707 5.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">Request Dokumen</span>
+                            <span class="ml-3">{{__('sidebar.request')}}</span>
                         </a>
                     </li>
                     <li>
@@ -173,6 +173,26 @@
                                         <img src="{{ asset('images/china.jpg') }}" alt="Mandarin Flag"
                                             class="h-4 w-4 rounded-full mr-2" />
                                         Mandarin
+                                    </div>
+                                </a>
+                            </li>
+                                                        <li>
+                                <a href="{{ route('language.switch', 'kr') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <img src="{{ asset('images/korean.webp') }}" alt="Korea Flag"
+                                            class="h-4 w-4 rounded-full mr-2" />
+                                        Korea
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('language.switch', 'jp') }}"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="inline-flex items-center">
+                                        <img src="{{ asset('images/japan.png') }}" alt="Korea Flag"
+                                            class="h-4 w-4 rounded-full mr-2" />
+                                        Japan
                                     </div>
                                 </a>
                             </li>

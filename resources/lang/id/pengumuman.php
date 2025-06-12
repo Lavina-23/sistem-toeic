@@ -17,7 +17,7 @@ return [
     'add'       =>  'Form Tambahkan pengumuman',
     'import'    =>  'Import',
     'cancel'    =>  'batal',
-    'addbot'    => 'Tambah Pengumuman',
+    'addbot'    => 'Tambahkan pengumuman',
     'close'     => 'Tutup Form'
     
 ];

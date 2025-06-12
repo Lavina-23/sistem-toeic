@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'title' => '📝 Test Schedule 📝',
-    'sub_title' => 'TOEIC Schedule for the Year 2025',
-    'description' => 'The following is the schedule for the Test of English for International Communication (TOEIC).',
+    'title' => '📝 Announcements 📝',
+    'sub_title' => 'TOEIC Announcements for the Year 2025',
+    'description' => 'The following is the Information for the Test of English for International Communication (TOEIC).',
     'notsupport' => 'Your browser does not support PDF preview, please download below.',
     'notyet' => 'No announcements or PDF files available yet.',
     'download' => 'download',
 
-    'button_download' => 'Download TOEIC Schedule',
+    'button_download' => 'Download Announcements',
     'download_error' => 'PDF cannot be displayed. Please download the file using the button below.',
 
     'section_info_title' => 'Important Information',

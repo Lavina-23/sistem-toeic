@@ -24,4 +24,5 @@ return[
     'pes'        =>'Daftar Peserta',
     'expno'      =>'Export Nomor Telepon',
     'expes'      =>'Export Peserta',
+    'excel'      =>'Unduh Excel',
 ];
