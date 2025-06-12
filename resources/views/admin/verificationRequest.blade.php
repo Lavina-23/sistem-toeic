@@ -2,23 +2,27 @@
     <x-sidebaradmin />
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{__('verifReq.title')}}</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ __('verifReq.title') }}</h1>
 
         {{-- Verification Requests Table --}}
         @if ($verificationReqs->count() > 0)
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold text-gray-800">{{__('verifReq.list')}}</h2>
+                    <h2 class="text-xl font-bold text-gray-800">{{ __('verifReq.list') }}</h2>
 
                     {{-- Filter Form --}}
                     <form method="GET" action="{{ route('verificationReq') }}" class="flex items-center">
-                        <label for="filter" class="mr-3 text-sm font-medium text-gray-700">{{__('verifReq.filter')}}</label>
+                        <label for="filter"
+                            class="mr-3 text-sm font-medium text-gray-700">{{ __('verifReq.filter') }}</label>
                         <select name="filter" id="filter" onchange="this.form.submit()"
                             class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                            <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>{{__('verifReq.search1')}}</option>
-                            <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>{{__('verifReq.search2')}}
+                            <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>
+                                {{ __('verifReq.search1') }}</option>
+                            <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>
+                                {{ __('verifReq.search2') }}
                             </option>
-                            <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>{{__('verifReq.search3')}}
+                            <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>
+                                {{ __('verifReq.search3') }}
                             </option>
                         </select>
                     </form>
@@ -28,24 +32,23 @@
                     <table class="min-w-full table-auto border-collapse border border-gray-200">
                         <thead>
                             <tr class="bg-primary text-bone text-left">
-                                <th class="px-4 py-2 border">{{__('verifReq.no')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.name')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.ket')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.bukti')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.tgl')}}</th>
-                                <th class="px-4 py-2 border text-center">{{__('verifReq.Aksi')}}</th>
+                                <th class="px-4 py-2 border">{{ __('verifReq.no') }}</th>
+                                <th class="px-4 py-2 border">{{ __('verifReq.name') }}</th>
+                                <th class="px-4 py-2 border">{{ __('verifReq.ket') }}</th>
+                                <th class="px-4 py-2 border">{{ __('verifReq.bukti') }}</th>
+                                <th class="px-4 py-2 border">{{ __('verifReq.tgl') }}</th>
+                                <th class="px-4 py-2 border text-center">{{ __('verifReq.Aksi') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($verificationReqs as $index => $req)
-                                {{-- {{ dd($req) }} --}}
                                 <tr class="border-t hover:bg-gray-50 font-medium">
                                     <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
                                     <td class="px-4 py-2 border">
                                         @if ($req['nama'])
                                             <div class="font-semibold text-gray-900">{{ $req['nama'] }}</div>
                                         @else
-                                            <span class="text-red-500 font-medium">{{__('verifReq.notfound')}}</span>
+                                            <span class="text-red-500 font-medium">{{ __('verifReq.notfound') }}</span>
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 border max-w-xs">
@@ -63,39 +66,29 @@
                                                 onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
                                                 class="underline cursor-pointer inline-flex items-center font-medium text-primary focus:font-bold hover:font-bold"
                                                 title="Preview Bukti">
-                                                {{__('verifReq.show')}}
+                                                {{ __('verifReq.show') }}
                                             </a>
                                         @else
                                             <span
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                                {{__('verifReq.tidakada')}}
+                                                {{ __('verifReq.tidakada') }}
                                             </span>
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 border text-center">
                                         <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
                                     </td>
-
-                                    {{-- <button type="submit" onclick="viewDetails({{ $req['id'] }})"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                    title="Lihat Detail">
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M15 12h.01M9 12h.01M12 15h.01M12 9h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                </button> --}}
                                     <td class="px-4 py-2 border text-center">
                                         <div class="flex justify-center space-x-2">
                                             @if ($req['status'] === 'approved')
                                                 <span
                                                     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primaryLight text-primary">
-                                                    {{__('verifReq.dtrem')}}
+                                                    {{ __('verifReq.dtrem') }}
                                                 </span>
                                             @elseif ($req['status'] === 'rejected')
                                                 <span
                                                     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-redMain">
-                                                    {{__('verifReq.dtrej')}}
+                                                    {{ __('verifReq.dtrej') }}
                                                 </span>
                                             @else
                                                 <form action="{{ route('update-verification', ['id' => $req['id']]) }}"
@@ -168,21 +161,21 @@
                 </div>
             </div>
 
-                {{-- Footer Info --}}
-                <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
-                    <div>
-                        {{__('verifReq.menm')}} {{ $verificationReqs->count() }} {{__('verifReq.pes')}}
-                        @if ($filter !== 'all')
-                            ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
-                        @endif
-                    </div>
+            {{-- Footer Info --}}
+            <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    {{ __('verifReq.menm') }} {{ $verificationReqs->count() }} {{ __('verifReq.pes') }}
                     @if ($filter !== 'all')
-                        <a href="{{ route('admin.verification-reqs') }}"
-                            class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            {{__('verifReq.reset')}}
-                        </a>
+                        ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
                     @endif
                 </div>
+                @if ($filter !== 'all')
+                    <a href="{{ route('admin.verification-reqs') }}"
+                        class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        {{ __('verifReq.reset') }}
+                    </a>
+                @endif
+            </div>
             </div>
         @else
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
@@ -193,185 +186,233 @@
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">{{__('verifReq.notyet')}}</h3>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('verifReq.notyet') }}</h3>
                 <p class="text-gray-600">
                     @if ($filter === 'with_bukti')
-                        {{__('verifReq.wtb')}}
+                        {{ __('verifReq.wtb') }}
                     @elseif($filter === 'without_bukti')
-                        {{__('verifReq.wob')}}
+                        {{ __('verifReq.wob') }}
                     @else
-                        {{__('verifReq.notyet2')}}
+                        {{ __('verifReq.notyet2') }}
                     @endif
                 </p>
             </div>
         @endif
 
-                @if ($verificationReqs->count() > 0)
-                    <!-- Enhanced Table -->
-                    <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
-                        <table class="min-w-full table-fixed border-collapse bg-white">
-                            <thead>
-                                <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        No
-                                    </th>
-                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        Nama Peserta
-                                    </th>
-                                    <th class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        Keterangan
-                                    </th>
-                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        Bukti Pendukung
-                                    </th>
-                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        Tanggal
-                                    </th>
-                                    <th class="w-40 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Aksi
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-100">
-                                @foreach ($verificationReqs as $index => $req)
-                                    <tr class="hover:bg-blue-50 transition-colors duration-200 score-row">
-                                        <td class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
-                                            <div class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
-                                                {{ $index + 1 }}
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
-                                            <div class="flex items-center space-x-3">
-                                                <div>
-                                                    @if ($req['nama'])
-                                                        <div class="font-medium text-gray-900 truncate" title="{{ $req['nama'] }}">
-                                                            {{ $req['nama'] }}
-                                                        </div>
-                                                    @else
-                                                        <span class="text-red-500 font-medium">Peserta tidak ditemukan</span>
-                                                    @endif
+        @if ($verificationReqs->count() > 0)
+            <!-- Enhanced Table -->
+            <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
+                <table class="min-w-full table-fixed border-collapse bg-white">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
+                            <th
+                                class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                No
+                            </th>
+                            <th
+                                class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Nama Peserta
+                            </th>
+                            <th
+                                class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Keterangan
+                            </th>
+                            <th
+                                class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Bukti Pendukung
+                            </th>
+                            <th
+                                class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Score Terbaru
+                            </th>
+                            <th
+                                class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Score Sebelumnya
+                            </th>
+                            <th
+                                class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                Tanggal
+                            </th>
+                            <th
+                                class="w-40 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-100">
+                        @foreach ($verificationReqs as $index => $req)
+                            <tr class="hover:bg-blue-50 transition-colors duration-200 score-row">
+                                <td class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
+                                    <div
+                                        class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
+                                        {{ $index + 1 }}
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            @if ($req['nama'])
+                                                <div class="font-medium text-gray-900 truncate"
+                                                    title="{{ $req['nama'] }}">
+                                                    {{ $req['nama'] }}
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
-                                            <div class="max-w-xs">
-                                                @if ($req['keterangan'])
-                                                    <div class="truncate" title="{{ $req['keterangan'] }}">
-                                                        {{ $req['keterangan'] }}
-                                                    </div>
-                                                @else
-                                                    <span class="text-gray-400">-</span>
-                                                @endif
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
-                                            @if ($req['bukti_pendukung'])
-                                                <a type="button"
-                                                    onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
-                                                    class="underline cursor-pointer inline-flex items-center font-medium text-blue-600 hover:text-blue-800 focus:font-bold hover:font-bold transition-colors"
-                                                    title="Preview Bukti">
-                                                    Lihat Bukti
-                                                </a>
                                             @else
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                                    Tidak Ada
-                                                </span>
+                                                <span class="text-red-500 font-medium">Peserta tidak ditemukan</span>
                                             @endif
-                                        </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
-                                            <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
-                                        </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">
-                                            <div class="flex justify-center space-x-2">
-                                                @if ($req['status'] === 'approved')
-                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                        ✅ Diterima
-                                                    </span>
-                                                @elseif ($req['status'] === 'rejected')
-                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                        ❌ Ditolak
-                                                    </span>
-                                                @else
-                                                    <form action="{{ route('update-verification', ['id' => $req['id']]) }}" method="POST" id="form-{{ $req['id'] }}">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $req['id'] }}">
-
-                                                        <div id="reason-container-{{ $req['id'] }}" class="hidden mb-2">
-                                                            <select name="reason" class="text-xs border rounded px-2 py-1" id="reason-select-{{ $req['id'] }}">
-                                                                <option value="">Pilih alasan penolakan</option>
-                                                                <option value="Data tidak lengkap">Data tidak lengkap</option>
-                                                                <option value="Bukti tidak diterima">Bukti tidak diterima</option>
-                                                                <option value="Identitas tidak valid">Identitas tidak valid</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="flex space-x-1">
-                                                            <button type="submit" name="status" value="approved"
-                                                                onclick="return confirm('Yakin ingin memverifikasi data ini?');"
-                                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
-                                                                title="Setujui">
-                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                                </svg>
-                                                            </button>
-
-                                                            <button type="button" onclick="handleReject({{ $req['id'] }})"
-                                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
-                                                                title="Tolak">
-                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-
-                                                        <button type="submit" name="status" value="rejected" id="submit-reject-{{ $req['id'] }}" class="hidden"></button>
-                                                    </form>
-                                                @endif
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
+                                    <div class="max-w-xs">
+                                        @if ($req['keterangan'])
+                                            <div class="truncate" title="{{ $req['keterangan'] }}">
+                                                {{ $req['keterangan'] }}
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                        @else
+                                            <span class="text-gray-400">-</span>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                    @if ($req['bukti_pendukung'])
+                                        <a type="button"
+                                            onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
+                                            class="underline cursor-pointer inline-flex items-center font-medium text-blue-600 hover:text-blue-800 focus:font-bold hover:font-bold transition-colors"
+                                            title="Preview Bukti">
+                                            Lihat Bukti
+                                        </a>
+                                    @else
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            Tidak Ada
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                    @if ($req['score_total'])
+                                        <span>{{ $req['score_total'] }}</span>
+                                    @else
+                                        <span>
+                                            0
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                    @if ($req['last_score_total'])
+                                        <span>{{ $req['last_score_total'] }}</span>
+                                    @else
+                                        <span>
+                                            0
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100">
+                                    <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900">
+                                    <div class="flex justify-center space-x-2">
+                                        @if ($req['status'] === 'approved')
+                                            <span
+                                                class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                ✅ Diterima
+                                            </span>
+                                        @elseif ($req['status'] === 'rejected')
+                                            <span
+                                                class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                ❌ Ditolak
+                                            </span>
+                                        @else
+                                            <form action="{{ route('update-verification', ['id' => $req['id']]) }}"
+                                                method="POST" id="form-{{ $req['id'] }}">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $req['id'] }}">
 
-                    <!-- Enhanced Footer Info -->
-                    <div class="mt-6 flex justify-between items-center">
-                        <div class="text-sm text-gray-700">
-                            Menampilkan {{ $verificationReqs->count() }} request
-                            @if ($filter !== 'all')
-                                ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
-                            @endif
-                        </div>
-                    </div>
-                @else
-                    <!-- Empty State -->
-                    <div class="text-center py-16">
-                        <div class="flex flex-col items-center justify-center space-y-4">
-                            <div class="text-6xl text-gray-300 mb-4">📋</div>
-                            <h3 class="text-xl font-semibold text-gray-600 mb-2">
-                                Tidak ada verification request
-                            </h3>
-                            <p class="text-sm text-gray-500">
-                                @if ($filter === 'with_bukti')
-                                    Tidak ada request dengan bukti pendukung.
-                                @elseif($filter === 'without_bukti')
-                                    Tidak ada request tanpa bukti pendukung.
-                                @else
-                                    Belum ada verification request yang masuk.
-                                @endif
-                            </p>
-                        </div>
-                    </div>
-                @endif
+                                                <div id="reason-container-{{ $req['id'] }}" class="hidden mb-2">
+                                                    <select name="reason" class="text-xs border rounded px-2 py-1"
+                                                        id="reason-select-{{ $req['id'] }}">
+                                                        <option value="">Pilih alasan penolakan</option>
+                                                        <option value="Data tidak lengkap">Data tidak lengkap</option>
+                                                        <option value="Bukti tidak diterima">Bukti tidak diterima
+                                                        </option>
+                                                        <option value="Identitas tidak valid">Identitas tidak valid
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="flex space-x-1">
+                                                    <button type="submit" name="status" value="approved"
+                                                        onclick="return confirm('Yakin ingin memverifikasi data ini?');"
+                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                                                        title="Setujui">
+                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                        </svg>
+                                                    </button>
+
+                                                    <button type="button"
+                                                        onclick="handleReject({{ $req['id'] }})"
+                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+                                                        title="Tolak">
+                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+
+                                                <button type="submit" name="status" value="rejected"
+                                                    id="submit-reject-{{ $req['id'] }}" class="hidden"></button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+
+            <!-- Enhanced Footer Info -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="text-sm text-gray-700">
+                    Menampilkan {{ $verificationReqs->count() }} request
+                    @if ($filter !== 'all')
+                        ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
+                    @endif
+                </div>
+            </div>
+        @else
+            <!-- Empty State -->
+            <div class="text-center py-16">
+                <div class="flex flex-col items-center justify-center space-y-4">
+                    <div class="text-6xl text-gray-300 mb-4">📋</div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">
+                        Tidak ada verification request
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        @if ($filter === 'with_bukti')
+                            Tidak ada request dengan bukti pendukung.
+                        @elseif($filter === 'without_bukti')
+                            Tidak ada request tanpa bukti pendukung.
+                        @else
+                            Belum ada verification request yang masuk.
+                        @endif
+                    </p>
+                </div>
+            </div>
+        @endif
+        </div>
         </div>
 
         <!-- Modal for Bukti Preview -->
-        <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div id="detailModal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
             <div class="bg-white rounded-lg max-w-4xl max-h-screen overflow-y-auto m-4 w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">{{__('verifReq.detail')}}</h3>
+                    <h3 class="text-lg font-semibold text-gray-900">{{ __('verifReq.detail') }}</h3>
                     <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">
                         &times;
                     </button>
@@ -382,7 +423,7 @@
                 <div class="flex justify-end p-6 border-t border-gray-200">
                     <button onclick="closeDetailModal()"
                         class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        {{__('verifReq.close')}}
+                        {{ __('verifReq.close') }}
                     </button>
                 </div>
             </div>

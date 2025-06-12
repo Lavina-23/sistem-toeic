@@ -18,8 +18,6 @@ class VerificationReqController extends Controller
         $filter = $request->input('filter', 'all');
 
         $query = VerificationReq::with('pengguna');
-        // dd($query);
-        // exit;
 
         if ($filter === 'with_bukti') {
             $query->whereNotNull('bukti_pendukung');
@@ -29,12 +27,14 @@ class VerificationReqController extends Controller
 
         $verificationReqs = $query->get()->map(function ($req) {
             return [
-                'id' => $req->id ? $req->id : null,
-                'pengguna_id' => $req->pengguna ? $req->pengguna->pengguna_id : null,
-                'nama' => $req->pengguna ? $req->pengguna->nama : null,
+                'id' => $req->id,
+                'pengguna_id' => optional($req->pengguna)->pengguna_id,
+                'nama' => optional($req->pengguna)->nama,
                 'keterangan' => $req->keterangan,
                 'bukti_pendukung' => $req->bukti_pendukung,
                 'status' => $req->status,
+                'score_total' => $req->score_total,
+                'last_score_total' => $req->last_score_total,
                 'created_at' => $req->created_at->format('Y-m-d H:i'),
             ];
         });
@@ -68,19 +68,33 @@ class VerificationReqController extends Controller
         ]);
     }
 
-
     public function storeRequest(Request $request)
     {
-        $verifData = $request->validate([
+        $user = Auth::user();
+
+        $validated = $request->validate([
             'keterangan' => 'required|string|max:255',
+            'keterangan_khusus' => 'nullable|string|max:255',
             'bukti_pendukung' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
+        $finalKeterangan = $validated['keterangan'] === 'Khusus'
+            ? $request->input('keterangan_khusus')
+            : 'Nilai';
+
+        $verifData = [
+            'pengguna_id' => $user->pengguna_id,
+            'keterangan' => $finalKeterangan,
+        ];
+
         try {
-            $verifData['pengguna_id'] = Auth::user()->pengguna_id;
-            $verifData['keterangan'] = $request->keterangan;
             if ($request->hasFile('bukti_pendukung')) {
                 $verifData['bukti_pendukung'] = $request->file('bukti_pendukung')->store('bukti_pendukung', 'public');
+            } elseif ($finalKeterangan === 'Nilai') {
+                $verifData['score_total'] = $user->peserta->score->score_total ?? 0;
+                $verifData['last_score_total'] = $user->peserta->score->last_score_total ?? 0;
+            } else {
+                return redirect()->back()->with('error', 'Bukti pendukung harus diunggah untuk keterangan selain Nilai.');
             }
 
             VerificationReq::create($verifData);
@@ -90,6 +104,7 @@ class VerificationReqController extends Controller
             return redirect()->back()->with('error', 'Gagal mengirim permintaan verifikasi: ' . $e->getMessage());
         }
     }
+
 
     public function updateVerification(Request $request, $id)
     {
@@ -106,8 +121,6 @@ class VerificationReqController extends Controller
             'alasan' => $reason,
             'updated_at' => now(),
         ]);
-        // dd($request->all());
-        // exit;
 
         return redirect()->route('verificationReq')
             ->with('success', 'Status verifikasi diperbarui menjadi ' . $status);
