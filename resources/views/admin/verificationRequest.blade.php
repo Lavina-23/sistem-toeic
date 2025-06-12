@@ -2,209 +2,82 @@
     <x-sidebaradmin />
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{__('verifReq.title')}}</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">📋 Verification Requests</h1>
 
-        {{-- Verification Requests Table --}}
-        @if ($verificationReqs->count() > 0)
-            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold text-gray-800">{{__('verifReq.list')}}</h2>
-
-                    {{-- Filter Form --}}
-                    <form method="GET" action="{{ route('verificationReq') }}" class="flex items-center">
-                        <label for="filter" class="mr-3 text-sm font-medium text-gray-700">{{__('verifReq.filter')}}</label>
-                        <select name="filter" id="filter" onchange="this.form.submit()"
-                            class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                            <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>{{__('verifReq.search1')}}</option>
-                            <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>{{__('verifReq.search2')}}
-                            </option>
-                            <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>{{__('verifReq.search3')}}
-                            </option>
-                        </select>
-                    </form>
+        <!-- Enhanced Main Container -->
+        <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mb-6">
+            <!-- Header Section with Gradient -->
+            <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Permintaan Verifikasi</h2>
+                    <p class="text-sm text-gray-600 mt-1">Kelola dan review permintaan verifikasi dari peserta</p>
                 </div>
-
-                <div class="overflow-x-auto">
-                    <table class="min-w-full table-auto border-collapse border border-gray-200">
-                        <thead>
-                            <tr class="bg-primary text-bone text-left">
-                                <th class="px-4 py-2 border">{{__('verifReq.no')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.name')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.ket')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.bukti')}}</th>
-                                <th class="px-4 py-2 border">{{__('verifReq.tgl')}}</th>
-                                <th class="px-4 py-2 border text-center">{{__('verifReq.Aksi')}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($verificationReqs as $index => $req)
-                                {{-- {{ dd($req) }} --}}
-                                <tr class="border-t hover:bg-gray-50 font-medium">
-                                    <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
-                                    <td class="px-4 py-2 border">
-                                        @if ($req['nama'])
-                                            <div class="font-semibold text-gray-900">{{ $req['nama'] }}</div>
-                                        @else
-                                            <span class="text-red-500 font-medium">{{__('verifReq.notfound')}}</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-4 py-2 border max-w-xs">
-                                        @if ($req['keterangan'])
-                                            <div class="truncate" title="{{ $req['keterangan'] }}">
-                                                {{ $req['keterangan'] }}
-                                            </div>
-                                        @else
-                                            <span class="text-gray-400">-</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-4 py-2 border text-center">
-                                        @if ($req['bukti_pendukung'])
-                                            <a type="button"
-                                                onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
-                                                class="underline cursor-pointer inline-flex items-center font-medium text-primary focus:font-bold hover:font-bold"
-                                                title="Preview Bukti">
-                                                {{__('verifReq.show')}}
-                                            </a>
-                                        @else
-                                            <span
-                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                                {{__('verifReq.tidakada')}}
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td class="px-4 py-2 border text-center">
-                                        <div class="text-sm text-gray-900">{{ $req['created_at'] }}</div>
-                                    </td>
-
-                                    {{-- <button type="submit" onclick="viewDetails({{ $req['id'] }})"
-                                                    class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                    title="Lihat Detail">
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M15 12h.01M9 12h.01M12 15h.01M12 9h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                </button> --}}
-                                    <td class="px-4 py-2 border text-center">
-                                        <div class="flex justify-center space-x-2">
-                                            @if ($req['status'] === 'approved')
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primaryLight text-primary">
-                                                    {{__('verifReq.dtrem')}}
-                                                </span>
-                                            @elseif ($req['status'] === 'rejected')
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-redMain">
-                                                    {{__('verifReq.dtrej')}}
-                                                </span>
-                                            @else
-                                                <form action="{{ route('update-verification', ['id' => $req['id']]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $req['id'] }}">
-                                                    <button type="submit" name="status" value="approved"
-                                                        onclick="return confirm('Yakin ingin memverifikasi data ini?');"
-                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primaryLight"
-                                                        title="Setujui">
-                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                        </svg>
-                                                    </button>
-
-                                                    <button type="submit" name="status" value="rejected"
-                                                        onclick="return confirm('Yakin ingin menolak data ini?');"
-                                                        class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-redMain hover:bg-redAlert focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-redAlert"
-                                                        title="Tolak">
-                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                        </svg>
-                                                    </button>
-                                                </form>
-                                            @endif
-
-                                            {{-- <button type="button" onclick="approveRequest({{ $req['id'] }})"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                                title="Setujui">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                </svg>
-                                            </button>
-
-                                            <button type="button" onclick="rejectRequest({{ $req['id'] }})"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                                title="Tolak">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg>
-                                            </button> --}}
-
-                                            {{-- <button type="button"
-                                                onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
-                                                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                                title="Preview Bukti">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M15 10l4.553-2.276a1 1 0 011.447 1.156L18 12l3 6-4.553 2.276a1 1 0 01-1.447-1.156L15 14l-3-6 4.553-2.276z">
-                                                    </path>
-                                                </svg>
-                                            </button> --}}
-                                        </div>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="text-right">
+                    <div class="text-sm text-gray-600">Total Request</div>
+                    <div class="text-2xl font-bold text-blue-600">{{ $verificationReqs->count() }}</div>
                 </div>
             </div>
 
-                {{-- Footer Info --}}
-                <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
-                    <div>
-                        {{__('verifReq.menm')}} {{ $verificationReqs->count() }} {{__('verifReq.pes')}}
-                        @if ($filter !== 'all')
-                            ({{ $filter === 'with_bukti' ? 'dengan bukti' : 'tanpa bukti' }})
-                        @endif
+            <div class="p-6">
+                <!-- Search and Filter Section -->
+                <div class="mb-6 space-y-4">
+                    <div class="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+                        <!-- Search Input (if needed) -->
+                        <div class="w-full lg:w-[800px]">
+                            <div class="flex-[1]">
+                            <form action="{{ route('verificationReq') }}" method="GET" class="flex gap-2">
+                                <div class="relative flex-1">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <input type="text" name="search" value="{{ request('search') }}"
+                                        placeholder="🔍 {{ __('listPeserta.search') }}"
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                </div>
+                                <button type="submit"
+                                    class="px-6 py-3 bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </button>
+                                @if (request('search'))
+                                    <a href="{{ route('verificationReq') }}"
+                                        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                        Reset
+                                    </a>
+                                @endif
+                            </form>
+                        </div>
+                        </div>
+
+                        <!-- Filter Section -->
+                        <div class="flex gap-2">
+                            <!-- Filter Dropdown -->
+                            <form method="GET" action="{{ route('verificationReq') }}" class="flex items-center">
+                                <label for="filter" class="mr-3 text-sm font-medium text-gray-700">Filter:</label>
+                                <select name="filter" id="filter" onchange="this.form.submit()"
+                                    class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[180px]">
+                                    <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>Semua</option>
+                                    <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>Ada Bukti</option>
+                                    <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>Tanpa Bukti</option>
+                                </select>
+                            </form>
+
+                            @if ($filter !== 'all')
+                                <a href="{{ route('admin.verificationReq') }}"
+                                    class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                    Reset
+                                </a>
+                            @endif
+                        </div>
                     </div>
-                    @if ($filter !== 'all')
-                        <a href="{{ route('admin.verification-reqs') }}"
-                            class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            {{__('verifReq.reset')}}
-                        </a>
-                    @endif
                 </div>
-            </div>
-        @else
-            <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
-                <div class="text-gray-500 mb-4">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">{{__('verifReq.notyet')}}</h3>
-                <p class="text-gray-600">
-                    @if ($filter === 'with_bukti')
-                        {{__('verifReq.wtb')}}
-                    @elseif($filter === 'without_bukti')
-                        {{__('verifReq.wob')}}
-                    @else
-                        {{__('verifReq.notyet2')}}
-                    @endif
-                </p>
-            </div>
-        @endif
 
                 @if ($verificationReqs->count() > 0)
                     <!-- Enhanced Table -->
@@ -371,7 +244,7 @@
         <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
             <div class="bg-white rounded-lg max-w-4xl max-h-screen overflow-y-auto m-4 w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">{{__('verifReq.detail')}}</h3>
+                    <h3 class="text-lg font-semibold text-gray-900">Detail Verification Request</h3>
                     <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">
                         &times;
                     </button>
@@ -382,7 +255,7 @@
                 <div class="flex justify-end p-6 border-t border-gray-200">
                     <button onclick="closeDetailModal()"
                         class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        {{__('verifReq.close')}}
+                        Tutup
                     </button>
                 </div>
             </div>

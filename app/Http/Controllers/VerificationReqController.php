@@ -16,10 +16,9 @@ class VerificationReqController extends Controller
     public function index(Request $request)
     {
         $filter = $request->input('filter', 'all');
+        $search = $request->input('search'); // Ambil input search
 
         $query = VerificationReq::with('pengguna');
-        // dd($query);
-        // exit;
 
         if ($filter === 'with_bukti') {
             $query->whereNotNull('bukti_pendukung');
@@ -27,11 +26,18 @@ class VerificationReqController extends Controller
             $query->whereNull('bukti_pendukung');
         }
 
+        // ✅ Tambahkan filter pencarian nama pengguna
+        if ($search) {
+            $query->whereHas('pengguna', function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%');
+            });
+        }
+
         $verificationReqs = $query->get()->map(function ($req) {
             return [
-                'id' => $req->id ? $req->id : null,
-                'pengguna_id' => $req->pengguna ? $req->pengguna->pengguna_id : null,
-                'nama' => $req->pengguna ? $req->pengguna->nama : null,
+                'id' => $req->id ?? null,
+                'pengguna_id' => $req->pengguna->pengguna_id ?? null,
+                'nama' => $req->pengguna->nama ?? null,
                 'keterangan' => $req->keterangan,
                 'bukti_pendukung' => $req->bukti_pendukung,
                 'status' => $req->status,
@@ -42,9 +48,9 @@ class VerificationReqController extends Controller
         return view('admin.verificationRequest', [
             'verificationReqs' => $verificationReqs,
             'filter' => $filter,
+            'search' => $search, 
         ]);
     }
-
 
     public function requestDocument()
     {
@@ -54,6 +60,7 @@ class VerificationReqController extends Controller
         $requests = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->orderByDesc('created_at')
             ->get();
+
         $rejectionReason = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->where('status', 'rejected')
             ->latest()
@@ -68,7 +75,6 @@ class VerificationReqController extends Controller
         ]);
     }
 
-
     public function storeRequest(Request $request)
     {
         $verifData = $request->validate([
@@ -79,6 +85,7 @@ class VerificationReqController extends Controller
         try {
             $verifData['pengguna_id'] = Auth::user()->pengguna_id;
             $verifData['keterangan'] = $request->keterangan;
+
             if ($request->hasFile('bukti_pendukung')) {
                 $verifData['bukti_pendukung'] = $request->file('bukti_pendukung')->store('bukti_pendukung', 'public');
             }
@@ -97,7 +104,6 @@ class VerificationReqController extends Controller
             'status' => 'required|in:approved,rejected',
         ]);
 
-        $id = $request->input('id');
         $status = $request->input('status');
         $reason = $request->input('reason');
 
@@ -106,8 +112,6 @@ class VerificationReqController extends Controller
             'alasan' => $reason,
             'updated_at' => now(),
         ]);
-        // dd($request->all());
-        // exit;
 
         return redirect()->route('verificationReq')
             ->with('success', 'Status verifikasi diperbarui menjadi ' . $status);
