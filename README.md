@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Lavina-23/sistem-toeic">
-    <img src="public/images/logo-toeicin.png" alt="TOEICIN Logo" width="300">
+    <img src="public/images/dash-peserta.png" alt="TOEICIN Logo" width="300">
   </a>
 
   <h3 align="center">TOEICIN</h3>
@@ -16,26 +16,11 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">Deskripsi Projek</a>
-      <ul>
-        <li><a href="#built-with">Teknologi yang Digunakan</a></li>
-      </ul>
-    </li>
-    <li><a href="#logo-and-philosophy">Filosofi Logo</a></li>
-  </ol>
-</details>
-
 <!-- ABOUT THE PROJECT -->
 
 ## Deskripsi Projek
 
-![alt text](/storage/app/public/img/image.png)
-![alt text](/storage/app/public/img/dash-peserta.png)
+![alt text](public/images/dash-admin.png)
 TOEICIN adalah aplikasi web yang dirancang untuk membantu proses registrasi Ujian TOEIC yang diselenggarakan oleh UPA Bahasa Polinema yang bekerjasama dengan International Test Center (ITC), bersifat **WAJIB** terutama untuk mahasiswa Polinema sebagai prasyarat pengambilan ijazah (Sertifikat TOEIC berlaku selama 2 tahun). Ada dua jenis ujian TOEIC di Polinema:
 
 -   **Gratis**: Mahasiswa mendapatkan kesempatan 1x selama masa studi di Polinema (biasanya untuk mahasiswa semester akhir, termasuk yang mengikuti program khusus seperti student’s exchange, joint degree/double degree).
