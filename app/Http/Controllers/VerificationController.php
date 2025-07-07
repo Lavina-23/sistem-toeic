@@ -14,7 +14,7 @@ class VerificationController extends Controller
     public function index(Request $request)
     {
         $sortir = $request->input('sortir', 'semua');
-        $pesertas = Peserta::with('verificationPhotos')->get(['peserta_id', 'nama', 'no_telp']);
+        $pesertas = Peserta::with('verificationPhotos')->whereDoesntHave('score')->get(['peserta_id', 'nama', 'no_telp']);
         // dd($pesertas);
         // exit;
 

@@ -57,25 +57,33 @@ class VerificationReqController extends Controller
     public function requestDocument()
     {
         $user = Auth::user();
+
         $peserta = Peserta::where('pengguna_id', $user->pengguna_id)->first();
         $score = Score::where('no_induk', $peserta->no_induk ?? '')->first();
+
         $requests = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->orderByDesc('created_at')
             ->get();
 
-        $rejectionReason = VerificationReq::where('pengguna_id', $user->pengguna_id)
+        $latestRejected = VerificationReq::where('pengguna_id', $user->pengguna_id)
             ->where('status', 'rejected')
-            ->latest()
-            ->value('alasan');
+            ->orderByDesc('created_at')
+            ->first();
+
+        $rejectionReason = $latestRejected ? $latestRejected->alasan : null;
+
+        $latestStatus = $requests->first() ? $requests->first()->status : null;
 
         return view('peserta.requestDokumen', [
             'request' => $requests,
             'peserta' => $peserta,
             'score' => $score,
             'rejectionReason' => $rejectionReason,
+            'latestStatus' => $latestStatus,
             'userData' => $user,
         ]);
     }
+
 
     public function storeRequest(Request $request)
     {

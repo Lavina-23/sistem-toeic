@@ -37,7 +37,7 @@
                         <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                             <div class="flex flex-col items-center py-10">
                                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                    src="https://i.ibb.co/zTw3JG7Q/profile.jpg" alt="profile" border="0">
+                                    src="https://i.ibb.co.com/Df3sMdtT/amu.jpg" alt="amu" border="0">
                                 <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $userData['username'] }}</h5>
                                 <span class="text-sm text-gray-500">{{ $userData['email'] }}</span>
                                 {{-- <div class="flex mt-4 md:mt-6">

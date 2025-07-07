@@ -25,52 +25,43 @@
                     class="space-y-4">
                     @csrf
                     <div>
-                        <<<<<<< HEAD <label class="block text-gray-700 mb-2 font-medium">Pilih Alasan Permohonan Surat
+                        <label class="block text-gray-700 mb-2 font-medium">Pilih Alasan Permohonan Surat
                             Pernyataan</label>
 
-                            <div class="mb-2">
-                                <label class="inline-flex items-center">
-                                    <input type="radio" name="keterangan" value="Skor dibawah ketentuan"
-                                        class="form-radio text-primary focus:ring-primaryLight">
-                                    <span class="ml-2">Skor tes TOEIC di bawah ketentuan</span>
-                                </label>
-                            </div>
+                        <div class="mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="keterangan" value="Skor dibawah ketentuan"
+                                    class="form-radio text-primary focus:ring-primaryLight">
+                                <span class="ml-2">Skor tes TOEIC di bawah ketentuan</span>
+                            </label>
+                        </div>
 
-                            <div class="mb-2">
-                                <label class="inline-flex items-center">
-                                    <input type="radio" name="keterangan" value="Khusus" id="radio-khusus"
-                                        class="form-radio text-primary focus:ring-primaryLight"
-                                        onclick="toggleAlasanKhusus(true)">
-                                    <span class="ml-2">Alasan khusus (misalnya karena sakit atau kondisi
-                                        lainnya)</span>
-                                </label>
-                            </div>
+                        <div class="mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="keterangan" value="Khusus" id="radio-khusus"
+                                    class="form-radio text-primary focus:ring-primaryLight"
+                                    onclick="toggleAlasanKhusus(true)">
+                                <span class="ml-2">Alasan khusus (misalnya karena sakit atau kondisi lainnya)</span>
+                            </label>
+                        </div>
 
-                            <div id="input-alasan-khusus" class="mt-3 hidden">
-                                <label class="block text-gray-700 font-medium">Keterangan</label>
-                                <textarea name="keterangan_khusus" class="w-full px-4 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
-                                    placeholder="Tuliskan alasan Anda di sini..."></textarea>
-                            </div>
+                        <div id="input-alasan-khusus" class="mt-3 hidden">
+                            <label class="block text-gray-700 font-medium">Keterangan</label>
+                            <textarea name="keterangan_khusus" class="w-full px-4 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
+                                placeholder="Tuliskan alasan Anda di sini..."></textarea>
+                        </div>
                     </div>
                     <div id="input-bukti-pendukung" class="hidden">
                         <label class="block text-gray-700 mb-2 font-medium">File Bukti Pendukung</label>
-                        =======
-                        <label class="block text-gray-700 mb-2 font-medium">{{ __('reqdokum.keterangan') }}</label>
-                        <textarea name="keterangan" id="keterangan" rows="5" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
-                            placeholder="Masukkan keteranganmu..."></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2 font-medium">{{ __('reqdokum.file') }}</label>
-                        >>>>>>> 2499f5695a4a30f4734a162cbc063c5632161725
                         <input type="file" name="bukti_pendukung" accept=".png,.jpg,.jpeg,.pdf,.docx"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                     </div>
                     <button type="submit"
                         class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                        {{ __('reqdokum.send') }}
+                        Kirim
                     </button>
                 </form>
+
             </div>
             @foreach ($request as $r)
                 @if ($r->status == 'pending')
@@ -304,4 +295,5 @@
             });
         });
     </script>
+
 </x-layout>

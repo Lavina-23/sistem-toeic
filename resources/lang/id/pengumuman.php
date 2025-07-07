@@ -19,5 +19,5 @@ return [
     'cancel'    =>  'batal',
     'addbot'    => 'Tambah pengumuman',
     'close'     => 'Tutup Form'
-    
+
 ];
