@@ -15,6 +15,8 @@ class VerificationReq extends Model
         'pengguna_id',
         'keterangan',
         'bukti_pendukung',
+        'score_total',
+        'last_score_total',
         'alasan'
     ];
 

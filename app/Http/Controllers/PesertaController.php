@@ -139,11 +139,11 @@ class PesertaController extends Controller
         return Excel::download(new PesertaExport($pesertas), 'data_peserta.xlsx');
     }
 
-
     public function exportNoTelp()
     {
         $no_telp = Peserta::whereNotNull('no_telp')
             ->where('no_telp', '!=', '')
+            ->whereDoesntHave('score')
             ->pluck('no_telp')
             ->unique()
             ->map(function ($phone) {
@@ -164,6 +164,7 @@ class PesertaController extends Controller
 
         return Excel::download(new NoTelpExport($no_telp), 'data_no_telp.xlsx');
     }
+
     public function downloadPDF()
     {
         $pengumuman = Pengumuman::where('status', 0)->latest()->first();

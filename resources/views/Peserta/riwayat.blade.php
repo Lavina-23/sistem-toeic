@@ -5,11 +5,11 @@
             @if (!is_null($score))
                 <div class="w-full h-full">
                     <div class="border-2 rounded-xl shadow-md px-8 py-6 bg-white h-full">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-3">Hasil Tes Terbaru</h2>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">{{__('riwayat.hasil')}}</h2>
                         <div class="grid gap-4">
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Total Score</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.total')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->score_total }}/{{ 900 }}
                                     </h2>
@@ -26,7 +26,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Score Reading</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.skorR')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->score_r }}/{{ 900 }}
                                     </h2>
@@ -43,7 +43,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Score Listening</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.skorL')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->score_l }}/{{ 900 }}
                                     </h2>
@@ -59,11 +59,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="text-2xl font-bold text-gray-800 my-3">Hasil Tes Sebelumnya</h2>
+                        <h2 class="text-2xl font-bold text-gray-800 my-3">{{__('riwayat.tesS')}}</h2>
                         <div class="grid gap-4">
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Total Score</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.total')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->last_score_total }}/{{ 900 }}
                                     </h2>
@@ -80,7 +80,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Score Reading</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.skorR')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->last_score_r }}/{{ 900 }}
                                     </h2>
@@ -97,7 +97,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-1">
-                                    <h2 class="text-sm font-medium text-gray-800">Score Listening</h2>
+                                    <h2 class="text-sm font-medium text-gray-800">{{__('riwayat.skorR')}}</h2>
                                     <h2 class="text-sm font-medium text-gray-800">
                                         {{ $score->last_score_l }}/{{ 900 }}
                                     </h2>
@@ -114,16 +114,9 @@
                             </div>
                         </div>
                         <ul class="text-xs text-gray-500 mt-3">
-                            <li><span class="underline">Total Score:</span> Jumlah keseluruhan poin yang diperoleh dalam
-                                satu
-                                kali tes.</li>
-                            <li><span class="underline">Score Reading:</span> Skor yang mencerminkan kemampuan memahami
-                                teks tertulis dalam bahasa
-                                Inggris.</li>
-                            <li><span class="underline">Score Listening:</span> Skor yang mencerminkan kemampuan
-                                memahami percakapan lisan dalam
-                                bahasa
-                                Inggris</li>
+                            <li><span class="underline">{{__('riwayat.total')}}:</span> {{__('riwayat.skordes')}}</li>
+                            <li><span class="underline">{{__('riwayat.skorR')}}:</span> {{__('riwayat.skordesR')}}</li>
+                            <li><span class="underline">{{__('riwayat.skorL')}}:</span> {{__('riwayat.skordesL')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -133,10 +126,8 @@
                         <img class="w-auto max-w-[20rem] h-64" src="https://i.ibb.co/DgmHFbTQ/score-null1.jpg"
                             alt="score-null1" border="0">
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-800 mt-3">Hasil Tes</h2>
-                            <p class="text-gray-600 text-sm w-52 text-left">Hasil tes TOEIC kamu nanti akan
-                                ditampilkan
-                                disini.
+                            <h2 class="text-2xl font-bold text-gray-800 mt-3">{{__('riwayat.hasil')}}</h2>
+                            <p class="text-gray-600 text-sm w-52 text-left"> {{__('riwayat.hasildes')}}
                             </p>
                         </div>
                     </div>
@@ -145,29 +136,27 @@
             <div class="max-w-lg grid gap-6 w-full md:w-3/4 h-full">
                 <div class="max-w-full p-6 bg-white border-2 border-gray-200 rounded-lg shadow-lg">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Score
-                            Tertinggi
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{__('riwayat.skorT')}}
                         </h5>
                     </a>
                     <div class="flex flex-col md:flex-row gap-4 justify-between text-center">
                         <div>
                             <h1 class="text-2xl font-extrabold text-primary">{{ $score->highest_score ?? 0 }}</h1>
-                            <p>Total</p>
+                            <p>{{__('riwayat.total')}}</p>
                         </div>
                         <div>
                             <h1 class="text-2xl font-extrabold text-yellowAccent">{{ $score->highest_score_r ?? 0 }}</h1>
-                            <p>Reading</p>
+                            <p>{{__('riwayat.skorR')}}</p>
                         </div>
                         <div>
                             <h1 class="text-2xl font-extrabold text-redMain">{{ $score->highest_score_l ?? 0 }}</h1>
-                            <p>Listening</p>
+                            <p>{{__('riwayat.skorL')}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="w-full bg-white rounded-xl shadow-md border-2 p-4 md:p-6">
-                    <h1 class="text-gray-900 text-2xl leading-none font-bold mb-2">Perjalanan Skor TOEIC-ku</h1>
-                    <p class="text-gray-500 text-sm leading-none mb-6">Tetap semangat! Lihat sejauh mana
-                        kemajuan yang sudah kamu capai.</p>
+                    <h1 class="text-gray-900 text-2xl leading-none font-bold mb-2">{{__('riwayat.perjalanan')}}</h1>
+                    <p class="text-gray-500 text-sm leading-none mb-6">{{__('riwayat.semangat')}}</p>
                     <div id="line-chart"></div>
                 </div>
             </div>

@@ -14,4 +14,17 @@ return [
     'tidak_ada_data' => '어이쿠… 🤨 아직 테스트 등록 데이터가 없습니다.',
     'klik_untuk_daftar' => '아래 버튼을 눌러 등록하세요!',
     'ikut_tes' => '지금 테스트 응시하기',
+    'hasil' => '테스트 결과',
+    'total' => '총점',
+    'skorR' => '읽기 점수',
+    'skorL' => '듣기 점수',
+    'tesS' => '이전 테스트 결과',
+    'totalS' => '총점',
+    'skordes' => '읽기 및 듣기 섹션에서 획득한 총 점수',
+    'skordesR' => '읽기 섹션에서 획득한 총 점수',
+    'skordesL' => '듣기 섹션에서 획득한 총 점수',
+    'hasildes' => '당신의 TOEIC 테스트 결과는 여기에서 확인할 수 있습니다',
+    'skorT' => '최고 점수',
+    'perjalanan' => '당신의 TOEIC 여정',
+    'semangat' => '힘내세요! 당신이 얼마나 발전했는지 확인해 보세요.'
 ];

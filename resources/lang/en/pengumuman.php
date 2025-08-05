@@ -40,5 +40,10 @@ return [
     'std'       => 'Announcement deleted successfully',
     'brhsl'     => 'success',
     'stnf'      => 'Announcement not found',
+    'kelola'    => 'Manage and monitor announcements',
+    'cari'      => 'Search announcements...',
+    'hal'       => 'Per Page',
+    'total'     => 'Total Announcements',
+    'show'      => '👀 View',
 
 ];

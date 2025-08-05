@@ -37,7 +37,7 @@
                         <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                             <div class="flex flex-col items-center py-10">
                                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                    src="https://i.ibb.co/zTw3JG7Q/profile.jpg" alt="profile" border="0">
+                                    src="https://i.ibb.co.com/Df3sMdtT/amu.jpg" alt="amu" border="0">
                                 <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $userData['username'] }}</h5>
                                 <span class="text-sm text-gray-500">{{ $userData['email'] }}</span>
                                 {{-- <div class="flex mt-4 md:mt-6">
@@ -101,7 +101,7 @@
                                     d="M11 7V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm4.707 5.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="ml-3">{{__('sidebar.request')}}</span>
+                            <span class="ml-3">{{ __('sidebar.request') }}</span>
                         </a>
                     </li>
                     <li>
@@ -176,7 +176,7 @@
                                     </div>
                                 </a>
                             </li>
-                                                        <li>
+                            <li>
                                 <a href="{{ route('language.switch', 'kr') }}"
                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">
                                     <div class="inline-flex items-center">

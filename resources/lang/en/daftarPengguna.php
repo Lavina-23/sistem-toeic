@@ -14,4 +14,10 @@ return [
     'download'   => 'Download',
     'add'        => 'Add User',
     'total'      => 'Total',
+    'kelola'     => 'Manage and monitor registered user data',
+    'show'       => 'Showing',
+    'of'         => 'of',
+    'peserta'    => 'Participants',
+    'save'       => 'Save',
+    'batal'      => 'Cancel',
 ];
