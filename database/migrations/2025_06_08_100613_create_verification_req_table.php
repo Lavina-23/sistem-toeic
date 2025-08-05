@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('pengguna_id');
             $table->text('keterangan');
             $table->string('bukti_pendukung')->nullable();
+            $table->integer('score_total')->nullable();
+            $table->integer('last_score_total')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('alasan')->nullable();
             $table->foreign('pengguna_id')->references('pengguna_id')->on('pengguna')->onDelete('cascade');

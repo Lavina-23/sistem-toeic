@@ -2,7 +2,7 @@
     <x-sidebar :userData="$userData" />
     <section class="p-4 md:ml-64 h-auto mt-0">
         <div class="max-w-full p-6 -mt-4">
-            <h1 class="text-4xl font-bold text-primary mb-6 text-center">{{__('reqdokum.title')}}</h1>
+            <h1 class="text-4xl font-bold text-primary mb-6 text-center">{{ __('reqdokum.title') }}</h1>
             <div class="
             w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
                 @if (session('success'))
@@ -25,21 +25,43 @@
                     class="space-y-4">
                     @csrf
                     <div>
-                        <label class="block text-gray-700 mb-2 font-medium">{{__('reqdokum.keterangan')}}</label>
-                        <textarea name="keterangan" id="keterangan" rows="5" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
-                            placeholder="Masukkan keteranganmu..."></textarea>
+                        <label class="block text-gray-700 mb-2 font-medium">Pilih Alasan Permohonan Surat
+                            Pernyataan</label>
+
+                        <div class="mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="keterangan" value="Skor dibawah ketentuan"
+                                    class="form-radio text-primary focus:ring-primaryLight">
+                                <span class="ml-2">Skor tes TOEIC di bawah ketentuan</span>
+                            </label>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="keterangan" value="Khusus" id="radio-khusus"
+                                    class="form-radio text-primary focus:ring-primaryLight"
+                                    onclick="toggleAlasanKhusus(true)">
+                                <span class="ml-2">Alasan khusus (misalnya karena sakit atau kondisi lainnya)</span>
+                            </label>
+                        </div>
+
+                        <div id="input-alasan-khusus" class="mt-3 hidden">
+                            <label class="block text-gray-700 font-medium">Keterangan</label>
+                            <textarea name="keterangan_khusus" class="w-full px-4 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"
+                                placeholder="Tuliskan alasan Anda di sini..."></textarea>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2 font-medium">{{__('reqdokum.file')}}</label>
+                    <div id="input-bukti-pendukung" class="hidden">
+                        <label class="block text-gray-700 mb-2 font-medium">File Bukti Pendukung</label>
                         <input type="file" name="bukti_pendukung" accept=".png,.jpg,.jpeg,.pdf,.docx"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                     </div>
                     <button type="submit"
                         class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                        {{__('reqdokum.send')}}
+                        Kirim
                     </button>
                 </form>
+
             </div>
             @foreach ($request as $r)
                 @if ($r->status == 'pending')
@@ -48,8 +70,8 @@
                         <img class="h-[20rem]" src="https://i.ibb.co/tMnDNZmr/score-null.jpg" alt="hero-history"
                             border="0">
                         <div class="flex flex-col gap-2 items-start justify-center max-w-lg h-full">
-                            <h1 class="text-3xl font-semibold">{{__('reqdokum.wait')}}</h1>
-                            <p class="text-gray-500">{{__('reqdokum.urus')}}</p>
+                            <h1 class="text-3xl font-semibold">{{ __('reqdokum.wait') }}</h1>
+                            <p class="text-gray-500">{{ __('reqdokum.urus') }}</p>
                             <a href="https://itc-indonesia.com/?gad_campaignid=22363183331" target="_blank">
                             </a>
                         </div>
@@ -57,7 +79,7 @@
                 @elseif ($r->status == 'approved')
                     <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
                         <h2 class="text-lg md:text-xl font-semibold text-primary mb-4">
-                            {{__('reqdokum.preview')}}
+                            {{ __('reqdokum.preview') }}
                         </h2>
                         <!-- Preview Container -->
                         <div class="w-full flex flex-col items-center">
@@ -188,23 +210,24 @@
                                         </div>
                                     </div>
 
-                        <!-- Signature Section -->
-                            <div class="signature-section text-right mt-10">
-                                <div class="w-1/2 ml-auto text-center">
-                                    <div class="font-bold mb-6">Kepala UPA Bahasa,</div>
+                                    <!-- Signature Section -->
+                                    <div class="signature-section text-right mt-10">
+                                        <div class="w-1/2 ml-auto text-center">
+                                            <div class="font-bold mb-6">Kepala UPA Bahasa,</div>
 
-                        <!-- Gambar tanda tangan -->
-                            <div class="mb-4">
-                                <img src="{{ asset('images/ttd.png') }}" alt="Tanda Tangan" 
-                                    class="mx-auto h-48 opacity-90" 
-                                style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));">
-                            </div>
+                                            <!-- Gambar tanda tangan -->
+                                            <div class="mb-4">
+                                                <img src="{{ asset('images/ttd.png') }}" alt="Tanda Tangan"
+                                                    class="mx-auto h-48 opacity-90"
+                                                    style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));">
+                                            </div>
 
-                        <!-- Nama dan NIP -->
-                            <div class="font-bold underline text-lg">Atiqah Nurul Asri, S.Pd., M.Pd.</div>
-                                <div class="mt-1 text-xs text-gray-700">NIP. 197606252005012001</div>
-                            </div>
-                        </div>
+                                            <!-- Nama dan NIP -->
+                                            <div class="font-bold underline text-lg">Atiqah Nurul Asri, S.Pd., M.Pd.
+                                            </div>
+                                            <div class="mt-1 text-xs text-gray-700">NIP. 197606252005012001</div>
+                                        </div>
+                                    </div>
 
                                     <!-- Attachment -->
                                     <div class="attachment mt-8 text-xs">
@@ -214,35 +237,63 @@
                                 </div>
                             </div>
 
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                @elseif ($r->status == 'rejected')
-                    <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
-                        <div class="flex flex-col gap-4">
-                            <h2 class="text-lg md:text-xl font-semibold text-primary text-center">
-                                Status Dokumen Anda
-                            </h2>
-                            <div
-                                class="flex items-center justify-center p-4 bg-red-200 border border-redMain rounded-lg">
-                                <svg class="w-6 h-6 text-redMain mr-3" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                            <!-- Action Buttons -->
+                            {{-- <a href="{{ route('download.pdf') }}"
+                                class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
-                                    </path>
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                 </svg>
-                                @if (!empty($rejectionReason))
-                                    <span class="text-redMain font-medium">
-                                        Mohon maaf, permintaan dokumen kamu ditolak, karena
-                                        <strong>{{ $rejectionReason }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                                Download PDF
+                            </a> --}}
                         </div>
                     </div>
-                @endif
+        </div>
+        </div>
+    @elseif ($r->status == 'rejected')
+        <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex flex-col gap-4">
+                <h2 class="text-lg md:text-xl font-semibold text-primary text-center">
+                    Status Dokumen Anda
+                </h2>
+                <div class="flex items-center justify-center p-4 bg-red-200 border border-redMain rounded-lg">
+                    <svg class="w-6 h-6 text-redMain mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
+                        </path>
+                    </svg>
+                    @if (!empty($rejectionReason))
+                        <span class="text-redMain font-medium">
+                            Mohon maaf, permintaan dokumen kamu ditolak, karena
+                            <strong>{{ $rejectionReason }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+        @endif
         </div>
         @endforeach
     </section>
+    <script>
+        const radios = document.querySelectorAll('input[name="keterangan"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const khususDiv = document.getElementById('input-alasan-khusus');
+                if (this.value === 'Khusus') {
+                    khususDiv.classList.remove('hidden');
+                } else {
+                    khususDiv.classList.add('hidden');
+                }
+
+                const buktiPendukungDiv = document.getElementById('input-bukti-pendukung');
+                if (this.value === 'Khusus') {
+                    buktiPendukungDiv.classList.remove('hidden');
+                } else {
+                    buktiPendukungDiv.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
 </x-layout>

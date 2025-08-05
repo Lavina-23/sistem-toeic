@@ -7,7 +7,8 @@
         <!-- Enhanced Main Container -->
         <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mb-6">
             <!-- Header Section with Gradient -->
-            <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+            <div
+                class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">📨 Daftar Permintaan Verifikasi</h2>
                     <p class="text-sm text-gray-600 mt-1">Kelola dan review permintaan verifikasi dari peserta</p>
@@ -25,35 +26,36 @@
                         <!-- Search Input (if needed) -->
                         <div class="w-full lg:w-[800px]">
                             <div class="flex-[1]">
-                            <form action="{{ route('verificationReq') }}" method="GET" class="flex gap-2">
-                                <div class="relative flex-1">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                        </svg>
+                                <form action="{{ route('verificationReq') }}" method="GET" class="flex gap-2">
+                                    <div class="relative flex-1">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <input type="text" name="search" value="{{ request('search') }}"
+                                            placeholder="🔍 {{ __('listPeserta.search') }}"
+                                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                     </div>
-                                    <input type="text" name="search" value="{{ request('search') }}"
-                                        placeholder="🔍 {{ __('listPeserta.search') }}"
-                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                </div>
-                                <button type="submit"
-                                    class="px-6 py-3 bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </button>
-                                @if (request('search'))
-                                    <a href="{{ route('verificationReq') }}"
-                                        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
-                                        Reset
-                                    </a>
-                                @endif
-                            </form>
-                        </div>
+                                    <button type="submit"
+                                        class="px-6 py-3 bg-[#00247D] text-white rounded-lg hover:bg-[#001b60] focus:ring-4 focus:ring-blue-200 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </button>
+                                    @if (request('search'))
+                                        <a href="{{ route('verificationReq') }}"
+                                            class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
+                                            Reset
+                                        </a>
+                                    @endif
+                                </form>
+                            </div>
                         </div>
 
                         <!-- Filter Section -->
@@ -64,8 +66,10 @@
                                 <select name="filter" id="filter" onchange="this.form.submit()"
                                     class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[180px]">
                                     <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>Semua</option>
-                                    <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>Ada Bukti</option>
-                                    <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>Tanpa Bukti</option>
+                                    <option value="with_bukti" {{ $filter === 'with_bukti' ? 'selected' : '' }}>Ada
+                                        Bukti</option>
+                                    <option value="without_bukti" {{ $filter === 'without_bukti' ? 'selected' : '' }}>
+                                        Tanpa Bukti</option>
                                 </select>
                             </form>
 
@@ -85,22 +89,36 @@
                         <table class="min-w-full table-fixed border-collapse bg-white">
                             <thead>
                                 <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                    <th
+                                        class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                         No
                                     </th>
-                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                    <th
+                                        class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                         Nama Peserta
                                     </th>
-                                    <th class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                    <th
+                                        class="w-64 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                         Keterangan
                                     </th>
-                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                    <th
+                                        class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                         Bukti Pendukung
                                     </th>
-                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                    <th
+                                        class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Score Terbaru
+                                    </th>
+                                    <th
+                                        class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        Score Sebelumnya
+                                    </th>
+                                    <th
+                                        class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                         Tanggal
                                     </th>
-                                    <th class="w-40 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th
+                                        class="w-40 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                         Aksi
                                     </th>
                                 </tr>
@@ -108,20 +126,25 @@
                             <tbody class="bg-white divide-y divide-gray-100">
                                 @foreach ($verificationReqs as $index => $req)
                                     <tr class="hover:bg-blue-50 transition-colors duration-200 score-row">
-                                        <td class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
-                                            <div class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
+                                        <td
+                                            class="px-3 py-4 text-sm font-medium text-gray-900 border-r border-gray-100">
+                                            <div
+                                                class="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full text-xs font-bold">
                                                 {{ $index + 1 }}
                                             </div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
+                                        <td
+                                            class="px-4 py-4 text-sm font-semibold text-gray-900 border-r border-gray-100">
                                             <div class="flex items-center space-x-3">
                                                 <div>
                                                     @if ($req['nama'])
-                                                        <div class="font-medium text-gray-900 truncate" title="{{ $req['nama'] }}">
+                                                        <div class="font-medium text-gray-900 truncate"
+                                                            title="{{ $req['nama'] }}">
                                                             {{ $req['nama'] }}
                                                         </div>
                                                     @else
-                                                        <span class="text-red-500 font-medium">Peserta tidak ditemukan</span>
+                                                        <span class="text-red-500 font-medium">Peserta tidak
+                                                            ditemukan</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -137,7 +160,8 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                        <td
+                                            class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
                                             @if ($req['bukti_pendukung'])
                                                 <a type="button"
                                                     onclick="previewBukti({{ $req['id'] }}, '{{ $req['bukti_pendukung'] ?? '' }}')"
@@ -146,8 +170,29 @@
                                                     Lihat Bukti
                                                 </a>
                                             @else
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                                                     Tidak Ada
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td
+                                            class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                            @if ($req['score_total'])
+                                                <span>{{ $req['score_total'] }}</span>
+                                            @else
+                                                <span>
+                                                    0
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td
+                                            class="px-4 py-4 text-sm text-gray-900 border-r border-gray-100 text-center">
+                                            @if ($req['last_score_total'])
+                                                <span>{{ $req['last_score_total'] }}</span>
+                                            @else
+                                                <span>
+                                                    0
                                                 </span>
                                             @endif
                                         </td>
@@ -157,24 +202,37 @@
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <div class="flex justify-center space-x-2">
                                                 @if ($req['status'] === 'approved')
-                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    <span
+                                                        class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                         ✅ Diterima
                                                     </span>
                                                 @elseif ($req['status'] === 'rejected')
-                                                    <span class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    <span
+                                                        class="inline-flex items-center justify-center min-w-[80px] text-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                         ❌ Ditolak
                                                     </span>
                                                 @else
-                                                    <form action="{{ route('update-verification', ['id' => $req['id']]) }}" method="POST" id="form-{{ $req['id'] }}">
+                                                    <form
+                                                        action="{{ route('update-verification', ['id' => $req['id']]) }}"
+                                                        method="POST" id="form-{{ $req['id'] }}">
                                                         @csrf
-                                                        <input type="hidden" name="id" value="{{ $req['id'] }}">
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $req['id'] }}">
 
-                                                        <div id="reason-container-{{ $req['id'] }}" class="hidden mb-2">
-                                                            <select name="reason" class="text-xs border rounded px-2 py-1" id="reason-select-{{ $req['id'] }}">
+                                                        <div id="reason-container-{{ $req['id'] }}"
+                                                            class="hidden mb-2">
+                                                            <select name="reason"
+                                                                class="text-xs border rounded px-2 py-1"
+                                                                id="reason-select-{{ $req['id'] }}">
                                                                 <option value="">Pilih alasan penolakan</option>
-                                                                <option value="Data tidak lengkap">Data tidak lengkap</option>
-                                                                <option value="Bukti tidak diterima">Bukti tidak diterima</option>
-                                                                <option value="Identitas tidak valid">Identitas tidak valid</option>
+                                                                <option value="Data tidak lengkap">Data tidak lengkap
+                                                                </option>
+                                                                <option value="Bukti tidak diterima">Bukti tidak
+                                                                    diterima
+                                                                </option>
+                                                                <option value="Identitas tidak valid">Identitas tidak
+                                                                    valid
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -183,21 +241,30 @@
                                                                 onclick="return confirm('Yakin ingin memverifikasi data ini?');"
                                                                 class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
                                                                 title="Setujui">
-                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                                <svg class="w-3 h-3" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M5 13l4 4L19 7"></path>
                                                                 </svg>
                                                             </button>
 
-                                                            <button type="button" onclick="handleReject({{ $req['id'] }})"
+                                                            <button type="button"
+                                                                onclick="handleReject({{ $req['id'] }})"
                                                                 class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
                                                                 title="Tolak">
-                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                                <svg class="w-3 h-3" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M6 18L18 6M6 6l12 12"></path>
                                                                 </svg>
                                                             </button>
                                                         </div>
 
-                                                        <button type="submit" name="status" value="rejected" id="submit-reject-{{ $req['id'] }}" class="hidden"></button>
+                                                        <button type="submit" name="status" value="rejected"
+                                                            id="submit-reject-{{ $req['id'] }}"
+                                                            class="hidden"></button>
                                                     </form>
                                                 @endif
                                             </div>
@@ -241,10 +308,11 @@
         </div>
 
         <!-- Modal for Bukti Preview -->
-        <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div id="detailModal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
             <div class="bg-white rounded-lg max-w-4xl max-h-screen overflow-y-auto m-4 w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Detail Verification Request</h3>
+                    <h3 class="text-lg font-semibold text-gray-900">{{ __('verifReq.detail') }}</h3>
                     <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">
                         &times;
                     </button>
@@ -255,7 +323,7 @@
                 <div class="flex justify-end p-6 border-t border-gray-200">
                     <button onclick="closeDetailModal()"
                         class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Tutup
+                        {{ __('verifReq.close') }}
                     </button>
                 </div>
             </div>
