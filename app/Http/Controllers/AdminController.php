@@ -98,6 +98,7 @@ public function index(Request $request)
     public function storePengguna(Request $request)
     {
         $request->validate([
+            'no_induk' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:pengguna,email',
             'level' => 'required|in:admin,peserta,ITC',
@@ -105,6 +106,7 @@ public function index(Request $request)
         ]);
 
         Pengguna::create([
+            'no_induk' => $request->no_induk,
             'nama' => $request->nama,
             'email' => $request->email,
             'level' => $request->level,

@@ -230,6 +230,11 @@
         <form action="{{ route('admin.pengguna.tambah') }}" method="POST" class="p-6 space-y-4">
             @csrf
             <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">NIM/NIDN/NIP</label>
+                <input type="text" name="no_induk" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            </div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
                 <input type="text" name="nama" required 
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">

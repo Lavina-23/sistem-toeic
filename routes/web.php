@@ -70,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [PesertaController::class, 'storePeserta'])->name('peserta.store');
         Route::get('/request-document', [VerificationReqController::class, 'requestDocument'])->name('request-document');
         Route::post('/store/request-document', [VerificationReqController::class, 'storeRequest'])->name('store.request-document');
+        Route::get('/download-pengumuman-pdf', [PesertaController::class, 'downloadPDF'])->name('download.pengumuman.pdf');
         Route::get('/score-datas', [ScoreController::class, 'getScoreData'])->name('peserta.score-datas');
         Route::get('/peserta/dashboard', [PengumumanController::class, 'showPengumuman'])->name('peserta.dashboard');
     });
