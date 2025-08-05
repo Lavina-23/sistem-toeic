@@ -1,18 +1,20 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Models\VerificationReq;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ITCController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\VerificationReqController;
-use App\Http\Controllers\ITCController;
-use App\Models\VerificationReq;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,24 @@ use App\Models\VerificationReq;
 Route::get('/', function () {
     return view('auth.login');
 })->middleware(['guest']);
+
+// Email Verification Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// end of Email Verification Routes
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
