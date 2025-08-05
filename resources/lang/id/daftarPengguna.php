@@ -14,4 +14,5 @@ return[
     'download'   =>'Unduh',
     'add'        =>'Tambah Pengguna',
     'total'      =>'Total',
+    'kelola'     => 'Kelola dan pantau data pengguna yang terdaftar'
 ];

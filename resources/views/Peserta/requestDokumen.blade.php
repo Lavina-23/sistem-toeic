@@ -238,9 +238,28 @@
                             </div>
 
                             <!-- Action Buttons -->
-                            {{-- <a href="{{ route('download.pdf') }}"
+                            <a href="{{ route('download.pengumuman.pdf') }}" 
                                 class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-yellowAccent hover:bg-yellow-500 rounded-lg focus:ring-4 focus:ring-yellow-300 transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                                Download PDF
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif ($r->status == 'rejected')
+                    <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
+                        <div class="flex flex-col gap-4">
+                            <h2 class="text-lg md:text-xl font-semibold text-primary text-center">
+                                Status Dokumen Anda
+                            </h2>
+                            <div
+                                class="flex items-center justify-center p-4 bg-red-200 border border-redMain rounded-lg">
+                                <svg class="w-6 h-6 text-redMain mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                 </svg>

@@ -18,6 +18,16 @@ return [
     'import'    =>  'Import',
     'cancel'    =>  'batal',
     'addbot'    => 'Tambah pengumuman',
-    'close'     => 'Tutup Form'
-
+    'close'     => 'Tutup Form',
+    'kelola'    => 'kelola dan pantau pengumuman',
+    'cari'      => 'Cari pengumuman...',
+    'hal'       => 'Perhalaman',
+    'total'     => 'Total Pengumuman',
+    'show'      => '👀 Lihat',
+    'nofile'    => 'Tidak ada file',
+    'notfound'  => 'Pengumuman tidak ditemukan',
+    'edit'      => 'Edit',
+    'delete'    => 'Hapus',
+    
+    
 ];
