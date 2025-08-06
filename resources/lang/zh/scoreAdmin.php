@@ -10,7 +10,10 @@ return [
     'imp'         => '请导入 Excel 文件以添加参与者成绩数据。',
     'format'      => '支持的文件格式：.xlsx, .xls',
     'records'     => '总记录数',
-
+    'search'      => '按姓名或身份证号搜索...',
+    'kategori'    => ' 所有类别',
+    'grup'       => ' 所有小组',
+    'no'          => '编号',
     'Result'      => '结果编号',
     'name'        => '参与者姓名',
     'niduk'       => '身份证号',

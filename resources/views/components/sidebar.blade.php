@@ -223,77 +223,77 @@
         });
     });
 
-    // Fungsi konfirmasi logout custom
-    function confirmLogout(event) {
-        event.preventDefault(); // cegah submit default dulu
+        const logoutText = {
+        message: @json(__('sidebar.logout_confirm')),
+        yes: @json(__('sidebar.yes')),
+        no: @json(__('sidebar.no')),
+    };
 
-        // Buat elemen overlay konfirmasi
-        const confirmation = document.createElement('div');
-        confirmation.style.position = 'fixed';
-        confirmation.style.top = '0';
-        confirmation.style.left = '0';
-        confirmation.style.width = '100vw';
-        confirmation.style.height = '100vh';
-        confirmation.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        confirmation.style.display = 'flex';
-        confirmation.style.justifyContent = 'center';
-        confirmation.style.alignItems = 'center';
-        confirmation.style.zIndex = '9999';
+            // Fungsi konfirmasi logout custom
+        function confirmLogout(event) {
+            event.preventDefault();
 
-        confirmation.innerHTML = `
-        <div class="fade-in" style="
-            background: white;
-            padding: 24px 30px;
-            border-radius: 12px;
-            max-width: 320px;
-            width: 90%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-align: center;
-            font-family: Arial, sans-serif;
-        ">
-            <p style="
-                margin-bottom: 24px;
-                font-weight: 600;
-                font-size: 18px;
-                color: #111;
-            ">
-            Apakah kamu yakin ingin logout?
-            </p>
-            <button id="confirm-yes" style="
-                margin-right: 12px;
-                padding: 10px 24px;
-                background-color: #22c55e;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                font-weight: 600;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            "
-            onmouseover="this.style.backgroundColor='#16a34a';"
-            onmouseout="this.style.backgroundColor='#22c55e';"
-            >
-            Ya
-            </button>
-            <button id="confirm-no" style="
-                padding: 10px 24px;
-                background-color: #ef4444;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                font-weight: 600;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            "
-            onmouseover="this.style.backgroundColor='#b91c1c';"
-            onmouseout="this.style.backgroundColor='#ef4444';"
-            >
-            Tidak
-            </button>
-        </div>
-        `;
+            const confirmation = document.createElement('div');
+            confirmation.style.position = 'fixed';
+            confirmation.style.top = '0';
+            confirmation.style.left = '0';
+            confirmation.style.width = '100vw';
+            confirmation.style.height = '100vh';
+            confirmation.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            confirmation.style.display = 'flex';
+            confirmation.style.justifyContent = 'center';
+            confirmation.style.alignItems = 'center';
+            confirmation.style.zIndex = '9999';
+
+            confirmation.innerHTML = `
+                <div class="fade-in" style="
+                    background: white;
+                    padding: 24px 30px;
+                    border-radius: 12px;
+                    max-width: 320px;
+                    width: 90%;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    text-align: center;
+                    font-family: Arial, sans-serif;
+                ">
+                    <p style="
+                        margin-bottom: 24px;
+                        font-weight: 600;
+                        font-size: 18px;
+                        color: #111;
+                    ">
+                        ${logoutText.message}
+                    </p>
+                    <button id="confirm-yes" style="
+                        margin-right: 12px;
+                        padding: 10px 24px;
+                        background-color: #22c55e;
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.2s ease;
+                    ">
+                        ${logoutText.yes}
+                    </button>
+                    <button id="confirm-no" style="
+                        padding: 10px 24px;
+                        background-color: #ef4444;
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.2s ease;
+                    ">
+                        ${logoutText.no}
+                    </button>
+                </div>
+            `;
+
 
 
         document.body.appendChild(confirmation);

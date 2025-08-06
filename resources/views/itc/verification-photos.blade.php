@@ -2,7 +2,7 @@
     <x-sidebaritc />
 
     <section class="p-4 md:ml-52 h-auto mt-10 md:mt-0 bg-gray-50 min-h-screen">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">💬 Kirim Pesan pada Peserta</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">{{__('verifFoto.title')}}</h1>
         <x-form-message />
 
         {{-- Verification Photos Table --}}
@@ -11,11 +11,11 @@
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mb-6">
                 <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800">📷 Verifikasi Foto Ruangan Tes Peserta</h2>
-                        <p class="text-sm text-gray-600 mt-1">Kelola dan verifikasi foto ruangan tes dari peserta</p>
+                        <h2 class="text-2xl font-bold text-gray-800">{{__('verifFoto.verif')}}</h2>
+                        <p class="text-sm text-gray-600 mt-1">{{__('verifFoto.kelola')}}</p>
                     </div>
                     <div class="text-right">
-                        <div class="text-sm text-gray-600">Total Peserta</div>
+                        <div class="text-sm text-gray-600">{{__('verifFoto.total')}}</div>
                         <div class="text-2xl font-bold text-blue-600">{{ count($peserta) }}</div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                         </svg>
                                     </div>
-                                    <input type="text" id="searchInput" placeholder="🔍 Cari berdasarkan nama atau no telepon..."
+                                    <input type="text" id="searchInput" placeholder="🔍 {{__('verifFoto.search')}}"
                                         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                 </div>
                             </div>
@@ -42,17 +42,17 @@
                                 <form method="GET" action="{{ route('verification') }}" class="flex gap-3">
                                     <select name="sortir" id="sortir" onchange="this.form.submit()"
                                         class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
-                                        <option value="semua" {{ $sortir == 'semua' ? 'selected' : '' }}>📋 Semua Status</option>
-                                        <option value="belum_lengkap" {{ $sortir == 'belum_lengkap' ? 'selected' : '' }}>⚠️ Belum Lengkap</option>
-                                        <option value="belum_kirim" {{ $sortir == 'belum_kirim' ? 'selected' : '' }}>❌ Belum Kirim</option>
+                                        <option value="semua" {{ $sortir == 'semua' ? 'selected' : '' }}>📋 {{__('verifFoto.all')}}</option>
+                                        <option value="belum_lengkap" {{ $sortir == 'belum_lengkap' ? 'selected' : '' }}>⚠️ {{__('verifFoto.lengkap')}}</option>
+                                        <option value="belum_kirim" {{ $sortir == 'belum_kirim' ? 'selected' : '' }}>❌ {{__('verifFoto.belum')}}</option>
                                     </select>
                                 </form>
                                 <select id="statusFilter"
                                     class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white min-w-[220px]">
-                                    <option value="">🏷️ Status Verifikasi</option>
-                                    <option value="complete">✅ Lengkap</option>
-                                    <option value="incomplete">⚠️ Tidak Lengkap</option>
-                                    <option value="empty">❌ Belum Ada</option>
+                                    <option value="">🏷️ {{__('verifFoto.status')}}</option>
+                                    <option value="complete">✅ {{__('verifFoto.lengkap')}}</option>
+                                    <option value="incomplete">⚠️ {{__('verifFoto.tdklngkap')}}</option>
+                                    <option value="empty">❌ {{__('verifFoto.blmlngkap')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -62,15 +62,24 @@
                         <table class="min-w-full table-fixed border-collapse bg-white">
                             <thead>
                                 <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">No</th>
-                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Nama Peserta</th>
-                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">No Telepon</th>
-                                    <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Status</th>
-                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Foto Depan</th>
-                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Foto Belakang</th>
-                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Foto Kiri</th>
-                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">Foto Kanan</th>
-                                    <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Progress</th>
+                                    <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.no') }}</th>
+                                    <th class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.nama') }}</th>
+                                    <th class="w-32 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.no_telp') }}</th>
+                                    <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.status') }}</th>
+                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.foto_depan') }} </th>
+                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.foto_belakang') }}</th>
+                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.foto_kiri') }}</th>
+                                    <th class="w-24 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
+                                        {{ __('verifFoto.foto_kanan') }}</th>
+                                    <th class="w-28 px-4 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        {{ __('verifFoto.progress') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="verificationTableBody" class="bg-white divide-y divide-gray-100">
@@ -84,12 +93,12 @@
                                         $progressPercentage = ($photoCount / 4) * 100;
                                         
                                         $statusClass = 'bg-red-100 text-red-800';
-                                        $statusText = 'Belum Ada';
+                                        $statusText = __('verifFoto.blmlngkap');
                                         $statusIcon = '❌';
                                         
                                         if($photoCount == 4) {
                                             $statusClass = 'bg-green-100 text-green-800';
-                                            $statusText = 'Lengkap';
+                                            $statusText = __('verifFoto.lengkap');
                                             $statusIcon = '✅';
                                         } elseif($photoCount > 0) {
                                             $statusClass = 'bg-yellow-100 text-yellow-800';
@@ -144,7 +153,7 @@
                                                     <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto border-2 border-dashed border-gray-300">
                                                         <span class="text-gray-400 text-2xl">{{ $icon }}</span>
                                                     </div>
-                                                    <div class="text-xs text-gray-400 mt-1">Belum ada</div>
+                                                    <div class="text-xs text-gray-400 mt-1">{{__('verifFoto.blmada')}}</div>
                                                 @endif
                                             </td>
                                         @endforeach
@@ -193,7 +202,7 @@
                                     </div>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-500">Total Peserta</p>
+                                    <p class="text-sm font-medium text-gray-500">{{__('verifFoto.total')}}</p>
                                     <p class="text-2xl font-bold text-gray-900">{{ $totalPeserta }}</p>
                                 </div>
                             </div>
@@ -207,7 +216,7 @@
                                     </div>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-500">Foto Lengkap</p>
+                                    <p class="text-sm font-medium text-gray-500">{{__('verifFoto.ftlngkp')}}</p>
                                     <p class="text-2xl font-bold text-green-600">{{ $lengkap }}</p>
                                 </div>
                             </div>
@@ -221,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-500">Tidak Lengkap</p>
+                                    <p class="text-sm font-medium text-gray-500">{{__('verifFoto.tdklngkap')}}</p>
                                     <p class="text-2xl font-bold text-yellow-600">{{ $tidakLengkap }}</p>
                                 </div>
                             </div>
@@ -235,7 +244,7 @@
                                     </div>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-500">Belum Ada</p>
+                                    <p class="text-sm font-medium text-gray-500">{{__('verifFoto.blmada')}}</p>
                                     <p class="text-2xl font-bold text-red-600">{{ $belumAda }}</p>
                                 </div>
                             </div>
@@ -247,10 +256,10 @@
             <div class="w-full bg-white rounded-xl shadow-md border border-gray-200 p-6 text-center mb-6">
                 <div class="text-center py-16">
                     <div class="text-6xl text-gray-300 mb-4">📷</div>
-                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada data verifikasi foto</h3>
-                    <p class="text-gray-500 mb-4">Silakan buat broadcast permintaan verifikasi kepada peserta!</p>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">{{__('verifFoto.notyet')}}</h3>
+                    <p class="text-gray-500 mb-4">{{__('verifFoto.buatbc')}}</p>
                     <div class="text-sm text-gray-400">
-                        <p>Peserta akan mengirim foto ruangan tes dari 4 sudut yang berbeda</p>
+                        <p>{{__('verifFoto.4sudut')}}</p>
                     </div>
                 </div>
             </div>
@@ -261,8 +270,8 @@
             <div class="bg-white rounded-lg max-w-4xl max-h-5xl w-full mx-4 overflow-hidden shadow-2xl">
                 <div class="flex justify-between items-center p-4 bg-gray-50 border-b">
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-900" id="modalTitle">Foto Verifikasi</h3>
-                        <p class="text-sm text-gray-600" id="modalSubtitle">Detail foto peserta</p>
+                        <h3 class="text-lg font-semibold text-gray-900" id="modalTitle">{{__('verifFoto.foto')}}</h3>
+                        <p class="text-sm text-gray-600" id="modalSubtitle">{{__('verifFoto.detail')}}</p>
                     </div>
                     <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold p-2 rounded-full hover:bg-gray-200 transition-colors">
                         ×
@@ -274,7 +283,7 @@
                 <div class="p-4 bg-gray-50 border-t">
                     <div class="flex justify-center">
                         <button onclick="closeModal()" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                            Tutup
+                            {{__('verifFoto.close')}}
                         </button>
                     </div>
                 </div>

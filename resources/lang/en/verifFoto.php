@@ -1,9 +1,35 @@
 <?php
 
-return[
-    'title'       => '💬 Send a message to participants',
-    'notyet'      => 'No verification file yet',
-    'buatbc'      => 'Please send a verification request broadcast to participants!',
-    
-
+return [
+    'title'       => '💬 Send Message to Participants',
+    'notyet'      => 'No photo verification data yet',
+    'buatbc'      => 'Please create a broadcast requesting verification from participants!',
+    'kelola'      => 'Manage and verify participants\' test room photos',
+    'verif'       => '📷 Verify Participants\' Test Room Photos',
+    'total'       => 'Total Participants',
+    'search'      => 'Search by name or participant ID...',
+    'all'         => 'All statuses',
+    'lengkap'     => 'Complete',
+    'belum'       => 'Incomplete',
+    'tdklngkap'   => 'Not Complete',
+    'blmlngkap'   => 'Not Yet Complete',
+    'status'      => 'Verification Status',
+    'blmada'      => 'None yet',
+    'ftlngkp'     => 'Complete photos',
+    '4sudut'      => 'Participants will send photos of the test room from 4 different angles',
+    'foto'        => 'Verification Photos',
+    'detail'      => 'Participant Photo Details',
+    'close'       => 'Close',
+    'kirim'       => 'Send',
+    'no'          => 'No',
+    'nama'        => 'Participant Name',
+    'no_telp'     => 'Phone Number',
+    'status'      => 'Status',
+    'foto_depan'  => 'Front Photo',
+    'foto_belakang' => 'Back Photo',
+    'foto_kiri'   => 'Left Photo',
+    'foto_kanan'  => 'Right Photo',
+    'progress'    => 'Progress',
+    'pesan'       => 'Message',
+    'nomor'       => 'WhatsApp Number',
 ];

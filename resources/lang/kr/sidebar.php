@@ -8,4 +8,7 @@ return [
     'edit'          => '수정',
     'export'        => '데이터 내보내기',
     'delete'        => '삭제',
+    'logout_confirm' => '로그아웃 하시겠습니까?',
+    'yes' => '예',
+    'no' => '아니요',
 ];

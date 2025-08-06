@@ -48,7 +48,7 @@
                                 @if (request('search'))
                                     <a href="{{ route('admin.dashboard') }}"
                                         class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm hover:shadow-md">
-                                        Reset
+                                        {{ __('listPeserta.res') }}
                                     </a>
                                 @endif
                             </form>
@@ -78,7 +78,7 @@
                                     class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                     <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'peserta_id', 'direction' => request('sort') == 'peserta_id' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                         class="flex items-center space-x-1 hover:text-gray-700 transition-colors">
-                                        <span>No</span>
+                                        <span>{{__('listPeserta.no')}}</span>
                                         @if (request('sort') == 'peserta_id')
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -166,7 +166,7 @@
                                     class="w-28 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     <a href="{{ route('admin.dashboard', array_merge(request()->except(['sort', 'direction']), ['sort' => 'tgl_lahir', 'direction' => request('sort') == 'tgl_lahir' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                         class="flex items-center space-x-1 hover:text-gray-700 transition-colors">
-                                        <span>Tanggal Lahir</span>
+                                        <span>{{__('listPeserta.tgl')}}</span>
                                         @if (request('sort') == 'tgl_lahir')
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">

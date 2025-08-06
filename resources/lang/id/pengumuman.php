@@ -6,6 +6,7 @@ return [
     'status'    =>  'Status',
     'aksi'      =>  'Aksi',
     'more'      =>  'Lihat Selengkapnya',
+    'no'        =>  'No',
     'ttp'       =>  'Tutup',
     'title'     =>  '📢 Pengumuman',
     'announce'  =>  'Judul Pengumuman',

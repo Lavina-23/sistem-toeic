@@ -8,4 +8,7 @@ return [
     'edit'          => '编辑',
     'export'        => '导出数据',
     'delete'        => '删除',
+    'logout_confirm' => '您确定要登出吗？',
+    'yes' => '是',
+    'no' => '否',
 ];

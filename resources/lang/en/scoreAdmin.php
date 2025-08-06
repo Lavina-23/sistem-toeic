@@ -10,7 +10,10 @@ return[
     'imp'         => 'Please import the Excel file to add participant score data.',
     'format'      => 'Supported file formats: .xlsx, .xls',
     'records'     => 'Total Records',
-
+    'search'      => 'Search by name or ID number...',
+    'kategori'    => ' All Category',
+    'grup'       => ' All Group',
+    'no'          => 'No',
     'Result'      => 'Result No',
     'name'        => 'Participant Name',
     'niduk'       => 'ID Number',

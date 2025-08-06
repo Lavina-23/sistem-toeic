@@ -10,7 +10,10 @@ return [
     'imp'         => 'Silakan impor file Excel untuk menambahkan data nilai peserta.',
     'format'      => 'Format file yang didukung: .xlsx, .xls',
     'records'     => 'Total Rekor',
-
+    'search'      => 'Cari berdasarkan nama atau nomor induk...',
+    'kategori'    => ' Semua Kategori',
+    'grup'        => ' Semua Grup',
+    'no'          => 'No',
     'Result'      => 'No Hasil',
     'name'        => 'Nama Peserta',
     'niduk'       => 'Nomor Induk',

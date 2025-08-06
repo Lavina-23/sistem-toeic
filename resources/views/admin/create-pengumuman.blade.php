@@ -39,10 +39,10 @@
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">📢 {{ __('pengumuman.list') }}</h2>
                     <p class="text-sm text-gray-600 mt-1">
-                        {{ __('Kelola dan pantau pengumuman sistem') ?? 'Kelola daftar pengumuman' }}</p>
+                        {{__('pengumuman.kelola')}}</p>
                 </div>
                 <div class="text-right">
-                    <div class="text-sm text-gray-600">Total Pengumuman</div>
+                    <div class="text-sm text-gray-600">{{__('pengumuman.total')}}</div>
                     <div class="text-2xl font-bold text-blue-600">{{ isset($pengumumans) ? $pengumumans->count() : 0 }}
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                                         </svg>
                                     </div>
                                     <input type="text" name="search" value="{{ request('search') }}"
-                                        placeholder="🔍 Cari pengumuman..."
+                                        placeholder="🔍 {{__('pengumuman.cari')}}"
                                         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                 </div>
 
@@ -99,7 +99,7 @@
                                     @foreach ([10, 25, 50, 100] as $value)
                                         <option value="{{ $value }}"
                                             {{ request('perPage', 10) == $value ? 'selected' : '' }}>
-                                            {{ $value }} per halaman
+                                            {{ $value }} {{__('pengumuman.hal')}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -126,7 +126,7 @@
                                 <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
                                     <th
                                         class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
-                                        No
+                                        {{__('pengumuman.no')}}
                                     </th>
                                     <th
                                         class="w-48 px-4 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
@@ -224,7 +224,7 @@
                                                     <a href="{{ asset('storage/' . $pengumuman->file) }}"
                                                         target="_blank"
                                                         class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
-                                                        👀 Lihat
+                                                         {{__('pengumuman.show')}}
                                                     </a>
                                                 </div>
                                             @else
@@ -237,12 +237,12 @@
                                             @if ($pengumuman->status)
                                                 <span
                                                     class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ❌ Tidak Aktif
+                                                    ❌ {{__('pengumuman.non')}}
                                                 </span>
                                             @else
                                                 <span
                                                     class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    ✅ Aktif
+                                                    ✅ {{__('pengumuman.aktif')}}
                                                 </span>
                                             @endif
                                         </td>
@@ -429,24 +429,6 @@
                     </div>
                 </div>
 
-                <div>
-                    <label for="isi"
-                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.desc') }}</label>
-                    <textarea name="isi" id="isi" rows="4" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"></textarea>
-                </div>
-
-                <div>
-                    <label for="file"
-                        class="block text-gray-700 mb-2 font-medium">{{ __('pengumuman.select') }}</label>
-                    <input type="file" name="file" id="file" accept="application/pdf" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
-                </div>
-
-                <button type="submit"
-                    class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#001a5c] transition">
-                    Import
-                </button>
                 </form>
             </div>
     </section>

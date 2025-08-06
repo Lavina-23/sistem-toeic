@@ -170,7 +170,7 @@
                     <div class="flex gap-6">
                         <dl class="text-gray-900 divide-y divide-gray-200 w-full">
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.ID Peserta') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.IDPeserta') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->peserta_id }}</dd>
                             </div>
                             <div class="py-2">
@@ -178,7 +178,7 @@
                                 <dd class="text-base font-semibold">{{ $peserta->nama }}</dd>
                             </div>
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Nomor Identitas') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.NomorIdentitas') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->no_induk }}</dd>
                             </div>
                             <div class="py-2">
@@ -186,17 +186,17 @@
                                 <dd class="text-base font-semibold">{{ $peserta->nik }}</dd>
                             </div>
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Nomor Telepon') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.NomorTelepon') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->no_telp }}</dd>
                             </div>
                         </dl>
                         <dl class="text-gray-900 divide-y divide-gray-200 w-full">
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Alamat asal') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Alamatasal') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->alamat_asal }}</dd>
                             </div>
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Alamat Sekarang') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.AlamatSekarang') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->alamat_sekarang }}</dd>
                             </div>
                             <div class="py-2">
@@ -204,7 +204,7 @@
                                 <dd class="text-base font-semibold">{{ $peserta->jurusan }}</dd>
                             </div>
                             <div class="py-2">
-                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.Program Studi') }}</dt>
+                                <dt class="text-sm text-gray-500 mb-1">{{ __('riwayat.ProgramStudi') }}</dt>
                                 <dd class="text-base font-semibold">{{ $peserta->program_studi }}</dd>
                             </div>
                             <div class="py-2">

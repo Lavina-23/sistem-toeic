@@ -6,6 +6,7 @@ return [
     'status'    => 'Status',
     'aksi'      => 'Action',
     'more'      => 'View More',
+    'no'        => 'No',
     'ttp'       => 'Close',
     'title'     => '📢 Announcement',
     'announce'  => 'Announcement Title',

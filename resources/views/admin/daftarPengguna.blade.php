@@ -9,7 +9,7 @@
             <div class="flex justify-between items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">{{ __('daftarPengguna.title') }}</h2>
-                    <p class="text-sm text-gray-600 mt-1">{{ __('Kelola dan pantau data pengguna yang terdaftar') ?? 'Kelola daftar pengguna sistem' }}</p>
+                    <p class="text-sm text-gray-600 mt-1">{{ __('daftarPengguna.desc') ?? 'Kelola daftar pengguna sistem' }}</p>
                 </div>
                 <div class="text-right">
                     <div class="text-sm text-gray-600">{{ __('daftarPengguna.pengguna') }}</div>
@@ -90,7 +90,7 @@
                                 <th class="w-16 px-3 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-200">
                                     <a href="{{ route('admin.pengguna', array_merge(request()->except(['sort', 'direction']), ['sort' => 'pengguna_id', 'direction' => request('sort') == 'pengguna_id' && request('direction') == 'asc' ? 'desc' : 'asc'])) }}"
                                         class="flex items-center space-x-1 hover:text-gray-700 transition-colors">
-                                        <span>No</span>
+                                        <span>{{__('daftarPengguna.no')}}</span>
                                         @if (request('sort') == 'pengguna_id')
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -182,16 +182,16 @@
                                         <div class="flex flex-col items-center justify-center space-y-4">
                                             <div class="text-6xl text-gray-300 mb-4">👤</div>
                                             <h3 class="text-xl font-semibold text-gray-600 mb-2">
-                                                {{ __('Tidak ada data pengguna.') }}
+                                                {{ __('daftarPengguna.notfound') }}
                                             </h3>
                                             @if (request('search'))
-                                                <p class="text-sm text-gray-500 mb-4">Coba ubah kata kunci pencarian Anda</p>
+                                                <p class="text-sm text-gray-500 mb-4">{{__('daftarPengguna.reset')}}</p>
                                                 <a href="{{ route('admin.pengguna') }}"
                                                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                                    Reset Pencarian
+                                                    {{ __('daftarPengguna.search') }}
                                                 </a>
                                             @else
-                                                <p class="text-sm text-gray-500">Belum ada pengguna yang terdaftar</p>
+                                                <p class="text-sm text-gray-500">{{__('daftarPengguna.noregist')}}</p>
                                             @endif
                                         </div>
                                     </td>
@@ -204,7 +204,7 @@
                 <!-- Enhanced Pagination -->
                 <div class="mt-6 flex justify-between items-center">
                     <div class="text-sm text-gray-700">
-                        Menampilkan {{ $pengguna->firstItem() ?? 0 }} - {{ $pengguna->lastItem() ?? 0 }} dari {{ $pengguna->total() }} pengguna
+                        {{__('daftarPengguna.show')}} {{ $pengguna->firstItem() ?? 0 }} - {{ $pengguna->lastItem() ?? 0 }} {{__('daftarPengguna.of')}} {{ $pengguna->total() }} {{ __('daftarPengguna.user') }}
                     </div>
                     <div>
                         {{ $pengguna->appends(request()->except('page'))->links() }}
@@ -235,17 +235,17 @@
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{__('daftarPengguna.name')}}</label>
                 <input type="text" name="nama" required 
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{__('daftarPengguna.email')}}</label>
                 <input type="email" name="email" required 
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Level</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{__('daftarPengguna.level')}}</label>
                 <select name="level" required 
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                     <option value="admin">Admin</option>
@@ -254,12 +254,12 @@
                 </select>
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{__('daftarPengguna.password')}}</label>
                 <input type="password" name="password" required 
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{__('daftarPengguna.confirm')}}</label>
                 <input type="password" name="password_confirmation" required 
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
             </div>
@@ -268,11 +268,11 @@
             <div class="flex justify-end space-x-3 pt-4">
                 <button type="button" onclick="toggleModal(false)"
                         class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
-                    Batal
+                    {{ __('daftarPengguna.batal')}}
                 </button>
                 <button type="submit"
                         class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition">
-                    Simpan
+                    {{ __('daftarPengguna.save')}}
                 </button>
             </div>
         </form>

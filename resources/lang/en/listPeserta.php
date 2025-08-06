@@ -15,6 +15,7 @@ return [
     'prodi'      => 'Study Program',
     'kampus'     => 'Campus',
     'tgl'        => 'Date of Birth',
+    'res'        => 'Reset',
     'nodata'     => 'No participant data found',
     'reset'      => 'Try another keyword or reset your search',
     'noregist'   => 'No participants have registered yet',

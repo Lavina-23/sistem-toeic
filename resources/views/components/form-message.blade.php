@@ -19,18 +19,18 @@
             <form action="{{ route('send.message') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-gray-700 mb-2 font-medium">Pesan</label>
+                    <label class="block text-gray-700 mb-2 font-medium">{{__('verifFoto.pesan')}}</label>
                     <textarea name="message" id="message" rows="4" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200"></textarea>
                 </div>
                 <div>
-                    <label class="block text-gray-700 mb-2 font-medium">Nomor Whatsapp</label>
+                    <label class="block text-gray-700 mb-2 font-medium">{{__('verifFoto.nomor')}}</label>
                     <input type="file" name="excel_numbers" accept=".xls,.xlsx" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-teal-200">
                 </div>
                 <button type="submit"
                     class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primaryMid transition">
-                    Kirim
+                    {{__('verifFoto.kirim')}}
                 </button>
             </form>
         </div>

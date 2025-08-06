@@ -8,4 +8,7 @@ return [
     'edit' => 'Ubah',
     'export' => 'Ekspor Data',
     'delete' => 'Hapus',
+    'logout_confirm' => 'Apakah kamu yakin ingin logout?',
+    'yes' => 'Ya',
+    'no' => 'Tidak',
 ];
