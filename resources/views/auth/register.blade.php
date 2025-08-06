@@ -18,7 +18,7 @@
         </div>
 
         <!-- Name -->
-        <div>
+        <div class="mt-4">
             <x-input-label for="nama" :value="__('Nama')" />
             <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')"
                 required autofocus autocomplete="name" />

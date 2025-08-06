@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('no_induk')->unique();
             $table->string('nama');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('level', ['admin', 'peserta', 'itc'])->default('peserta');
             $table->text('alamat')->nullable();
